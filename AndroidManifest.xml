@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cn.dong.demo"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!-- 读取联系人 -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <application
+        android:name="cn.dong.demo.DongApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity android:name="cn.dong.demo.ui.MainActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="cn.dong.demo.ui.DialogActivity"
+            android:launchMode="singleTask" />
+        <activity android:name="cn.dong.demo.ui.XListViewActivity" />
+        <activity android:name="cn.dong.demo.ui.AutoCompleteActivity" />
+        <activity android:name="cn.dong.demo.ui.FragmentTestActivity" />
+        <activity android:name="cn.dong.demo.ui.ViewPagerActivity" />
+        <activity android:name="cn.dong.demo.ui.ImageLoaderActivity" />
+        <activity android:name="cn.dong.demo.ui.ImageSelectorActivity" />
+        <activity android:name="cn.dong.demo.ui.TextSizeActivity" />
+        <activity android:name="cn.dong.demo.ui.ContentProviderActivity" />
+        <activity android:name="cn.dong.demo.ui.WaterfallActivity" />
+        <activity android:name="cn.dong.demo.ui.ImageLoaderLargeActivity" />
+
+        <provider
+            android:name="cn.dong.demo.provider.MyProvider"
+            android:authorities="cn.dong.demo.provider"
+            android:exported="false" />
+    </application>
+
+</manifest>

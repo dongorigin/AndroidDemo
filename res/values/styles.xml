@@ -1,0 +1,16 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppTheme" parent="@android:style/Theme.Holo.Light"></style>
+
+    <style name="DialogHolo" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/dialog_full_holo_light</item>
+    </style>
+
+    <style name="BorderlessButton">
+        <item name="android:background">@drawable/item_background_holo_light</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+</resources>
