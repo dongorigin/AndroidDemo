@@ -28,7 +28,8 @@ public class MainActivity extends Activity {
 			new DemoInfo("TextSize", "", TextSizeActivity.class),
 			new DemoInfo("ContentProvider", "", ContentProviderActivity.class),
 			new DemoInfo("Waterfall", "", WaterfallActivity.class),
-			new DemoInfo("ImageLoaderLarge", "", ImageLoaderLargeActivity.class) };
+			new DemoInfo("ImageLoaderLarge", "", ImageLoaderLargeActivity.class),
+			new DemoInfo("Share", "", ShareActivity.class) };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

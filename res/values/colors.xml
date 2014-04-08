@@ -9,5 +9,6 @@
     <color name="grey">#e8e8e8</color>
     <!--  -->
     <color name="blue">#8BC3E9</color>
+    <color name="share_background">#30000000</color>
 
 </resources>

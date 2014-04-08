@@ -32,9 +32,12 @@ public class ImageLoaderActivity extends Activity {
 		setContentView(R.layout.activity_imageloader);
 
 		options = new DisplayImageOptions.Builder()
-				.showImageOnLoading(R.drawable.ic_stub).cacheInMemory(true)
-				.cacheOnDisc(true).considerExifParams(true)
-				// .displayer(new FadeInBitmapDisplayer(500))
+				.resetViewBeforeLoading(true)
+				// .showImageOnLoading(R.drawable.ic_stub)
+				.cacheInMemory(true)
+				.cacheOnDisc(true)
+				.considerExifParams(true)
+				.displayer(new FadeInBitmapDisplayer(300))
 				.build();
 
 		imageUrls = Constants.IMAGES;

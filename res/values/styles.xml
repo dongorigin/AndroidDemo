@@ -13,4 +13,25 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="ShareLogo">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_margin">@dimen/share_logo_margin</item>
+        <item name="android:padding">@dimen/share_logo_padding</item>
+    </style>
+
+    <style name="ShareLabel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:paddingBottom">@dimen/share_item_padding</item>
+        <item name="android:paddingLeft">@dimen/share_item_padding</item>
+        <item name="android:paddingRight">@dimen/share_item_padding</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/share_label_size</item>
+    </style>
+
 </resources>
