@@ -16,12 +16,13 @@ public class ShareActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_share);
 		sharePage = new SharePage(this);
+		sharePage.setText("分享的内容");
 
 		Button button = (Button) findViewById(R.id.bn_share);
 		button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				sharePage.show("分享的内容");
+				sharePage.show();
 			}
 		});
 	}

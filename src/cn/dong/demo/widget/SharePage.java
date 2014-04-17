@@ -27,7 +27,7 @@ import cn.sharesdk.tencent.weibo.TencentWeibo;
 import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
 
-public class SharePage implements Callback, OnClickListener {
+public class SharePage implements Callback, OnClickListener, PlatformActionListener {
 	private static final String TAG = "Share";
 	private static final int COMPLETE = 1;
 	private static final int ORROR = 2;
@@ -35,24 +35,57 @@ public class SharePage implements Callback, OnClickListener {
 
 	private Handler mHandler;
 	private Activity context;
+	private boolean finishing;
+	private boolean sharing;
 	private PopupWindow popupWindow;
 	private View parentView;
 	private View popupView;
-	private ShareListener mListener;
-	private String shareContent;
 	private HashMap<String, Object> data;
+	private PlatformActionListener callback;
 
 	public SharePage(Activity context) {
-		mHandler = new Handler(this);
 		this.context = context;
 		this.parentView = context.findViewById(android.R.id.content);
 		init();
+		initPopupWindow();
 		initView();
+	}
+
+	public void show() {
+		popupWindow.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
+	}
+
+	/**
+	 * text分享文本，支持全平台
+	 */
+	public void setText(String text) {
+		data.put("text", text);
+	}
+
+	/**
+	 * title标题，微信使用
+	 */
+	public void setTitle(String title) {
+		data.put("title", title);
+	}
+
+	/**
+	 * 设置自定义的外部回调
+	 */
+	public void setCallback(PlatformActionListener callback) {
+		this.callback = callback;
 	}
 
 	private void init() {
 		ShareSDK.initSDK(context);
-		mListener = new ShareListener();
+		data = new HashMap<String, Object>();
+		mHandler = new Handler(this);
+		callback = this;
+		finishing = false;
+		sharing = false;
+	}
+
+	private void initPopupWindow() {
 		popupView = LayoutInflater.from(context).inflate(R.layout.share_page_layout, null);
 		popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.MATCH_PARENT,
 				WindowManager.LayoutParams.MATCH_PARENT, true);
@@ -77,23 +110,22 @@ public class SharePage implements Callback, OnClickListener {
 		}
 	}
 
-	public void show(String shareContent) {
-		this.shareContent = shareContent;
-		popupWindow.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
-	}
-
 	@Override
 	public void onClick(View v) {
 		if (v.getId() == R.id.share_cancel) {
-			popupWindow.dismiss();
+			dismiss();
 		} else if (v.getId() == R.id.share_main) {
-			popupWindow.dismiss();
+			dismiss();
 		} else {
 			share(v.getId());
 		}
 	}
 
 	private void share(int id) {
+		// if (sharing) {
+		// return;
+		// }
+		sharing = true;
 		ShareParams sp = new ShareParams(data);
 		Platform platform = null;
 		switch (id) {
@@ -108,6 +140,7 @@ public class SharePage implements Callback, OnClickListener {
 			if (!platform.isValid()) {
 				Log.d(TAG, "qq isValid");
 				Toast.makeText(context, R.string.qq_client_inavailable, Toast.LENGTH_SHORT).show();
+				return;
 			}
 			break;
 		case R.id.share_wechat:
@@ -117,32 +150,38 @@ public class SharePage implements Callback, OnClickListener {
 				Log.d(TAG, "wechat isValid");
 				Toast.makeText(context, R.string.wechat_client_inavailable, Toast.LENGTH_SHORT)
 						.show();
+				return;
 			}
 			break;
 		case R.id.share_wechatmoments:
 			platform = ShareSDK.getPlatform(context, WechatMoments.NAME);
+			if (!platform.isValid()) {
+				Toast.makeText(context, R.string.wechat_client_inavailable, Toast.LENGTH_SHORT)
+						.show();
+				return;
+			}
+			break;
 		default:
 			break;
 		}
-		platform.setPlatformActionListener(mListener);
+		platform.setPlatformActionListener(callback);
 		platform.share(sp);
+		sharing = false;
 	}
 
-	class ShareListener implements PlatformActionListener {
-		@Override
-		public void onCancel(Platform arg0, int arg1) {
+	@Override
+	public void onCancel(Platform platform, int action) {
+		mHandler.sendEmptyMessage(CANCEL);
+	}
 
-		}
+	@Override
+	public void onComplete(Platform platform, int action, HashMap<String, Object> res) {
+		mHandler.sendEmptyMessage(COMPLETE);
+	}
 
-		@Override
-		public void onComplete(Platform arg0, int arg1, HashMap<String, Object> arg2) {
-			mHandler.sendEmptyMessage(COMPLETE);
-		}
-
-		@Override
-		public void onError(Platform arg0, int arg1, Throwable arg2) {
-			mHandler.sendEmptyMessage(ORROR);
-		}
+	@Override
+	public void onError(Platform platform, int action, Throwable t) {
+		mHandler.sendEmptyMessage(ORROR);
 	}
 
 	@Override
@@ -158,6 +197,16 @@ public class SharePage implements Callback, OnClickListener {
 
 			break;
 		}
+		dismiss();
 		return true;
+	}
+
+	public void dismiss() {
+		if (finishing) {
+			return;
+		}
+		finishing = true;
+		popupWindow.dismiss();
+		finishing = false;
 	}
 }
