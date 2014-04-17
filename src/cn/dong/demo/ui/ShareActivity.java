@@ -21,7 +21,7 @@ public class ShareActivity extends Activity {
 		button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-//				sharePage.show();
+				sharePage.show("分享的内容");
 			}
 		});
 	}

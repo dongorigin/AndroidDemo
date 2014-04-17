@@ -4,6 +4,9 @@ import java.util.HashMap;
 
 import android.app.Activity;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Handler;
+import android.os.Handler.Callback;
+import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -24,8 +27,13 @@ import cn.sharesdk.tencent.weibo.TencentWeibo;
 import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
 
-public class SharePage implements OnClickListener {
+public class SharePage implements Callback, OnClickListener {
 	private static final String TAG = "Share";
+	private static final int COMPLETE = 1;
+	private static final int ORROR = 2;
+	private static final int CANCEL = 3;
+
+	private Handler mHandler;
 	private Activity context;
 	private PopupWindow popupWindow;
 	private View parentView;
@@ -35,6 +43,7 @@ public class SharePage implements OnClickListener {
 	private HashMap<String, Object> data;
 
 	public SharePage(Activity context) {
+		mHandler = new Handler(this);
 		this.context = context;
 		this.parentView = context.findViewById(android.R.id.content);
 		init();
@@ -127,12 +136,28 @@ public class SharePage implements OnClickListener {
 
 		@Override
 		public void onComplete(Platform arg0, int arg1, HashMap<String, Object> arg2) {
-			Toast.makeText(context, R.string.share_complete, Toast.LENGTH_SHORT).show();
+			mHandler.sendEmptyMessage(COMPLETE);
 		}
 
 		@Override
 		public void onError(Platform arg0, int arg1, Throwable arg2) {
-			Toast.makeText(context, R.string.share_error, Toast.LENGTH_SHORT).show();
+			mHandler.sendEmptyMessage(ORROR);
 		}
+	}
+
+	@Override
+	public boolean handleMessage(Message msg) {
+		switch (msg.what) {
+		case COMPLETE:
+			Toast.makeText(context, R.string.share_complete, Toast.LENGTH_SHORT).show();
+			break;
+		case ORROR:
+			Toast.makeText(context, R.string.share_error, Toast.LENGTH_SHORT).show();
+			break;
+		case CANCEL:
+
+			break;
+		}
+		return true;
 	}
 }
