@@ -29,7 +29,8 @@ public class MainActivity extends Activity {
 			new DemoInfo("ContentProvider", "", ContentProviderActivity.class),
 			new DemoInfo("Waterfall", "", WaterfallActivity.class),
 			new DemoInfo("ImageLoaderLarge", "", ImageLoaderLargeActivity.class),
-			new DemoInfo("Share", "", ShareActivity.class) };
+			new DemoInfo("Share", "", ShareActivity.class),
+			new DemoInfo("WebView", "", WebViewActivity.class) };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +79,8 @@ public class MainActivity extends Activity {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
-				convertView =
-						getLayoutInflater().inflate(R.layout.activity_main_item, parent, false);
+				convertView = getLayoutInflater().inflate(R.layout.activity_main_item, parent,
+						false);
 			}
 			DemoInfo item = demos[position];
 			TextView title = (TextView) convertView.findViewById(R.id.title);
