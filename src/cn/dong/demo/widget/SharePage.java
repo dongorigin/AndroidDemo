@@ -4,9 +4,13 @@ import java.util.HashMap;
 
 import android.app.Activity;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -208,5 +212,34 @@ public class SharePage implements Callback, OnClickListener, PlatformActionListe
 		finishing = true;
 		popupWindow.dismiss();
 		finishing = false;
+	}
+	
+	private class SharePagerAdapter2 extends FragmentPagerAdapter {
+
+		public SharePagerAdapter2(FragmentManager fm) {
+			super(fm);
+		}
+
+		@Override
+		public Fragment getItem(int position) {
+			return Fragment.instantiate(context, SharePageGridFragment.class.getName(),
+					new Bundle());
+		}
+
+		@Override
+		public int getCount() {
+			return 2;
+		}
+
+	}
+
+	public static class ShareItem {
+		public int icon;
+		public int name;
+
+		public ShareItem(int icon, int name) {
+			this.icon = icon;
+			this.name = name;
+		}
 	}
 }

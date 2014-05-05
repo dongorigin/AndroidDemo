@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/share_item_padding" >
+
+    <ImageView
+        android:id="@+id/share_icon"
+        style="@style/ShareLogo"
+        android:src="@drawable/logo_qq" />
+
+    <TextView
+        android:id="@+id/share_name"
+        style="@style/ShareLabel"
+        android:text="@string/shortmessage" />
+
+</LinearLayout>
