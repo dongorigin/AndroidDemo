@@ -48,6 +48,8 @@
         <activity android:name="cn.dong.demo.ui.WaterfallActivity" />
         <activity android:name="cn.dong.demo.ui.ImageLoaderLargeActivity" />
         <activity android:name="cn.dong.demo.ui.ShareActivity" />
+        <activity android:name="cn.dong.demo.ui.GridViewPagerActivity" />
+        <activity android:name="cn.dong.demo.ui.AnimeActivity" />
         <activity
             android:name="cn.dong.demo.ui.WebViewActivity"
             android:hardwareAccelerated="false" />

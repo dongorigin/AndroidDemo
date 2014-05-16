@@ -3,6 +3,11 @@ package cn.dong.demo.widget;
 import java.util.HashMap;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,21 +26,30 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 import cn.dong.demo.R;
+import cn.dong.demo.util.T;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.Platform.ShareParams;
+import cn.sharesdk.framework.utils.UIHandler;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.sina.weibo.SinaWeibo;
+import cn.sharesdk.system.email.Email;
+import cn.sharesdk.system.text.ShortMessage;
 import cn.sharesdk.tencent.qq.QQ;
 import cn.sharesdk.tencent.weibo.TencentWeibo;
 import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
 
+import com.nostra13.universalimageloader.utils.L;
+
 public class SharePage implements Callback, OnClickListener, PlatformActionListener {
 	private static final String TAG = "Share";
+	private static final String SHARE_TITLE = "分享标题";
+
 	private static final int COMPLETE = 1;
 	private static final int ORROR = 2;
 	private static final int CANCEL = 3;
+	private static final int MSG_CANCEL_NOTIFY = 4;
 
 	private Handler mHandler;
 	private Activity context;
@@ -45,6 +59,7 @@ public class SharePage implements Callback, OnClickListener, PlatformActionListe
 	private View parentView;
 	private View popupView;
 	private HashMap<String, Object> data;
+	private String shareContent;
 	private PlatformActionListener callback;
 
 	public SharePage(Activity context) {
@@ -126,51 +141,63 @@ public class SharePage implements Callback, OnClickListener, PlatformActionListe
 	}
 
 	private void share(int id) {
-		// if (sharing) {
-		// return;
-		// }
-		sharing = true;
-		ShareParams sp = new ShareParams(data);
 		Platform platform = null;
+		HashMap<String, Object> data = new HashMap<String, Object>();
+		data.put("text", shareContent);
 		switch (id) {
-		case R.id.share_sinaweibo:
+		case R.string.sinaweibo:
 			platform = ShareSDK.getPlatform(context, SinaWeibo.NAME);
 			break;
-		case R.id.share_tencentweibo:
+		case R.string.tencentweibo:
 			platform = ShareSDK.getPlatform(context, TencentWeibo.NAME);
 			break;
-		case R.id.share_qq:
+		case R.string.qq:
+			data.put("title", SHARE_TITLE);
+			data.put("text", shareContent);
 			platform = ShareSDK.getPlatform(context, QQ.NAME);
 			if (!platform.isValid()) {
 				Log.d(TAG, "qq isValid");
-				Toast.makeText(context, R.string.qq_client_inavailable, Toast.LENGTH_SHORT).show();
+				T.shortT(context, R.string.qq_client_inavailable);
 				return;
 			}
 			break;
-		case R.id.share_wechat:
-			Log.d(TAG, "wechat onClick");
+		case R.string.wechat:
+			data.put("shareType", Platform.SHARE_TEXT);
+			data.put("title", SHARE_TITLE);
 			platform = ShareSDK.getPlatform(context, Wechat.NAME);
 			if (!platform.isValid()) {
 				Log.d(TAG, "wechat isValid");
-				Toast.makeText(context, R.string.wechat_client_inavailable, Toast.LENGTH_SHORT)
-						.show();
+				T.shortT(context, R.string.wechat_client_inavailable);
 				return;
 			}
 			break;
-		case R.id.share_wechatmoments:
+		case R.string.wechatmoments:
+			data.put("shareType", Platform.SHARE_TEXT);
+			data.put("title", SHARE_TITLE);
 			platform = ShareSDK.getPlatform(context, WechatMoments.NAME);
 			if (!platform.isValid()) {
-				Toast.makeText(context, R.string.wechat_client_inavailable, Toast.LENGTH_SHORT)
-						.show();
+				Log.d(TAG, "wechat isValid");
+				T.shortT(context, R.string.wechat_client_inavailable);
 				return;
 			}
 			break;
-		default:
+		case R.string.shortmessage:
+			data.put("address", "");
+			platform = ShareSDK.getPlatform(context, ShortMessage.NAME);
 			break;
+		case R.string.email:
+			data.put("title", SHARE_TITLE);
+			platform = ShareSDK.getPlatform(context, Email.NAME);
+			break;
+		default:
+			L.w(TAG, "分享对象不存在");
+			return;
 		}
+		ShareParams sp = new ShareParams(data);
 		platform.setPlatformActionListener(callback);
 		platform.share(sp);
-		sharing = false;
+		showNotification(2000, context.getResources().getString(R.string.sharing));
+		dismiss();
 	}
 
 	@Override
@@ -213,7 +240,36 @@ public class SharePage implements Callback, OnClickListener, PlatformActionListe
 		popupWindow.dismiss();
 		finishing = false;
 	}
-	
+
+	// 在状态栏提示分享操作
+	private void showNotification(long cancelTime, String text) {
+		try {
+			Context app = context.getApplicationContext();
+			NotificationManager nm = (NotificationManager) app
+					.getSystemService(Context.NOTIFICATION_SERVICE);
+			final int id = Integer.MAX_VALUE / 13 + 1;
+			nm.cancel(id);
+
+			long when = System.currentTimeMillis();
+			Notification notification = new Notification(R.drawable.ic_launcher, text, when);
+			PendingIntent pi = PendingIntent.getActivity(app, 0, new Intent(), 0);
+			notification.setLatestEventInfo(app, context.getResources()
+					.getString(R.string.app_name), text, pi);
+			notification.flags = Notification.FLAG_AUTO_CANCEL;
+			nm.notify(id, notification);
+
+			if (cancelTime > 0) {
+				Message msg = new Message();
+				msg.what = MSG_CANCEL_NOTIFY;
+				msg.obj = nm;
+				msg.arg1 = id;
+				UIHandler.sendMessageDelayed(msg, cancelTime, this);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	private class SharePagerAdapter2 extends FragmentPagerAdapter {
 
 		public SharePagerAdapter2(FragmentManager fm) {

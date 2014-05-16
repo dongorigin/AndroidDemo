@@ -5,6 +5,7 @@
     <string name="weibo_upload_content">分享图片</string>
     <string name="share_complete">分享成功</string>
 	<string name="share_error">分享失败</string>
+	<string name="sharing">分享操作正在后台进行</string>
     <string name="wechat_client_inavailable">目前您的微信版本过低或未安装微信，需要安装微信才能使用</string>
     <string name="google_plus_client_inavailable">Google+ 版本过低或者没有安装，需要升级或安装Google+才能使用！</string>
     <string name="qq_client_inavailable">QQ 版本过低或者没有安装，需要升级或安装QQ才能使用！</string>

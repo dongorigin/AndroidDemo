@@ -30,7 +30,9 @@ public class MainActivity extends Activity {
 			new DemoInfo("Waterfall", "", WaterfallActivity.class),
 			new DemoInfo("ImageLoaderLarge", "", ImageLoaderLargeActivity.class),
 			new DemoInfo("Share", "", ShareActivity.class),
-			new DemoInfo("WebView", "", WebViewActivity.class) };
+			new DemoInfo("WebView", "", WebViewActivity.class),
+			new DemoInfo("GridViewPager", "", GridViewPagerActivity.class),
+			new DemoInfo("Anime", "", AnimeActivity.class) };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
