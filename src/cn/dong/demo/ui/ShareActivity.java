@@ -1,31 +1,21 @@
 package cn.dong.demo.ui;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-
-import org.apache.http.HttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Html.ImageGetter;
+import android.os.Parcelable;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import cn.dong.demo.R;
-import cn.dong.demo.util.T;
 import cn.dong.demo.widget.SharePage;
 
 public class ShareActivity extends Activity {
@@ -48,7 +38,6 @@ public class ShareActivity extends Activity {
 		setContentView(R.layout.activity_share);
 		tv = (TextView) findViewById(R.id.text);
 		sharePage = new SharePage(this);
-		sharePage.setText("分享的内容");
 
 		content = String.format(EMAIL_FORMAT, "分享的内容", "http://www.baidu.com/img/bdlogo.gif");
 
@@ -56,132 +45,85 @@ public class ShareActivity extends Activity {
 		button.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// sharePage.show();
-//				email();
-				getAppCode("com.tixa.industry1188");
+				 sharePage.show();
+				// email();
+//				nativeShare();
+//				filterShare();
 			}
 		});
 	}
-	
-	private void getAppCode(String packageName) {
-		try {
-			PackageInfo info = getPackageManager().getPackageInfo(packageName, 0);
-			T.shortT(this, info.versionCode + "");
-		} catch (NameNotFoundException e) {
-			e.printStackTrace();
+
+	private void nativeShare() {
+		Intent intent = new Intent(Intent.ACTION_SEND);
+		intent.setType("text/plain");
+		intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
+		intent.putExtra(Intent.EXTRA_TEXT, "你好 ");
+		intent.putExtra(Intent.EXTRA_TITLE, "我是标题");
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		startActivity(Intent.createChooser(intent, "请选择"));
+	}
+
+	private void filterShare() {
+		String contentDetails = "";
+		String contentBrief = "";
+		String shareUrl = "";
+		Intent it = new Intent(Intent.ACTION_SEND);
+		it.setType("text/plain");
+		List<ResolveInfo> resInfo = getPackageManager().queryIntentActivities(it, 0);
+		if (!resInfo.isEmpty()) {
+			List<Intent> targetedShareIntents = new ArrayList<Intent>();
+			for (ResolveInfo info : resInfo) {
+				Intent targeted = new Intent(Intent.ACTION_SEND);
+				targeted.setType("text/plain");
+				ActivityInfo activityInfo = info.activityInfo;
+
+				// judgments : activityInfo.packageName, activityInfo.name, etc.
+				if (activityInfo.packageName.contains("bluetooth")
+						|| activityInfo.name.contains("bluetooth")) {
+					continue;
+				}
+				if (activityInfo.packageName.contains("gm") || activityInfo.name.contains("mail")) {
+					targeted.putExtra(Intent.EXTRA_TEXT, contentDetails);
+				} else if (activityInfo.packageName.contains("zxing")) {
+					targeted.putExtra(Intent.EXTRA_TEXT, shareUrl);
+				} else {
+					targeted.putExtra(Intent.EXTRA_TEXT, contentBrief);
+				}
+				targeted.setPackage(activityInfo.packageName);
+				targetedShareIntents.add(targeted);
+			}
+
+			Intent chooserIntent = Intent.createChooser(targetedShareIntents.remove(0),
+					"Select app to share");
+			if (chooserIntent == null) {
+				return;
+			}
+
+			// A Parcelable[] of Intent or LabeledIntent objects as set with
+			// putExtra(String, Parcelable[]) of additional activities to place
+			// a the front of the list of choices, when shown to the user with a
+			// ACTION_CHOOSER.
+			chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS,
+					targetedShareIntents.toArray(new Parcelable[] {}));
+
+			try {
+				startActivity(chooserIntent);
+			} catch (android.content.ActivityNotFoundException ex) {
+				Toast.makeText(this, "Can't find share component to share", Toast.LENGTH_SHORT)
+						.show();
+			}
 		}
 	}
 
 	private void email() {
-
 		Intent intent = new Intent(Intent.ACTION_SENDTO);
 		intent.setType("text/plain");
 		intent.setType("message/rfc822");
 		intent.setData(Uri.parse("mailto:"));
 		intent.putExtra(Intent.EXTRA_SUBJECT, "这是标题");
-		URLImageParser p = new URLImageParser(tv, this);
 		intent.putExtra(Intent.EXTRA_TEXT, content);
-		// tv.setText(Html.fromHtml(content, p, null));
+		// tv.setText(Html.fromHtml(content, null, null));
 		startActivity(intent);
-	}
-
-	public class URLImageParser implements ImageGetter {
-		Context c;
-		View container;
-
-		/***
-		 * Construct the URLImageParser which will execute AsyncTask and refresh
-		 * the container
-		 * 
-		 * @param t
-		 * @param c
-		 */
-		public URLImageParser(View t, Context c) {
-			this.c = c;
-			this.container = t;
-		}
-
-		public Drawable getDrawable(String source) {
-			URLDrawable urlDrawable = new URLDrawable();
-
-			// get the actual source
-			ImageGetterAsyncTask asyncTask = new ImageGetterAsyncTask(urlDrawable);
-
-			asyncTask.execute(source);
-
-			// return reference to URLDrawable where I will change with actual
-			// image from
-			// the src tag
-			return urlDrawable;
-		}
-
-		public class URLDrawable extends BitmapDrawable {
-			// the drawable that you need to set, you could set the initial
-			// drawing
-			// with the loading image if you need to
-			protected Drawable drawable;
-
-			@Override
-			public void draw(Canvas canvas) {
-				// override the draw to facilitate refresh function later
-				if (drawable != null) {
-					drawable.draw(canvas);
-				}
-			}
-		}
-
-		public class ImageGetterAsyncTask extends AsyncTask<String, Void, Drawable> {
-			URLDrawable urlDrawable;
-
-			public ImageGetterAsyncTask(URLDrawable d) {
-				this.urlDrawable = d;
-			}
-
-			@Override
-			protected Drawable doInBackground(String... params) {
-				String source = params[0];
-				return fetchDrawable(source);
-			}
-
-			@Override
-			protected void onPostExecute(Drawable result) {
-				// set the correct bound according to the result from HTTP call
-				urlDrawable.setBounds(0, 0, 0 + result.getIntrinsicWidth(),
-						0 + result.getIntrinsicHeight());
-
-				// change the reference of the current drawable to the result
-				// from the HTTP call
-				urlDrawable.drawable = result;
-
-				// redraw the image by invalidating the container
-				URLImageParser.this.container.invalidate();
-			}
-
-			/***
-			 * Get the Drawable from URL
-			 * 
-			 * @param urlString
-			 * @return
-			 */
-			public Drawable fetchDrawable(String urlString) {
-				try {
-					InputStream is = fetch(urlString);
-					Drawable drawable = Drawable.createFromStream(is, "src");
-					drawable.setBounds(0, 0, 0 + drawable.getIntrinsicWidth(),
-							0 + drawable.getIntrinsicHeight());
-					return drawable;
-				} catch (Exception e) {
-					return null;
-				}
-			}
-
-			private InputStream fetch(String urlString) throws MalformedURLException, IOException {
-				DefaultHttpClient httpClient = new DefaultHttpClient();
-				HttpGet request = new HttpGet(urlString);
-				HttpResponse response = httpClient.execute(request);
-				return response.getEntity().getContent();
-			}
-		}
 	}
 
 }

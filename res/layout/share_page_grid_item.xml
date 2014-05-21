@@ -7,12 +7,25 @@
 
     <ImageView
         android:id="@+id/share_icon"
-        style="@style/ShareLogo"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="@dimen/share_logo_margin"
+        android:padding="@dimen/share_logo_padding"
         android:src="@drawable/logo_qq" />
 
     <TextView
         android:id="@+id/share_name"
-        style="@style/ShareLabel"
-        android:text="@string/shortmessage" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:includeFontPadding="false"
+        android:paddingBottom="@dimen/share_item_padding"
+        android:paddingLeft="@dimen/share_item_padding"
+        android:paddingRight="@dimen/share_item_padding"
+        android:singleLine="true"
+        android:text="@string/qq"
+        android:textColor="@color/black"
+        android:textSize="@dimen/share_label_size" />
 
 </LinearLayout>

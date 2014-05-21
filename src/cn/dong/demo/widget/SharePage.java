@@ -1,91 +1,120 @@
 package cn.dong.demo.widget;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.BitmapDrawable;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.PopupWindow;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import cn.dong.demo.R;
+import cn.dong.demo.util.MeasureUtil;
 import cn.dong.demo.util.T;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.Platform.ShareParams;
-import cn.sharesdk.framework.utils.UIHandler;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.sina.weibo.SinaWeibo;
+import cn.sharesdk.framework.utils.UIHandler;
 import cn.sharesdk.system.email.Email;
 import cn.sharesdk.system.text.ShortMessage;
 import cn.sharesdk.tencent.qq.QQ;
-import cn.sharesdk.tencent.weibo.TencentWeibo;
 import cn.sharesdk.wechat.friends.Wechat;
 import cn.sharesdk.wechat.moments.WechatMoments;
 
 import com.nostra13.universalimageloader.utils.L;
 
-public class SharePage implements Callback, OnClickListener, PlatformActionListener {
+/**
+ * 自定义分享页
+ * 
+ * @author dong 2014-5-20
+ */
+public class SharePage implements Callback, PlatformActionListener, OnItemClickListener {
 	private static final String TAG = "Share";
-	private static final String SHARE_TITLE = "分享标题";
 
 	private static final int COMPLETE = 1;
 	private static final int ORROR = 2;
 	private static final int CANCEL = 3;
-	private static final int MSG_CANCEL_NOTIFY = 4;
+	private static final int MSG_NOTIFY_CANCEL = 4;
 
 	private Handler mHandler;
+	private LayoutInflater mInflater;
 	private Activity context;
-	private boolean finishing;
-	private boolean sharing;
-	private PopupWindow popupWindow;
-	private View parentView;
-	private View popupView;
-	private HashMap<String, Object> data;
-	private String shareContent;
+	private Dialog dialog;
 	private PlatformActionListener callback;
+
+	private String shareContent = "嗨，我正在使用天下互联客户端，赶快来试试吧！！";
+	private String shareTitle = "好友推荐";
+
+	private static ArrayList<ShareItem> items; // 分享的平台列表
+	static {
+		items = new ArrayList<SharePage.ShareItem>();
+		items.add(new ShareItem(R.drawable.logo_qq, R.string.qq));
+		items.add(new ShareItem(R.drawable.logo_wechat, R.string.wechat));
+		items.add(new ShareItem(R.drawable.logo_wechatmoments, R.string.wechatmoments));
+		items.add(new ShareItem(R.drawable.logo_email, R.string.email));
+		items.add(new ShareItem(R.drawable.logo_shortmessage, R.string.shortmessage));
+		items.add(new ShareItem(R.drawable.logo_more, R.string.more));
+	}
+
+	public static class ShareItem {
+		public int icon;
+		public int name;
+
+		public ShareItem(int icon, int name) {
+			this.icon = icon;
+			this.name = name;
+		}
+	}
 
 	public SharePage(Activity context) {
 		this.context = context;
-		this.parentView = context.findViewById(android.R.id.content);
 		init();
-		initPopupWindow();
-		initView();
+		initPageView();
 	}
 
 	public void show() {
-		popupWindow.showAtLocation(parentView, Gravity.BOTTOM, 0, 0);
+		if (dialog != null) {
+			dialog.show();
+		}
+	}
+
+	public void dismiss() {
+		if (dialog != null) {
+			dialog.dismiss();
+		}
 	}
 
 	/**
-	 * text分享文本，支持全平台
+	 * text 分享文本，支持全平台
 	 */
-	public void setText(String text) {
-		data.put("text", text);
+	public void setContent(String text) {
+		shareContent = text;
 	}
 
 	/**
-	 * title标题，微信使用
+	 * text 分享标题，微信、邮件使用
 	 */
-	public void setTitle(String title) {
-		data.put("title", title);
+	public void setTitle(String text) {
+		shareTitle = text;
 	}
 
 	/**
@@ -97,62 +126,85 @@ public class SharePage implements Callback, OnClickListener, PlatformActionListe
 
 	private void init() {
 		ShareSDK.initSDK(context);
-		data = new HashMap<String, Object>();
 		mHandler = new Handler(this);
+		mInflater = LayoutInflater.from(context);
 		callback = this;
-		finishing = false;
-		sharing = false;
 	}
 
-	private void initPopupWindow() {
-		popupView = LayoutInflater.from(context).inflate(R.layout.share_page_layout, null);
-		popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.MATCH_PARENT,
-				WindowManager.LayoutParams.MATCH_PARENT, true);
-		popupWindow.setTouchable(true);
-		popupWindow.setOutsideTouchable(true);
-		popupWindow.setBackgroundDrawable(new BitmapDrawable());
+	private void initPageView() {
+		GridView gridView = new GridView(context);
+		gridView.setAdapter(new PageGridAdapter());
+		gridView.setOnItemClickListener(this);
+		gridView.setNumColumns(3);
+		gridView.setGravity(Gravity.CENTER);
+		gridView.setStretchMode(GridView.STRETCH_COLUMN_WIDTH);
+		gridView.setSelector(R.color.transparent); // TODO 暂时取消点击效果
+		int padding = MeasureUtil.px2Dip(context, 12);
+		gridView.setPadding(padding, padding, padding, padding);
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		builder.setTitle("分享");
+		builder.setView(gridView);
+		dialog = builder.create();
 	}
 
-	private void initView() {
-		popupView.setOnClickListener(this);
-		Button btn_cancel = (Button) popupView.findViewById(R.id.share_cancel);
-		btn_cancel.setOnClickListener(this);
-		View[] buttons = new View[6];
-		buttons[0] = popupView.findViewById(R.id.share_sinaweibo);
-		buttons[1] = popupView.findViewById(R.id.share_tencentweibo);
-		buttons[2] = popupView.findViewById(R.id.share_qq);
-		buttons[3] = popupView.findViewById(R.id.share_wechat);
-		buttons[4] = popupView.findViewById(R.id.share_wechatmoments);
-		buttons[5] = popupView.findViewById(R.id.share_email);
-		for (int i = 0; i < buttons.length; i++) {
-			buttons[i].setOnClickListener(this);
+	class PageGridAdapter extends BaseAdapter {
+		@Override
+		public int getCount() {
+			return items.size();
+		}
+
+		@Override
+		public ShareItem getItem(int position) {
+			return items.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			ShareItem item = getItem(position);
+			if (convertView == null) {
+				convertView = mInflater.inflate(R.layout.share_page_grid_item, parent, false);
+			}
+			ImageView icon = (ImageView) convertView.findViewById(R.id.share_icon);
+			TextView name = (TextView) convertView.findViewById(R.id.share_name);
+			icon.setImageResource(item.icon);
+			name.setText(item.name);
+			return convertView;
 		}
 	}
 
 	@Override
-	public void onClick(View v) {
-		if (v.getId() == R.id.share_cancel) {
-			dismiss();
-		} else if (v.getId() == R.id.share_main) {
-			dismiss();
-		} else {
-			share(v.getId());
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		ShareItem item = items.get(position);
+		if (item != null) {
+			share(item.name);
 		}
 	}
 
 	private void share(int id) {
+		if (id == R.string.more) { // 点击更多时，调动系统原生分享
+			nativeShare();
+			dialog.dismiss();
+			return;
+		}
+
 		Platform platform = null;
 		HashMap<String, Object> data = new HashMap<String, Object>();
 		data.put("text", shareContent);
 		switch (id) {
-		case R.string.sinaweibo:
-			platform = ShareSDK.getPlatform(context, SinaWeibo.NAME);
-			break;
-		case R.string.tencentweibo:
-			platform = ShareSDK.getPlatform(context, TencentWeibo.NAME);
-			break;
+		// case R.string.sinaweibo:
+		// platform = ShareSDK.getPlatform(context, SinaWeibo.NAME);
+		// break;
+		// case R.string.tencentweibo:
+		// platform = ShareSDK.getPlatform(context, TencentWeibo.NAME);
+		// break;
 		case R.string.qq:
-			data.put("title", SHARE_TITLE);
+			data.put("title", shareTitle);
 			data.put("text", shareContent);
 			platform = ShareSDK.getPlatform(context, QQ.NAME);
 			if (!platform.isValid()) {
@@ -163,7 +215,7 @@ public class SharePage implements Callback, OnClickListener, PlatformActionListe
 			break;
 		case R.string.wechat:
 			data.put("shareType", Platform.SHARE_TEXT);
-			data.put("title", SHARE_TITLE);
+			data.put("title", shareTitle);
 			platform = ShareSDK.getPlatform(context, Wechat.NAME);
 			if (!platform.isValid()) {
 				Log.d(TAG, "wechat isValid");
@@ -173,7 +225,7 @@ public class SharePage implements Callback, OnClickListener, PlatformActionListe
 			break;
 		case R.string.wechatmoments:
 			data.put("shareType", Platform.SHARE_TEXT);
-			data.put("title", SHARE_TITLE);
+			data.put("title", shareTitle);
 			platform = ShareSDK.getPlatform(context, WechatMoments.NAME);
 			if (!platform.isValid()) {
 				Log.d(TAG, "wechat isValid");
@@ -186,7 +238,7 @@ public class SharePage implements Callback, OnClickListener, PlatformActionListe
 			platform = ShareSDK.getPlatform(context, ShortMessage.NAME);
 			break;
 		case R.string.email:
-			data.put("title", SHARE_TITLE);
+			data.put("title", shareTitle);
 			platform = ShareSDK.getPlatform(context, Email.NAME);
 			break;
 		default:
@@ -198,6 +250,18 @@ public class SharePage implements Callback, OnClickListener, PlatformActionListe
 		platform.share(sp);
 		showNotification(2000, context.getResources().getString(R.string.sharing));
 		dismiss();
+	}
+
+	/**
+	 * 系统原生分享方式
+	 */
+	private void nativeShare() {
+		Intent intent = new Intent(Intent.ACTION_SEND);
+		intent.setType("text/plain");
+		intent.putExtra(Intent.EXTRA_SUBJECT, shareTitle);
+		intent.putExtra(Intent.EXTRA_TEXT, shareContent);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		context.startActivity(Intent.createChooser(intent, ""));
 	}
 
 	@Override
@@ -212,6 +276,7 @@ public class SharePage implements Callback, OnClickListener, PlatformActionListe
 
 	@Override
 	public void onError(Platform platform, int action, Throwable t) {
+		Log.w(TAG, t.toString());
 		mHandler.sendEmptyMessage(ORROR);
 	}
 
@@ -227,18 +292,15 @@ public class SharePage implements Callback, OnClickListener, PlatformActionListe
 		case CANCEL:
 
 			break;
+		case MSG_NOTIFY_CANCEL:
+			NotificationManager nm = (NotificationManager) msg.obj;
+			if (nm != null) {
+				nm.cancel(msg.arg1);
+			}
+			break;
 		}
 		dismiss();
 		return true;
-	}
-
-	public void dismiss() {
-		if (finishing) {
-			return;
-		}
-		finishing = true;
-		popupWindow.dismiss();
-		finishing = false;
 	}
 
 	// 在状态栏提示分享操作
@@ -260,7 +322,7 @@ public class SharePage implements Callback, OnClickListener, PlatformActionListe
 
 			if (cancelTime > 0) {
 				Message msg = new Message();
-				msg.what = MSG_CANCEL_NOTIFY;
+				msg.what = MSG_NOTIFY_CANCEL;
 				msg.obj = nm;
 				msg.arg1 = id;
 				UIHandler.sendMessageDelayed(msg, cancelTime, this);
@@ -270,32 +332,4 @@ public class SharePage implements Callback, OnClickListener, PlatformActionListe
 		}
 	}
 
-	private class SharePagerAdapter2 extends FragmentPagerAdapter {
-
-		public SharePagerAdapter2(FragmentManager fm) {
-			super(fm);
-		}
-
-		@Override
-		public Fragment getItem(int position) {
-			return Fragment.instantiate(context, SharePageGridFragment.class.getName(),
-					new Bundle());
-		}
-
-		@Override
-		public int getCount() {
-			return 2;
-		}
-
-	}
-
-	public static class ShareItem {
-		public int icon;
-		public int name;
-
-		public ShareItem(int icon, int name) {
-			this.icon = icon;
-			this.name = name;
-		}
-	}
 }

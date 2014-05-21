@@ -3,10 +3,5 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <!-- Share -->
-    <dimen name="share_item_padding">5dp</dimen>
-    <dimen name="share_logo_margin">5dp</dimen>
-    <dimen name="share_logo_padding">5dp</dimen>
-    <dimen name="share_label_size">14dp</dimen>
 
 </resources>
