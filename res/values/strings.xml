@@ -4,6 +4,8 @@
     <string name="app_name">DongDemo</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
 
     <!-- Xlist -->
     <string name="xlistview_header_hint_normal">下拉刷新</string>
