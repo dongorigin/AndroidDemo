@@ -1,5 +1,7 @@
 package cn.dong.demo.base;
 
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;
@@ -8,10 +10,13 @@ import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
 import cn.dong.demo.DongApplication;
 
-public abstract class BaseActivity extends FragmentActivity implements Callback {
+public abstract class BaseSwipeBackActivity extends SwipeBackActivity implements Callback {
+	private boolean isSwipeBack = true; // 是否可以滑动
+
 	protected FragmentActivity context;
 	protected DongApplication application;
 	protected Handler mHandler;
+	protected SwipeBackLayout mSwipeBackLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,17 +32,29 @@ public abstract class BaseActivity extends FragmentActivity implements Callback 
 		context = this;
 		application = DongApplication.getInstance();
 		mHandler = new Handler(this);
-		
+		mSwipeBackLayout = getSwipeBackLayout();
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == android.R.id.home) {
-			finish();
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			scrollToFinishActivity();
 			return true;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
-		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onBackPressed() {
+		if (isSwipeBack) {
+			// 滑动动画结束后会自动调用finish()，请勿手动调用finish()
+			scrollToFinishActivity();
+		} else {
+			finish();
+		}
 	}
 
 	/**
@@ -64,6 +81,7 @@ public abstract class BaseActivity extends FragmentActivity implements Callback 
 
 	@Override
 	public boolean handleMessage(Message msg) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 

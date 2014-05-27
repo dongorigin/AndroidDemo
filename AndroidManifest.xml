@@ -37,6 +37,7 @@
         <activity
             android:name="cn.dong.demo.ui.DialogActivity"
             android:launchMode="singleTask" />
+        <activity android:name="cn.dong.demo.ui.SwipeActivity" />
         <activity android:name="cn.dong.demo.ui.XListViewActivity" />
         <activity android:name="cn.dong.demo.ui.AutoCompleteActivity" />
         <activity android:name="cn.dong.demo.ui.FragmentTestActivity" />

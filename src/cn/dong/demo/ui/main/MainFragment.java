@@ -26,6 +26,7 @@ import cn.dong.demo.ui.ImageLoaderLargeActivity;
 import cn.dong.demo.ui.ImageSelectorActivity;
 import cn.dong.demo.ui.ListViewActivity;
 import cn.dong.demo.ui.ShareActivity;
+import cn.dong.demo.ui.SwipeActivity;
 import cn.dong.demo.ui.TextSizeActivity;
 import cn.dong.demo.ui.ViewPagerActivity;
 import cn.dong.demo.ui.WaterfallActivity;
@@ -36,7 +37,9 @@ public class MainFragment extends BaseFragment {
 	private static final String TAG = "MainFragment";
 	private ListView listView;
 
-	private DemoInfo[] demos = { new DemoInfo("XListView", "", XListViewActivity.class),
+	private DemoInfo[] demos = {
+			new DemoInfo("SwipeBack", "", SwipeActivity.class),
+			new DemoInfo("XListView", "", XListViewActivity.class),
 			new DemoInfo("ListView", "", ListViewActivity.class),
 			new DemoInfo("Dialog", "", DialogActivity.class),
 			new DemoInfo("AutoComplete", "", AutoCompleteActivity.class),

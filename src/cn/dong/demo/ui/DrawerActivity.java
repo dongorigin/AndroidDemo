@@ -3,6 +3,7 @@ package cn.dong.demo.ui;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.view.MenuItem;
 import cn.dong.demo.R;
 import cn.dong.demo.base.BaseActivity;
 
@@ -27,9 +28,7 @@ public class DrawerActivity extends BaseActivity {
 
 	@Override
 	protected void process(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 }

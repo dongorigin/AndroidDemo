@@ -47,11 +47,10 @@ public class WebViewActivity extends Activity {
 
 			@Override
 			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-
-				// 解决webview下不识别自动打电话wtai://wp/mc;问题
 				if (url.equals("about:blank") || url == null || url.equals("")) {
 					// 解决有些网站跳转到blank
 				} else if (url.startsWith("wtai://wp/mc;")) {
+					// 解决webview下不识别自动打电话wtai://wp/mc;问题
 					String num = StrUtil.getSingleSplitStr(url, 1, ";");
 					if (num != null && !num.equals("")) {
 						Intent intent = new Intent();
