@@ -2,14 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:padding="16dp" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Switch
+        android:id="@+id/gesture_switch"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="测试"
-        android:textSize="18sp" />
+        android:layout_marginBottom="6dp"
+        android:layout_marginTop="6dp"
+        android:checked="true"
+        android:text="滑动手势" />
+
+    <Button
+        android:id="@+id/btn_finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Finish Activity" />
 
 </LinearLayout>

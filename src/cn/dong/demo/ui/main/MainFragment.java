@@ -17,6 +17,7 @@ import cn.dong.demo.ui.AnimeActivity;
 import cn.dong.demo.ui.AutoCompleteActivity;
 import cn.dong.demo.ui.ContentProviderActivity;
 import cn.dong.demo.ui.DialogActivity;
+import cn.dong.demo.ui.DrawableStateActivity;
 import cn.dong.demo.ui.DrawerActivity;
 import cn.dong.demo.ui.FragmentTestActivity;
 import cn.dong.demo.ui.GridViewPagerActivity;
@@ -38,6 +39,7 @@ public class MainFragment extends BaseFragment {
 	private ListView listView;
 
 	private DemoInfo[] demos = {
+			new DemoInfo("DrawableState", "", DrawableStateActivity.class),
 			new DemoInfo("SwipeBack", "", SwipeActivity.class),
 			new DemoInfo("XListView", "", XListViewActivity.class),
 			new DemoInfo("ListView", "", ListViewActivity.class),

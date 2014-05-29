@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import cn.dong.demo.R;
@@ -28,8 +27,6 @@ public class MainActivity extends BaseActivity {
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mDrawerToggle = new MainActionBarDrawerToggle(context, mDrawerLayout, R.drawable.ic_drawer,
 				R.string.drawer_open, R.string.drawer_close);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
-		getActionBar().setHomeButtonEnabled(true);
 	}
 
 	@Override
@@ -60,6 +57,8 @@ public class MainActivity extends BaseActivity {
 
 	@Override
 	protected void process(Bundle savedInstanceState) {
+		setEnableBackAnimation(false);
+		mSwipeBackLayout.setEnableGesture(false);
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		fragmentManager.beginTransaction().replace(R.id.content_frame, new MainFragment()).commit();
 	}
