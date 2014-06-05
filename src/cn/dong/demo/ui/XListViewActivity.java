@@ -93,6 +93,7 @@ public class XListViewActivity extends BaseActivity {
 		switch (msg.what) {
 		case 0:
 			listView.stopRefresh();
+			listView.setRefreshTime();
 			break;
 		case 1:
 			listView.stopLoadMore();
