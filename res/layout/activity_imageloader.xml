@@ -4,8 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
+    android:clipToPadding="false"
     android:divider="@null"
     android:dividerHeight="10dp"
+    android:paddingBottom="8dp"
     android:paddingLeft="8dp"
     android:paddingRight="8dp"
+    android:paddingTop="8dp"
     android:scrollbarStyle="outsideOverlay" />
