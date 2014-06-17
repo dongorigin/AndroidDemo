@@ -26,6 +26,7 @@ import cn.dong.demo.ui.ImageLoaderActivity;
 import cn.dong.demo.ui.ImageLoaderLargeActivity;
 import cn.dong.demo.ui.ImageSelectorActivity;
 import cn.dong.demo.ui.ListViewActivity;
+import cn.dong.demo.ui.PopupWindowActivity;
 import cn.dong.demo.ui.ShareActivity;
 import cn.dong.demo.ui.SwipeActivity;
 import cn.dong.demo.ui.TextSizeActivity;
@@ -39,6 +40,7 @@ public class MainFragment extends BaseFragment {
 	private ListView listView;
 
 	private DemoInfo[] demos = {
+			new DemoInfo("PopupWindow", "", PopupWindowActivity.class),
 			new DemoInfo("DrawableState", "", DrawableStateActivity.class),
 			new DemoInfo("SwipeBack", "", SwipeActivity.class),
 			new DemoInfo("XListView", "", XListViewActivity.class),
