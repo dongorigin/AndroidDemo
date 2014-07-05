@@ -57,8 +57,6 @@ public class MainActivity extends BaseActivity {
 
 	@Override
 	protected void process(Bundle savedInstanceState) {
-		setEnableBackAnimation(false);
-		mSwipeBackLayout.setEnableGesture(false);
 		FragmentManager fragmentManager = getSupportFragmentManager();
 		fragmentManager.beginTransaction().replace(R.id.content_frame, new MainFragment()).commit();
 	}

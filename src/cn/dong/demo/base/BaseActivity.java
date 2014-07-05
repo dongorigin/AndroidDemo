@@ -1,7 +1,5 @@
 package cn.dong.demo.base;
 
-import me.imid.swipebacklayout.lib.SwipeBackLayout;
-import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Handler.Callback;
@@ -10,13 +8,11 @@ import android.support.v4.app.FragmentActivity;
 import android.view.MenuItem;
 import cn.dong.demo.DongApplication;
 
-public abstract class BaseActivity extends SwipeBackActivity implements Callback {
-	private boolean enableBackAnimation = true;
+public abstract class BaseActivity extends FragmentActivity implements Callback {
 
 	protected FragmentActivity context;
 	protected DongApplication application;
 	protected Handler mHandler;
-	protected SwipeBackLayout mSwipeBackLayout;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +28,6 @@ public abstract class BaseActivity extends SwipeBackActivity implements Callback
 		context = this;
 		application = DongApplication.getInstance();
 		mHandler = new Handler(this);
-		mSwipeBackLayout = getSwipeBackLayout();
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
@@ -40,32 +35,11 @@ public abstract class BaseActivity extends SwipeBackActivity implements Callback
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			scrollToFinishActivity();
+			finish();
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
-	}
-
-	@Override
-	public void onBackPressed() {
-		if (!getSupportFragmentManager().popBackStackImmediate()) {
-			if (enableBackAnimation) {
-				// 滑动动画结束后会自动调用finish()，请勿手动调用finish()
-				scrollToFinishActivity();
-			} else {
-				finish();
-			}
-		}
-	}
-
-	/**
-	 * 设置back键关闭页面时是否开启滑动动画,finish时需要动画效果请调用scrollToFinishActivity
-	 * 
-	 * @param enable
-	 */
-	protected void setEnableBackAnimation(boolean enable) {
-		enableBackAnimation = enable;
 	}
 
 	/**

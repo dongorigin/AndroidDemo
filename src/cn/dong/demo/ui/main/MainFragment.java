@@ -34,12 +34,14 @@ import cn.dong.demo.ui.ViewPagerActivity;
 import cn.dong.demo.ui.WaterfallActivity;
 import cn.dong.demo.ui.WebViewActivity;
 import cn.dong.demo.ui.XListViewActivity;
+import cn.dong.demo.ui.touch.TouchEventActivity;
 
 public class MainFragment extends BaseFragment {
 	private static final String TAG = "MainFragment";
 	private ListView listView;
 
 	private DemoInfo[] demos = {
+			new DemoInfo("TouchEvent", "", TouchEventActivity.class),
 			new DemoInfo("PopupWindow", "", PopupWindowActivity.class),
 			new DemoInfo("DrawableState", "", DrawableStateActivity.class),
 			new DemoInfo("SwipeBack", "", SwipeActivity.class),

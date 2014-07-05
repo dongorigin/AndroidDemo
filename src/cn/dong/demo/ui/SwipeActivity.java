@@ -1,5 +1,7 @@
 package cn.dong.demo.ui;
 
+import me.imid.swipebacklayout.lib.SwipeBackLayout;
+import me.imid.swipebacklayout.lib.app.SwipeBackActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,32 +11,38 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Switch;
 import cn.dong.demo.R;
-import cn.dong.demo.base.BaseActivity;
 
-public class SwipeActivity extends BaseActivity {
+public class SwipeActivity extends SwipeBackActivity {
 	private static final String TAG = "SwipeActivity";
 
+	private SwipeBackLayout mSwipeBackLayout;
 	private Switch gestureSwitch;
 	private Button finishButton;
 
 	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(initPageLayoutID());
+		initPageView();
+		initPageViewListener();
+		process(savedInstanceState);
+	}
+
 	protected int initPageLayoutID() {
 		return R.layout.swipe_activity;
 	}
 
-	@Override
 	protected void initPageView() {
+		mSwipeBackLayout = getSwipeBackLayout();
 		gestureSwitch = (Switch) findViewById(R.id.gesture_switch);
 		finishButton = (Button) findViewById(R.id.btn_finish);
 	}
 
-	@Override
 	protected void initPageViewListener() {
 		gestureSwitch.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			@Override
 			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 				mSwipeBackLayout.setEnableGesture(isChecked);
-				setEnableBackAnimation(isChecked);
 			}
 		});
 		finishButton.setOnClickListener(new OnClickListener() {
@@ -45,7 +53,6 @@ public class SwipeActivity extends BaseActivity {
 		});
 	}
 
-	@Override
 	protected void process(Bundle savedInstanceState) {
 	}
 
