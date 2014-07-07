@@ -17,8 +17,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import cn.dong.demo.R;
 import cn.dong.demo.base.BaseActivity;
-import cn.dong.demo.widget.XListView;
-import cn.dong.demo.widget.XListView.IXListViewListener;
+import cn.dong.demo.view.XListView;
+import cn.dong.demo.view.XListView.IXListViewListener;
 
 public class XListViewActivity extends BaseActivity {
 	private static final String TAG = "XListView";

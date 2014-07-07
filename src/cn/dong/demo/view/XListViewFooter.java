@@ -4,7 +4,7 @@
  * @author Maxwin
  * @description XListView's footer
  */
-package cn.dong.demo.widget;
+package cn.dong.demo.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

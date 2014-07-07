@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import cn.dong.demo.R;
-import cn.dong.demo.widget.EmailAutoCompleteTextView;
+import cn.dong.demo.view.EmailAutoCompleteTextView;
 
 public class AutoCompleteActivity extends Activity {
 	private EmailAutoCompleteTextView emailAutoText;

@@ -19,9 +19,9 @@ import android.widget.RelativeLayout;
 import android.widget.Scroller;
 import android.widget.TextView;
 import cn.dong.demo.R;
+import cn.dong.demo.view.XListViewFooter;
+import cn.dong.demo.view.XListViewHeader;
 import cn.dong.demo.waterfall.PLA_AbsListView.OnScrollListener;
-import cn.dong.demo.widget.XListViewFooter;
-import cn.dong.demo.widget.XListViewHeader;
 
 public class MultiColumnXListView extends MultiColumnListView implements OnScrollListener {
 

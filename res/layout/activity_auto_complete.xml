@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:padding="8dp" >
 
-    <cn.dong.demo.widget.EmailAutoCompleteTextView
+    <cn.dong.demo.view.EmailAutoCompleteTextView
         android:id="@+id/email_auto_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -1,4 +1,4 @@
-package cn.dong.demo.widget;
+package cn.dong.demo.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
