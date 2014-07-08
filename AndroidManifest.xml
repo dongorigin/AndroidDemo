@@ -59,6 +59,7 @@
         <activity android:name="cn.dong.demo.ui.DrawerActivity" />
         <activity android:name="cn.dong.demo.ui.PopupWindowActivity" />
         <activity android:name="cn.dong.demo.ui.touch.TouchEventActivity" />
+        <activity android:name="cn.dong.demo.ui.SwipeListViewActivity" />
         <activity
             android:name="cn.dong.demo.ui.WebViewActivity"
             android:hardwareAccelerated="false" />

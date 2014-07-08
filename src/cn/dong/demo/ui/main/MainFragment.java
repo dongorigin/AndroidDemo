@@ -29,6 +29,7 @@ import cn.dong.demo.ui.ListViewActivity;
 import cn.dong.demo.ui.PopupWindowActivity;
 import cn.dong.demo.ui.ShareActivity;
 import cn.dong.demo.ui.SwipeActivity;
+import cn.dong.demo.ui.SwipeListViewActivity;
 import cn.dong.demo.ui.TextSizeActivity;
 import cn.dong.demo.ui.ViewPagerActivity;
 import cn.dong.demo.ui.WaterfallActivity;
@@ -41,6 +42,7 @@ public class MainFragment extends BaseFragment {
 	private ListView listView;
 
 	private DemoInfo[] demos = {
+			new DemoInfo("SwipeListView", "", SwipeListViewActivity.class),
 			new DemoInfo("TouchEvent", "", TouchEventActivity.class),
 			new DemoInfo("PopupWindow", "", PopupWindowActivity.class),
 			new DemoInfo("DrawableState", "", DrawableStateActivity.class),

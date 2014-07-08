@@ -791,8 +791,8 @@ public class SwipeListViewTouchListener implements View.OnTouchListener {
                         swap = false;
                     } else {
                         swap = true;
-                    }
-                } else if (Math.abs(deltaX) > viewWidth / 2) {
+                    } 
+                } else if (Math.abs(deltaX) > viewWidth / 5) { // TODO 修改减小这里的判断宽度，可使侧滑更容易滑出
                     swap = true;
                     swapRight = deltaX > 0;
                 }
@@ -852,7 +852,7 @@ public class SwipeListViewTouchListener implements View.OnTouchListener {
                 if (deltaMode > slop && swipeCurrentAction == SwipeListView.SWIPE_ACTION_NONE && velocityY < velocityX) {
                     swiping = true;
                     swipingRight = (deltaX > 0);
-                    Log.d("SwipeListView", "deltaX: " + deltaX + " - swipingRight: " + swipingRight);
+                    Log.d("SwipeListView", " deltaX: " + deltaX + " - swipingRight: " + swipingRight);
                     if (opened.get(downPosition)) {
                         swipeListView.onStartClose(downPosition, swipingRight);
                         swipeCurrentAction = SwipeListView.SWIPE_ACTION_REVEAL;
