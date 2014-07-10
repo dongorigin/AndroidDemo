@@ -10,16 +10,6 @@
 
     <!-- 读取联系人 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <!-- ShareSDK -->
-    <uses-permission android:name="android.permission.GET_TASKS" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
 
     <application
         android:name="cn.dong.demo.DongApplication"
@@ -41,42 +31,28 @@
             android:launchMode="singleTask" />
         <activity android:name="cn.dong.demo.ui.DrawableStateActivity" />
         <activity android:name="cn.dong.demo.ui.SwipeActivity" />
-        <activity android:name="cn.dong.demo.ui.XListViewActivity" />
         <activity android:name="cn.dong.demo.ui.AutoCompleteActivity" />
-        <activity android:name="cn.dong.demo.ui.FragmentTestActivity" />
         <activity android:name="cn.dong.demo.ui.ViewPagerActivity" />
-        <activity android:name="cn.dong.demo.ui.ImageLoaderActivity" />
-        <activity android:name="cn.dong.demo.ui.ImageSelectorActivity" />
         <activity android:name="cn.dong.demo.ui.TextSizeActivity" />
         <activity android:name="cn.dong.demo.ui.ContentProviderActivity" />
-        <activity android:name="cn.dong.demo.ui.WaterfallActivity" />
-        <activity android:name="cn.dong.demo.ui.ImageLoaderLargeActivity" />
         <activity android:name="cn.dong.demo.ui.ShareActivity" />
         <activity android:name="cn.dong.demo.ui.GridViewPagerActivity" />
         <activity android:name="cn.dong.demo.ui.AnimeActivity" />
-        <activity android:name="cn.dong.demo.ui.ListViewActivity" />
-        <activity android:name="cn.dong.demo.ui.ImageActivity" />
         <activity android:name="cn.dong.demo.ui.DrawerActivity" />
         <activity android:name="cn.dong.demo.ui.PopupWindowActivity" />
         <activity android:name="cn.dong.demo.ui.touch.TouchEventActivity" />
-        <activity android:name="cn.dong.demo.ui.SwipeListViewActivity" />
-        <activity
-            android:name="cn.dong.demo.ui.WebViewActivity"
-            android:hardwareAccelerated="false" />
-
-        <!-- ShareSDK -->
-        <activity
-            android:name="cn.sharesdk.framework.ShareSDKUIShell"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:windowSoftInputMode="stateHidden|adjustResize" />
-        <activity
-            android:name=".wxapi.WXEntryActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name="cn.dong.demo.ui.WebViewActivity" />
+        <activity android:name="cn.dong.demo.ui.fragment.FragmentTestActivity" />
+        <!-- Image -->
+        <activity android:name="cn.dong.demo.ui.image.ImageLoaderLargeActivity" />
+        <activity android:name="cn.dong.demo.ui.image.ImageLoaderActivity" />
+        <activity android:name="cn.dong.demo.ui.image.ImageSelectorActivity" />
+        <activity android:name="cn.dong.demo.ui.image.ImageActivity" />
+        <!-- List -->
+        <activity android:name="cn.dong.demo.ui.list.XListViewActivity" />
+        <activity android:name="cn.dong.demo.ui.list.WaterfallActivity" />
+        <activity android:name="cn.dong.demo.ui.list.ListViewActivity" />
+        <activity android:name="cn.dong.demo.ui.list.SwipeListViewActivitye" />
 
         <provider
             android:name="cn.dong.demo.provider.MyProvider"

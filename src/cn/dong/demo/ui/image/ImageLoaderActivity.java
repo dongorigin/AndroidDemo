@@ -1,4 +1,4 @@
-package cn.dong.demo.ui;
+package cn.dong.demo.ui.image;
 
 import android.app.Activity;
 import android.os.Bundle;

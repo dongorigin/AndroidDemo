@@ -1,4 +1,4 @@
-package cn.dong.demo.ui;
+package cn.dong.demo.ui.fragment;
 
 import cn.dong.demo.R;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package cn.dong.demo.ui;
+package cn.dong.demo.ui.image;
 
 import java.io.File;
 import java.io.FileNotFoundException;

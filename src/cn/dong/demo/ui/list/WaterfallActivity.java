@@ -1,4 +1,4 @@
-package cn.dong.demo.ui;
+package cn.dong.demo.ui.list;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,7 +14,6 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.AsyncTask.Status;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,8 +27,8 @@ import cn.dong.demo.R;
 import cn.dong.demo.model.DuitangInfo;
 import cn.dong.demo.waterfall.Helper;
 import cn.dong.demo.waterfall.MultiColumnXListView;
-import cn.dong.demo.waterfall.ScaleImageView;
 import cn.dong.demo.waterfall.MultiColumnXListView.IXListViewListener;
+import cn.dong.demo.waterfall.ScaleImageView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;

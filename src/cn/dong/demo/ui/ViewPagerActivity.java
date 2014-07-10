@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import cn.dong.demo.R;
+import cn.dong.demo.ui.fragment.TestFragment;
 
 public class ViewPagerActivity extends FragmentActivity {
 	private ViewPager mViewPager;

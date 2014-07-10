@@ -1,4 +1,4 @@
-package cn.dong.demo.ui;
+package cn.dong.demo.ui.fragment;
 
 import android.app.Activity;
 import android.graphics.Color;
