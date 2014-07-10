@@ -6,20 +6,26 @@ import java.util.List;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.TextView;
 import cn.dong.demo.R;
 import cn.dong.demo.base.BaseActivity;
 import cn.dong.demo.base.MyBaseAdapter;
 import cn.dong.demo.util.MeasureUtil;
 import cn.dong.demo.util.ViewHolder;
+import cn.dong.demo.view.SwipeXListView;
 
+import com.fortysevendeg.swipelistview.BaseSwipeListViewListener;
 import com.fortysevendeg.swipelistview.SwipeListView;
+import com.fortysevendeg.swipelistview.SwipeListViewListener;
 
 public class SwipeListViewActivity extends BaseActivity {
 
-	private SwipeListView swipeListView;
+	private SwipeXListView swipeListView;
 
 	private List<String> list;
 	private SwipeAdapter adapter;
@@ -31,11 +37,22 @@ public class SwipeListViewActivity extends BaseActivity {
 
 	@Override
 	protected void initPageView() {
-		swipeListView = (SwipeListView) findViewById(R.id.list);
+		swipeListView = (SwipeXListView) findViewById(R.id.list);
 	}
 
 	@Override
 	protected void initPageViewListener() {
+		swipeListView.setSwipeListViewListener(new BaseSwipeListViewListener(){
+			@Override
+			public void onClickFrontView(int position) {
+				
+			}
+		
+			@Override
+			public void onClickBackView(int position) {
+				
+			}
+		});
 	}
 
 	@Override
@@ -65,7 +82,7 @@ public class SwipeListViewActivity extends BaseActivity {
 			if (convertView == null) {
 				convertView = mInflater.inflate(R.layout.swipe_listview_item, parent, false);
 			}
-
+			((SwipeListView) parent).recycle(convertView, position);
 			TextView textView = ViewHolder.get(convertView, R.id.front);
 			textView.setText(data.get(position));
 			return convertView;

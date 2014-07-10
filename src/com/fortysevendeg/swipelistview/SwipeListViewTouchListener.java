@@ -315,7 +315,9 @@ public class SwipeListViewTouchListener implements View.OnTouchListener {
      * @param position Position of list
      */
     protected void openAnimate(int position) {
-        openAnimate(swipeListView.getChildAt(position - swipeListView.getFirstVisiblePosition()).findViewById(swipeFrontView), position);
+    	if (position >= 0) { // TODO 在快速滚动时，position=-1，造成null异常
+    		openAnimate(swipeListView.getChildAt(position - swipeListView.getFirstVisiblePosition()).findViewById(swipeFrontView), position);
+    	}
     }
 
     /**
@@ -792,7 +794,7 @@ public class SwipeListViewTouchListener implements View.OnTouchListener {
                     } else {
                         swap = true;
                     } 
-                } else if (Math.abs(deltaX) > viewWidth / 5) { // TODO 修改减小这里的判断宽度，可使侧滑更容易滑出
+                } else if (Math.abs(deltaX) > viewWidth / 4) { // TODO 修改减小这里的判断宽度，可使侧滑更容易滑出
                     swap = true;
                     swapRight = deltaX > 0;
                 }
