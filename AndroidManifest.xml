@@ -52,7 +52,7 @@
         <activity android:name="cn.dong.demo.ui.list.XListViewActivity" />
         <activity android:name="cn.dong.demo.ui.list.WaterfallActivity" />
         <activity android:name="cn.dong.demo.ui.list.ListViewActivity" />
-        <activity android:name="cn.dong.demo.ui.list.SwipeListViewActivitye" />
+        <activity android:name="cn.dong.demo.ui.list.SwipeListViewActivity" />
 
         <provider
             android:name="cn.dong.demo.provider.MyProvider"

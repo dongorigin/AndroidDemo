@@ -24,6 +24,7 @@ import com.fortysevendeg.swipelistview.SwipeListView;
 import com.fortysevendeg.swipelistview.SwipeListViewListener;
 
 public class SwipeListViewActivity extends BaseActivity {
+	private static final String TAG = "SwipeList";
 
 	private SwipeXListView swipeListView;
 
@@ -45,12 +46,16 @@ public class SwipeListViewActivity extends BaseActivity {
 		swipeListView.setSwipeListViewListener(new BaseSwipeListViewListener(){
 			@Override
 			public void onClickFrontView(int position) {
-				
+				Log.i(TAG, "onClickFrontView " + position);
 			}
 		
 			@Override
 			public void onClickBackView(int position) {
-				
+				Log.i(TAG, "onClickBackView " + position);
+				position -= swipeListView.getHeaderViewsCount();
+				list.remove(position);
+				adapter.notifyDataSetChanged();
+				swipeListView.closeOpenedItems();
 			}
 		});
 	}
