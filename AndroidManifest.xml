@@ -8,6 +8,12 @@
         android:minSdkVersion="14"
         android:targetSdkVersion="19" />
 
+    <!-- 访问网络 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 访问储存卡 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 读取联系人 -->
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
@@ -26,9 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="cn.dong.demo.ui.DialogActivity"
-            android:launchMode="singleTask" />
+        <activity android:name="cn.dong.demo.ui.DialogActivity" />
         <activity android:name="cn.dong.demo.ui.DrawableStateActivity" />
         <activity android:name="cn.dong.demo.ui.SwipeActivity" />
         <activity android:name="cn.dong.demo.ui.AutoCompleteActivity" />

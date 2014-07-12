@@ -6,13 +6,6 @@
 
     <ListView
         android:id="@android:id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/grey"
-        android:divider="@null"
-        android:dividerHeight="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:scrollbarStyle="outsideOverlay" />
+        style="@style/ListView.Card" />
 
 </LinearLayout>
