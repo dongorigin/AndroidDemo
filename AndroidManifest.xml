@@ -33,8 +33,6 @@
             </intent-filter>
         </activity>
         <activity android:name="cn.dong.demo.ui.DialogActivity" />
-        <activity android:name="cn.dong.demo.ui.DrawableStateActivity" />
-        <activity android:name="cn.dong.demo.ui.SwipeActivity" />
         <activity android:name="cn.dong.demo.ui.AutoCompleteActivity" />
         <activity android:name="cn.dong.demo.ui.ViewPagerActivity" />
         <activity android:name="cn.dong.demo.ui.TextSizeActivity" />
@@ -48,6 +46,7 @@
         <activity android:name="cn.dong.demo.ui.WebViewActivity" />
         <activity android:name="cn.dong.demo.ui.fragment.FragmentTestActivity" />
         <!-- Image -->
+        <activity android:name="cn.dong.demo.ui.image.DrawableStateActivity" />
         <activity android:name="cn.dong.demo.ui.image.ImageLoaderLargeActivity" />
         <activity android:name="cn.dong.demo.ui.image.ImageLoaderActivity" />
         <activity android:name="cn.dong.demo.ui.image.ImageSelectorActivity" />

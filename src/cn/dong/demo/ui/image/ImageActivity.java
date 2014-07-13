@@ -73,7 +73,4 @@ public class ImageActivity extends BaseActivity {
 		}
 	}
 
-	private void b() {
-
-	}
 }

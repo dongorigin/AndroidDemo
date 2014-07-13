@@ -21,7 +21,6 @@ import cn.dong.demo.ui.DrawerActivity;
 import cn.dong.demo.ui.GridViewPagerActivity;
 import cn.dong.demo.ui.PopupWindowActivity;
 import cn.dong.demo.ui.ShareActivity;
-import cn.dong.demo.ui.SwipeActivity;
 import cn.dong.demo.ui.TextSizeActivity;
 import cn.dong.demo.ui.ViewPagerActivity;
 import cn.dong.demo.ui.WebViewActivity;
@@ -46,7 +45,6 @@ public class MainFragment extends BaseFragment {
 			new DemoInfo("TouchEvent", "", TouchEventActivity.class),
 			new DemoInfo("PopupWindow", "", PopupWindowActivity.class),
 			new DemoInfo("DrawableState", "", DrawableStateActivity.class),
-			new DemoInfo("SwipeBack", "", SwipeActivity.class),
 			new DemoInfo("XListView", "", XListViewActivity.class),
 			new DemoInfo("ListView", "", ListViewActivity.class),
 			new DemoInfo("Dialog", "", DialogActivity.class),
