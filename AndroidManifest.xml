@@ -56,6 +56,7 @@
         <activity android:name="cn.dong.demo.ui.list.WaterfallActivity" />
         <activity android:name="cn.dong.demo.ui.list.ListViewActivity" />
         <activity android:name="cn.dong.demo.ui.list.SwipeListViewActivity" />
+        <activity android:name="cn.dong.demo.ui.RecyclerViewActivity" />
 
         <provider
             android:name="cn.dong.demo.provider.MyProvider"

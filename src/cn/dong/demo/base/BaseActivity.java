@@ -17,14 +17,14 @@ public abstract class BaseActivity extends FragmentActivity implements Callback 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		init();
 		setContentView(initPageLayoutID());
+		init();
 		initPageView();
 		initPageViewListener();
 		process(savedInstanceState);
 	}
 
-	private void init() {
+	protected void init() {
 		context = this;
 		application = DongApplication.getInstance();
 		mHandler = new Handler(this);

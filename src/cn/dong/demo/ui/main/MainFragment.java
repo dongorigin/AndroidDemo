@@ -20,6 +20,7 @@ import cn.dong.demo.ui.DialogActivity;
 import cn.dong.demo.ui.DrawerActivity;
 import cn.dong.demo.ui.GridViewPagerActivity;
 import cn.dong.demo.ui.PopupWindowActivity;
+import cn.dong.demo.ui.RecyclerViewActivity;
 import cn.dong.demo.ui.ShareActivity;
 import cn.dong.demo.ui.TextSizeActivity;
 import cn.dong.demo.ui.ViewPagerActivity;
@@ -41,6 +42,7 @@ public class MainFragment extends BaseFragment {
 	private ListView listView;
 
 	private DemoInfo[] demos = {
+			new DemoInfo("RecyclerView", "", RecyclerViewActivity.class),
 			new DemoInfo("SwipeListView", "", SwipeListViewActivity.class),
 			new DemoInfo("TouchEvent", "", TouchEventActivity.class),
 			new DemoInfo("PopupWindow", "", PopupWindowActivity.class),
