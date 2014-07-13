@@ -1,4 +1,4 @@
-package cn.dong.demo.ui;
+package cn.dong.demo.ui.list;
 
 import java.util.ArrayList;
 import java.util.List;
