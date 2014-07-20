@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import cn.dong.demo.R;
+import cn.dong.demo.base.BaseActivity;
 import cn.dong.demo.base.BaseFragment;
 import cn.dong.demo.ui.AnimeActivity;
 import cn.dong.demo.ui.AutoCompleteActivity;
@@ -19,6 +20,7 @@ import cn.dong.demo.ui.ContentProviderActivity;
 import cn.dong.demo.ui.DialogActivity;
 import cn.dong.demo.ui.DrawerActivity;
 import cn.dong.demo.ui.GridViewPagerActivity;
+import cn.dong.demo.ui.PackageManagerActivity;
 import cn.dong.demo.ui.PopupWindowActivity;
 import cn.dong.demo.ui.ShareActivity;
 import cn.dong.demo.ui.TextSizeActivity;
@@ -42,6 +44,7 @@ public class MainFragment extends BaseFragment {
 	private ListView listView;
 
 	private DemoInfo[] demos = {
+	        new DemoInfo("PackageManager", "", PackageManagerActivity.class),
 			new DemoInfo("RecyclerView", "", RecyclerViewActivity.class),
 			new DemoInfo("SwipeListView", "", SwipeListViewActivity.class),
 			new DemoInfo("TouchEvent", "", TouchEventActivity.class),
@@ -94,6 +97,7 @@ public class MainFragment extends BaseFragment {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				Intent intent = new Intent(context, demos[position].clazz);
+				intent.putExtra(BaseActivity.EXTRA_TITLE, demos[position].title);
 				startActivity(intent);
 			}
 		});

@@ -14,7 +14,7 @@
  * limitations under the License.
  *******************************************************************************/
 
-package cn.dong.demo.waterfall;
+package cn.dong.demo.view.waterfall;
 
 import android.content.Context;
 import android.content.res.TypedArray;

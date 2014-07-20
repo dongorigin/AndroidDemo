@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="19" />
+        android:targetSdkVersion="20" />
 
     <!-- 访问网络 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -32,6 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="cn.dong.demo.ui.PackageManagerActivity" />
         <activity android:name="cn.dong.demo.ui.DialogActivity" />
         <activity android:name="cn.dong.demo.ui.AutoCompleteActivity" />
         <activity android:name="cn.dong.demo.ui.ViewPagerActivity" />

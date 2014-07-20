@@ -2,7 +2,6 @@ package cn.dong.demo.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentManager.OnBackStackChangedListener;
 import android.util.Log;
@@ -10,17 +9,32 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import cn.dong.demo.R;
+import cn.dong.demo.base.BaseActivity;
 import cn.dong.demo.util.FragmentUtil;
 
-public class FragmentTestActivity extends FragmentActivity {
+public class FragmentTestActivity extends BaseActivity {
 	private FragmentManager fm;
 	private int fragmentNum;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_fragment_test);
+	protected void init() {
+		super.init();
 		fm = getSupportFragmentManager();
+	}
+
+	@Override
+	protected int initPageLayoutID() {
+		return R.layout.activity_fragment_test;
+	}
+
+	@Override
+	protected void initPageView() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	protected void initPageViewListener() {
 		fm.addOnBackStackChangedListener(new OnBackStackChangedListener() {
 			@Override
 			public void onBackStackChanged() {
@@ -32,6 +46,12 @@ public class FragmentTestActivity extends FragmentActivity {
 				}
 			}
 		});
+	}
+
+	@Override
+	protected void process(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+
 	}
 
 	public void OnClick(View v) {
@@ -62,10 +82,13 @@ public class FragmentTestActivity extends FragmentActivity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (item.getItemId() == R.id.action_settings) {
+		switch (item.getItemId()) {
+		case R.id.action_settings:
 			fm.popBackStack(0, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 			fragmentNum = 0;
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
 		}
-		return true;
 	}
 }

@@ -61,7 +61,9 @@ public class TouchEventActivity extends BaseActivity {
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent event) {
 		TouchEventHelper.displayAction(event, TAG, "dispatchTouchEvent");
-		return super.dispatchTouchEvent(event);
+		boolean result = super.dispatchTouchEvent(event);
+		Log.i(TAG, "dispatchTouchEvent return " + result);
+		return result;
 	}
 
 	@Override

@@ -23,7 +23,7 @@ public class TouchLayout extends RelativeLayout {
 
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
-		TouchEventHelper.displayAction(ev, TAG, "onInterceptTouchEvent");
+//		TouchEventHelper.displayAction(ev, TAG, "onInterceptTouchEvent");
 		return super.onInterceptTouchEvent(ev);
 	}
 

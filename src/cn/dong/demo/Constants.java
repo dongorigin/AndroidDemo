@@ -10,7 +10,7 @@ public class Constants {
 	}
 
 	public static class Config {
-		public static final boolean DEVELOPER_MODE = false;
+		public static final boolean DEVELOPER_MODE = true;
 	}
 
 	public static class Extra {
