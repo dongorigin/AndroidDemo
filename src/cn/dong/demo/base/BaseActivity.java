@@ -15,7 +15,7 @@ import android.view.MenuItem;
 import cn.dong.demo.DongApplication;
 
 /**
- * Activity超类
+ * Activity 基类
  * 
  * @author dong 2014-7-19
  */
@@ -76,6 +76,7 @@ public abstract class BaseActivity extends FragmentActivity implements Callback 
     @Override
     protected void onDestroy() {
         isDestroy = true;
+        dismissLoadingDialog();
         super.onDestroy();
         // System.gc();
     }

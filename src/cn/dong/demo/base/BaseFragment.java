@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import cn.dong.demo.DongApplication;
 
 /**
- * Fragment超类
+ * Fragment 基类
  * 
  * @author dong 2014-7-20
  */
@@ -26,6 +26,10 @@ public abstract class BaseFragment extends Fragment implements Callback {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        init();
+    }
+
+    protected void init() {
         context = (BaseActivity) getActivity();
         application = DongApplication.getInstance();
         mHandler = new Handler(this);
@@ -66,7 +70,14 @@ public abstract class BaseFragment extends Fragment implements Callback {
 
     @Override
     public boolean handleMessage(Message msg) {
-        return false;
+        if (getActivity() != null) {
+            performHandleMessage(msg);
+        }
+        return true;
+    }
+
+    protected void performHandleMessage(Message msg) {
+
     }
 
     /**
