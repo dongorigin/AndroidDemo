@@ -39,7 +39,9 @@ public class DongApplication extends Application {
                                                         // problems
                     .penaltyLog().build());
             StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects()
-                    .detectLeakedClosableObjects().penaltyLog().penaltyDeath().build());
+                    .detectLeakedClosableObjects().penaltyLog()
+                    // .penaltyDeath()
+                    .build());
         }
     }
 
