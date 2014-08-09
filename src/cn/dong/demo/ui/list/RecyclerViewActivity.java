@@ -53,7 +53,7 @@ public class RecyclerViewActivity extends BaseActivity {
 	@Override
 	protected void process(Bundle savedInstanceState) {
 		// 创建线性布局管理器
-		LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+		LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
 		layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 		// 设置布局管理器
 		horizontalRecyclerView.setLayoutManager(layoutManager);
@@ -63,7 +63,7 @@ public class RecyclerViewActivity extends BaseActivity {
 		horizontalRecyclerView.setAdapter(adapter);
 		
 		// 创建线性布局管理器
-		LinearLayoutManager layoutManager2 = new LinearLayoutManager(context);
+		LinearLayoutManager layoutManager2 = new LinearLayoutManager(mContext);
 		layoutManager2.setOrientation(LinearLayoutManager.VERTICAL);
 		// 设置布局管理器
 		verticalRecyclerView.setLayoutManager(layoutManager2);

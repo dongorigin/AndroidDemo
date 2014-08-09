@@ -63,12 +63,12 @@ public class SwipeListViewActivity extends BaseActivity {
 	@Override
 	protected void process(Bundle savedInstanceState) {
 		list = new ArrayList<String>();
-		adapter = new SwipeAdapter(context, list);
+		adapter = new SwipeAdapter(mContext, list);
 		swipeListView.setAdapter(adapter);
 
 		DisplayMetrics dm = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(dm);
-		swipeListView.setOffsetLeft(dm.widthPixels - MeasureUtil.px2Dip(context, 90));
+		swipeListView.setOffsetLeft(dm.widthPixels - MeasureUtil.px2Dip(mContext, 90));
 
 		for (int i = 0; i < 20; i++) {
 			list.add(String.valueOf(i));

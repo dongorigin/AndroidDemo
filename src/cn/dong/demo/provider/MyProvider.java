@@ -4,11 +4,13 @@ import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
+import android.util.Log;
 
 public class MyProvider extends ContentProvider {
 
 	@Override
 	public boolean onCreate() {
+	    Log.i("MyProvider", "onCreate");
 		// TODO Auto-generated method stub
 		return false;
 	}

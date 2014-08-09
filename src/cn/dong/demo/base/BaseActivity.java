@@ -23,7 +23,7 @@ public abstract class BaseActivity extends FragmentActivity implements Callback 
     public static final String EXTRA_TITLE = "actionbar_title";
 
     protected boolean isDestroy;
-    protected FragmentActivity context;
+    protected FragmentActivity mContext;
     protected DongApplication application;
     protected Handler mHandler;
     protected ImageLoader mImageLoader;
@@ -41,7 +41,7 @@ public abstract class BaseActivity extends FragmentActivity implements Callback 
     }
 
     protected void init() {
-        context = this;
+        mContext = this;
         application = DongApplication.getInstance();
         mHandler = new Handler(this);
         mImageLoader = ImageLoader.getInstance();
@@ -116,7 +116,7 @@ public abstract class BaseActivity extends FragmentActivity implements Callback 
         if (mLoadingDialog != null && mLoadingDialog.isShowing()) {
             return;
         } else {
-            mLoadingDialog = new ProgressDialog(context);
+            mLoadingDialog = new ProgressDialog(mContext);
             mLoadingDialog.setMessage(msg);
             mLoadingDialog.setIndeterminate(true);
             mLoadingDialog.setCancelable(isCancelable);
@@ -139,7 +139,7 @@ public abstract class BaseActivity extends FragmentActivity implements Callback 
      * 启动Activity
      */
     public void launchActivity(Class<? extends Activity> cls) {
-        startActivity(new Intent(context, cls));
+        startActivity(new Intent(mContext, cls));
     }
 
 }

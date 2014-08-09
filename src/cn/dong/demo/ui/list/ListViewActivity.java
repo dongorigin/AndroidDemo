@@ -103,7 +103,7 @@ public class ListViewActivity extends BaseActivity {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
-				convertView = LayoutInflater.from(context).inflate(R.layout.activity_xlist_item,
+				convertView = LayoutInflater.from(mContext).inflate(R.layout.activity_xlist_item,
 						parent, false);
 			}
 			Item item = list.get(position);

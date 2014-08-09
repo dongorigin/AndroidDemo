@@ -25,7 +25,7 @@ public class MainActivity extends BaseActivity {
 	@Override
 	protected void initPageView() {
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		mDrawerToggle = new MainActionBarDrawerToggle(context, mDrawerLayout, R.drawable.ic_drawer,
+		mDrawerToggle = new MainActionBarDrawerToggle(mContext, mDrawerLayout, R.drawable.ic_drawer,
 				R.string.drawer_open, R.string.drawer_close);
 	}
 
