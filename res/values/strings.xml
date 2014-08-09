@@ -29,5 +29,7 @@
         <item>Anguilla</item>
         <item>Antarctica</item>
     </string-array>
+    
+    <string name="sample">http://v.youku.com/v_show/id_XNzQ2MDM0MjI4_ev_1.html?from=y1.3-idx-grid-1519-9909.86808-86807.1-1</string>
 
 </resources>

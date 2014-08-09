@@ -38,12 +38,14 @@ import cn.dong.demo.ui.list.SwipeListViewActivity;
 import cn.dong.demo.ui.list.WaterfallActivity;
 import cn.dong.demo.ui.list.XListViewActivity;
 import cn.dong.demo.ui.touch.TouchEventActivity;
+import cn.dong.demo.ui.video.VParserActivity;
 
 public class MainFragment extends BaseFragment {
 	private static final String TAG = "MainFragment";
 	private ListView listView;
 
 	private DemoInfo[] demos = {
+	        new DemoInfo("VParser", "", VParserActivity.class),
 	        new DemoInfo("PackageManager", "", PackageManagerActivity.class),
 			new DemoInfo("RecyclerView", "", RecyclerViewActivity.class),
 			new DemoInfo("SwipeListView", "", SwipeListViewActivity.class),

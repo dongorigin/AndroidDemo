@@ -8,48 +8,54 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+/**
+ * Adapter 基类
+ * 
+ * @param <E> 数据实体类
+ * @author dong 2014-7-25
+ */
 public abstract class MyBaseAdapter<E> extends BaseAdapter {
-	protected Context context;
-	protected List<E> data;
-	protected LayoutInflater mInflater;
+    protected Context context;
+    protected List<E> data;
+    protected LayoutInflater mInflater;
 
-	public MyBaseAdapter(Context context, List<E> data) {
-		this.context = context;
-		this.data = data;
-		mInflater = LayoutInflater.from(context);
-	}
+    public MyBaseAdapter(Context context, List<E> data) {
+        this.context = context;
+        this.data = data;
+        mInflater = LayoutInflater.from(context);
+    }
 
-	@Override
-	public int getCount() {
-		if (data != null) {
-			return data.size();
-		} else {
-			return 0;
-		}
-	}
+    @Override
+    public int getCount() {
+        if (data != null) {
+            return data.size();
+        } else {
+            return 0;
+        }
+    }
 
-	@Override
-	public E getItem(int position) {
-		if (data != null && data.size() > 0) {
-			return data.get(position);
-		} else {
-			return null;
-		}
-	}
+    @Override
+    public E getItem(int position) {
+        if (data != null && data.size() > 0) {
+            return data.get(position);
+        } else {
+            return null;
+        }
+    }
 
-	@Override
-	public long getItemId(int position) {
-		return position;
-	}
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
 
-	public List<E> getData() {
-		return data;
-	}
+    public List<E> getData() {
+        return data;
+    }
 
-	public void setData(List<E> data) {
-		this.data = data;
-	}
+    public void setData(List<E> data) {
+        this.data = data;
+    }
 
-	@Override
-	public abstract View getView(int position, View convertView, ViewGroup parent);
+    @Override
+    public abstract View getView(int position, View convertView, ViewGroup parent);
 }
