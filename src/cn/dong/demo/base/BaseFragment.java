@@ -19,8 +19,8 @@ import cn.dong.demo.DongApplication;
  */
 public abstract class BaseFragment extends Fragment implements Callback {
 
-    protected BaseActivity context;
-    protected DongApplication application;
+    protected BaseActivity mContext;
+    protected DongApplication mApplication;
     protected Handler mHandler;
 
     @Override
@@ -30,8 +30,8 @@ public abstract class BaseFragment extends Fragment implements Callback {
     }
 
     protected void init() {
-        context = (BaseActivity) getActivity();
-        application = DongApplication.getInstance();
+        mContext = (BaseActivity) getActivity();
+        mApplication = DongApplication.getInstance();
         mHandler = new Handler(this);
     }
 
@@ -85,7 +85,7 @@ public abstract class BaseFragment extends Fragment implements Callback {
      */
     protected void launchActivity(Class<? extends Activity> cls) {
         Intent intent = new Intent();
-        intent.setClass(context, cls);
+        intent.setClass(mContext, cls);
         startActivity(intent);
     }
 

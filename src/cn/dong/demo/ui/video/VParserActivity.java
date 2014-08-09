@@ -44,7 +44,7 @@ public class VParserActivity extends BaseActivity {
     @Override
     protected void init() {
         super.init();
-        mVParser = new VParser(context);
+        mVParser = new VParser(mContext);
         mVersionManager = VersionManager.getInstance();
     }
 
@@ -108,7 +108,7 @@ public class VParserActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (!TextUtils.isEmpty(mVideoUri)) {
-                    Intent intent = new Intent(context, VideoPlayerActivity.class);
+                    Intent intent = new Intent(mContext, VideoPlayerActivity.class);
                     intent.putExtra(VideoPlayerActivity.EXTRA_VIDEO_URL, mVideoUri);
                     startActivity(intent);
                 }
@@ -133,7 +133,7 @@ public class VParserActivity extends BaseActivity {
                 versionText.setText(mType.toString());
                 break;
             case 3:
-                T.shortT(context, "解析错误");
+                T.shortT(mContext, "解析错误");
                 break;
             default:
                 break;

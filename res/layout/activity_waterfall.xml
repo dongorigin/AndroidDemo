@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <cn.dong.demo.view.waterfall.MultiColumnXListView
+    <com.dodowaterfall.widget.MultiColumnXListView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

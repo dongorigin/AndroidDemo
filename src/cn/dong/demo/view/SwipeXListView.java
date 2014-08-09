@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.Date;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -22,6 +23,11 @@ import cn.dong.demo.util.StrUtil;
 
 import com.fortysevendeg.swipelistview.SwipeListView;
 
+/**
+ * 支持侧滑的XListView
+ * 
+ * @author dong 2014-8-10
+ */
 public class SwipeXListView extends SwipeListView implements OnScrollListener {
 	private float mLastY = -1; // save event y
 	private Scroller mScroller; // used for scroll back
@@ -101,7 +107,7 @@ public class SwipeXListView extends SwipeListView implements OnScrollListener {
 	}
 
 	public void setAdapter(ListAdapter adapter, String filePath) {
-		if (StrUtil.isNotEmpty(filePath)) {
+		if (!TextUtils.isEmpty(filePath)) {
 			try {
 				File file = new File(filePath);
 				long modifiTime = file.lastModified();

@@ -8,8 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import cn.dong.demo.R;
 import cn.dong.demo.base.BaseActivity;
-import cn.dong.demo.view.waterfall.ScaleImageView;
 
+import com.dodowaterfall.widget.ScaleImageView;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;

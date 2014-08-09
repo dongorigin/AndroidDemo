@@ -49,18 +49,20 @@
         <activity android:name="cn.dong.demo.ui.touch.TouchEventActivity" />
         <activity android:name="cn.dong.demo.ui.WebViewActivity" />
         <activity android:name="cn.dong.demo.ui.fragment.FragmentTestActivity" />
+
         <!-- Image -->
         <activity android:name="cn.dong.demo.ui.image.DrawableStateActivity" />
         <activity android:name="cn.dong.demo.ui.image.ImageLoaderLargeActivity" />
         <activity android:name="cn.dong.demo.ui.image.ImageLoaderActivity" />
-        <activity android:name="cn.dong.demo.ui.image.ImageSelectorActivity" />
         <activity android:name="cn.dong.demo.ui.image.ImageActivity" />
+
         <!-- List -->
         <activity android:name="cn.dong.demo.ui.list.XListViewActivity" />
         <activity android:name="cn.dong.demo.ui.list.WaterfallActivity" />
         <activity android:name="cn.dong.demo.ui.list.ListViewActivity" />
         <activity android:name="cn.dong.demo.ui.list.SwipeListViewActivity" />
         <activity android:name="cn.dong.demo.ui.list.RecyclerViewActivity" />
+
         <!-- Video -->
         <activity android:name="cn.dong.demo.ui.video.VParserActivity" />
         <activity android:name="cn.dong.demo.ui.video.VideoPlayerActivity" />

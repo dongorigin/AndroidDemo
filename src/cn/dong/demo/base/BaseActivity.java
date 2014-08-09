@@ -24,7 +24,7 @@ public abstract class BaseActivity extends FragmentActivity implements Callback 
 
     protected boolean isDestroy;
     protected FragmentActivity mContext;
-    protected DongApplication application;
+    protected DongApplication mApplication;
     protected Handler mHandler;
     protected ImageLoader mImageLoader;
     /** 统一的加载对话框 */
@@ -42,10 +42,14 @@ public abstract class BaseActivity extends FragmentActivity implements Callback 
 
     protected void init() {
         mContext = this;
-        application = DongApplication.getInstance();
+        mApplication = DongApplication.getInstance();
         mHandler = new Handler(this);
         mImageLoader = ImageLoader.getInstance();
 
+        initActionBar();
+    }
+
+    protected void initActionBar() {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         String title = getIntent().getStringExtra(EXTRA_TITLE);
         if (!TextUtils.isEmpty(title)) {

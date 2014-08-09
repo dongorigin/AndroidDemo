@@ -31,7 +31,6 @@ import cn.dong.demo.ui.image.DrawableStateActivity;
 import cn.dong.demo.ui.image.ImageActivity;
 import cn.dong.demo.ui.image.ImageLoaderActivity;
 import cn.dong.demo.ui.image.ImageLoaderLargeActivity;
-import cn.dong.demo.ui.image.ImageSelectorActivity;
 import cn.dong.demo.ui.list.ListViewActivity;
 import cn.dong.demo.ui.list.RecyclerViewActivity;
 import cn.dong.demo.ui.list.SwipeListViewActivity;
@@ -41,104 +40,105 @@ import cn.dong.demo.ui.touch.TouchEventActivity;
 import cn.dong.demo.ui.video.VParserActivity;
 
 public class MainFragment extends BaseFragment {
-	private static final String TAG = "MainFragment";
-	private ListView listView;
+    private static final String TAG = "MainFragment";
+    private ListView listView;
 
-	private DemoInfo[] demos = {
-	        new DemoInfo("VParser", "", VParserActivity.class),
-	        new DemoInfo("PackageManager", "", PackageManagerActivity.class),
-			new DemoInfo("RecyclerView", "", RecyclerViewActivity.class),
-			new DemoInfo("SwipeListView", "", SwipeListViewActivity.class),
-			new DemoInfo("TouchEvent", "", TouchEventActivity.class),
-			new DemoInfo("PopupWindow", "", PopupWindowActivity.class),
-			new DemoInfo("DrawableState", "", DrawableStateActivity.class),
-			new DemoInfo("XListView", "", XListViewActivity.class),
-			new DemoInfo("ListView", "", ListViewActivity.class),
-			new DemoInfo("Dialog", "", DialogActivity.class),
-			new DemoInfo("AutoComplete", "", AutoCompleteActivity.class),
-			new DemoInfo("FragmentTest", "", FragmentTestActivity.class),
-			new DemoInfo("ViewPager", "", ViewPagerActivity.class),
-			new DemoInfo("ImageLoader", "", ImageLoaderActivity.class),
-			new DemoInfo("ImageSelector", "", ImageSelectorActivity.class),
-			new DemoInfo("TextSize", "", TextSizeActivity.class),
-			new DemoInfo("ContentProvider", "", ContentProviderActivity.class),
-			new DemoInfo("Waterfall", "", WaterfallActivity.class),
-			new DemoInfo("ImageLoaderLarge", "", ImageLoaderLargeActivity.class),
-			new DemoInfo("Share", "", ShareActivity.class),
-			new DemoInfo("WebView", "", WebViewActivity.class),
-			new DemoInfo("GridViewPager", "", GridViewPagerActivity.class),
-			new DemoInfo("Anime", "", AnimeActivity.class),
-			new DemoInfo("Image", "", ImageActivity.class),
-			new DemoInfo("Drawer", "", DrawerActivity.class) };
+    private DemoInfo[] demos = {new DemoInfo("VParser", VParserActivity.class),
+            new DemoInfo("PackageManager", PackageManagerActivity.class),
+            new DemoInfo("RecyclerView", RecyclerViewActivity.class),
+            new DemoInfo("SwipeListView", SwipeListViewActivity.class),
+            new DemoInfo("TouchEvent", TouchEventActivity.class),
+            new DemoInfo("PopupWindow", PopupWindowActivity.class),
+            new DemoInfo("DrawableState", DrawableStateActivity.class),
+            new DemoInfo("XListView", XListViewActivity.class),
+            new DemoInfo("ListView", ListViewActivity.class),
+            new DemoInfo("Dialog", DialogActivity.class),
+            new DemoInfo("AutoComplete", AutoCompleteActivity.class),
+            new DemoInfo("FragmentTest", FragmentTestActivity.class),
+            new DemoInfo("ViewPager", ViewPagerActivity.class),
+            new DemoInfo("ImageLoader", ImageLoaderActivity.class),
+            new DemoInfo("TextSize", TextSizeActivity.class),
+            new DemoInfo("ContentProvider", ContentProviderActivity.class),
+            new DemoInfo("Waterfall", WaterfallActivity.class),
+            new DemoInfo("ImageLoaderLarge", ImageLoaderLargeActivity.class),
+            new DemoInfo("Share", ShareActivity.class),
+            new DemoInfo("WebView", WebViewActivity.class),
+            new DemoInfo("GridViewPager", GridViewPagerActivity.class),
+            new DemoInfo("Anime", AnimeActivity.class), new DemoInfo("Image", ImageActivity.class),
+            new DemoInfo("Drawer", DrawerActivity.class)};
 
-	static class DemoInfo {
-		private String title;
-		private String desc;
-		private Class<? extends Activity> clazz;
+    static class DemoInfo {
+        private String title;
+        private String desc;
+        private Class<? extends Activity> clazz;
 
-		public DemoInfo(String title, String desc, Class<? extends Activity> clazz) {
-			this.title = title;
-			this.desc = desc;
-			this.clazz = clazz;
-		}
-	}
+        public DemoInfo(String title, Class<? extends Activity> clazz) {
+            this(title, "", clazz);
+        }
 
-	@Override
-	protected int initPageLayoutID() {
-		return R.layout.main_fragment;
-	}
+        public DemoInfo(String title, String desc, Class<? extends Activity> clazz) {
+            this.title = title;
+            this.desc = desc;
+            this.clazz = clazz;
+        }
+    }
 
-	@Override
-	protected void initPageView(View rootView) {
-		listView = (ListView) rootView.findViewById(android.R.id.list);
-	}
+    @Override
+    protected int initPageLayoutID() {
+        return R.layout.main_fragment;
+    }
 
-	@Override
-	protected void initPageViewListener() {
-		listView.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Intent intent = new Intent(context, demos[position].clazz);
-				intent.putExtra(BaseActivity.EXTRA_TITLE, demos[position].title);
-				startActivity(intent);
-			}
-		});
-	}
+    @Override
+    protected void initPageView(View rootView) {
+        listView = (ListView) rootView.findViewById(android.R.id.list);
+    }
 
-	@Override
-	protected void process(Bundle savedInstanceState) {
-		listView.setAdapter(new MainListAdapter());
-	}
+    @Override
+    protected void initPageViewListener() {
+        listView.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(mContext, demos[position].clazz);
+                intent.putExtra(BaseActivity.EXTRA_TITLE, demos[position].title);
+                startActivity(intent);
+            }
+        });
+    }
 
-	class MainListAdapter extends BaseAdapter {
+    @Override
+    protected void process(Bundle savedInstanceState) {
+        listView.setAdapter(new MainListAdapter());
+    }
 
-		@Override
-		public int getCount() {
-			return demos.length;
-		}
+    class MainListAdapter extends BaseAdapter {
 
-		@Override
-		public Object getItem(int position) {
-			return demos[position];
-		}
+        @Override
+        public int getCount() {
+            return demos.length;
+        }
 
-		@Override
-		public long getItemId(int position) {
-			return position;
-		}
+        @Override
+        public Object getItem(int position) {
+            return demos[position];
+        }
 
-		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
-			if (convertView == null) {
-				convertView = LayoutInflater.from(context).inflate(R.layout.main_item, parent,
-						false);
-			}
-			DemoInfo item = demos[position];
-			TextView title = (TextView) convertView.findViewById(R.id.title);
-			title.setText(item.title);
-			return convertView;
-		}
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
 
-	}
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            if (convertView == null) {
+                convertView =
+                        LayoutInflater.from(mContext).inflate(R.layout.main_item, parent, false);
+            }
+            DemoInfo item = demos[position];
+            TextView title = (TextView) convertView.findViewById(R.id.title);
+            title.setText(item.title);
+            return convertView;
+        }
+
+    }
 
 }

@@ -6,7 +6,9 @@
  * @description An ListView support (a) Pull down to refresh, (b) Pull up to load more.
  * 		Implement IXListViewListener, and see stopRefresh() / stopLoadMore().
  */
-package cn.dong.demo.view.waterfall;
+package com.dodowaterfall.widget;
+
+import com.dodowaterfall.widget.PLA_AbsListView.OnScrollListener;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -21,7 +23,6 @@ import android.widget.TextView;
 import cn.dong.demo.R;
 import cn.dong.demo.view.XListViewFooter;
 import cn.dong.demo.view.XListViewHeader;
-import cn.dong.demo.view.waterfall.PLA_AbsListView.OnScrollListener;
 
 public class MultiColumnXListView extends MultiColumnListView implements OnScrollListener {
 
