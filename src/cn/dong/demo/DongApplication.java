@@ -12,9 +12,8 @@ import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
 public class DongApplication extends Application {
-    private static DongApplication instantce;
 
-    public String IMG_DIR;
+    private static DongApplication instantce;
 
     public static DongApplication getInstance() {
         return instantce;
@@ -34,9 +33,7 @@ public class DongApplication extends Application {
      */
     private void initStrictMode() {
         if (Constants.Config.DEVELOPER_MODE) {
-            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectDiskReads()
-                    .detectDiskWrites().detectNetwork() // or .detectAll() for all detectable
-                                                        // problems
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll()
                     .penaltyLog().build());
             StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectLeakedSqlLiteObjects()
                     .detectLeakedClosableObjects().penaltyLog()
@@ -65,7 +62,7 @@ public class DongApplication extends Application {
     }
 
     private void pathTest() {
-        IMG_DIR = getExternalFilesDir(null).getPath();
+        String IMG_DIR = getExternalFilesDir(null).getPath();
         Log.d("appliciton", "IMG_DIR = " + IMG_DIR);
     }
 

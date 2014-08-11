@@ -3,7 +3,6 @@ package cn.dong.demo.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ResolveInfo;
@@ -14,29 +13,43 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 import cn.dong.demo.R;
+import cn.dong.demo.base.BaseActivity;
 
-public class ShareActivity extends Activity {
+public class ShareActivity extends BaseActivity {
+    private Button nativeButton;
+    private Button customButton;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_share);
+    protected int initPageLayoutID() {
+        return R.layout.activity_share;
+    }
 
-        Button button = (Button) findViewById(R.id.bn_share_native);
-        button.setOnClickListener(new OnClickListener() {
+    @Override
+    protected void initPageView() {
+        nativeButton = (Button) findViewById(R.id.bn_share_native);
+        customButton = (Button) findViewById(R.id.bn_share_custom);
+    }
+
+    @Override
+    protected void initPageViewListener() {
+        nativeButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 nativeShare();
             }
         });
 
-        Button button2 = (Button) findViewById(R.id.bn_share);
-        button2.setOnClickListener(new OnClickListener() {
+        customButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                filterShare();
+                CustomShare();
             }
         });
+    }
+
+    @Override
+    protected void process(Bundle savedInstanceState) {
+
     }
 
     private void nativeShare() {
@@ -50,7 +63,7 @@ public class ShareActivity extends Activity {
         startActivity(Intent.createChooser(intent, "请选择"));
     }
 
-    private void filterShare() {
+    private void CustomShare() {
         String contentDetails = "第一种文本";
         String contentBrief = "第二种文本";
         String shareUrl = "分享的Url";

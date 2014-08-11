@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package cn.dong.demo.view.waterfall;
+package com.dodowaterfall.widget;
 
 import android.content.Context;
 import android.database.DataSetObserver;

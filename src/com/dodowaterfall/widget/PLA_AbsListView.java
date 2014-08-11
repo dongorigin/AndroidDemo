@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package cn.dong.demo.view.waterfall;
+package com.dodowaterfall.widget;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -2795,7 +2795,7 @@ public abstract class PLA_AbsListView extends PLA_AdapterView<ListAdapter> imple
      *            The recycler listener to be notified of views set aside in the
      *            recycler.
      * 
-     * @see android.widget.PLA_AbsListView.RecycleBin
+     * @see com.dodowaterfall.widget.PLA_AbsListView.RecycleBin
      * @see android.widget.AbsListView.RecyclerListener
      */
     public void setRecyclerListener(RecyclerListener listener) {
@@ -2858,7 +2858,7 @@ public abstract class PLA_AbsListView extends PLA_AdapterView<ListAdapter> imple
      * placed inside the RecycleBin's scrap heap. This listener is used to free
      * resources associated to Views placed in the RecycleBin.
      * 
-     * @see android.widget.PLA_AbsListView.RecycleBin
+     * @see com.dodowaterfall.widget.PLA_AbsListView.RecycleBin
      * @see android.widget.AbsListView#setRecyclerListener(android.widget.AbsListView.RecyclerListener)
      */
     public static interface RecyclerListener {

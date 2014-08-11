@@ -25,11 +25,11 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 import cn.dong.demo.R;
 import cn.dong.demo.model.DuitangInfo;
-import cn.dong.demo.view.waterfall.Helper;
-import cn.dong.demo.view.waterfall.MultiColumnXListView;
-import cn.dong.demo.view.waterfall.ScaleImageView;
-import cn.dong.demo.view.waterfall.MultiColumnXListView.IXListViewListener;
 
+import com.dodowaterfall.widget.Helper;
+import com.dodowaterfall.widget.MultiColumnXListView;
+import com.dodowaterfall.widget.ScaleImageView;
+import com.dodowaterfall.widget.MultiColumnXListView.IXListViewListener;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;

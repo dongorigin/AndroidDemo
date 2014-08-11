@@ -23,8 +23,8 @@ public abstract class BaseActivity extends FragmentActivity implements Callback 
     public static final String EXTRA_TITLE = "actionbar_title";
 
     protected boolean isDestroy;
-    protected FragmentActivity context;
-    protected DongApplication application;
+    protected FragmentActivity mContext;
+    protected DongApplication mApplication;
     protected Handler mHandler;
     protected ImageLoader mImageLoader;
     /** 统一的加载对话框 */
@@ -41,11 +41,15 @@ public abstract class BaseActivity extends FragmentActivity implements Callback 
     }
 
     protected void init() {
-        context = this;
-        application = DongApplication.getInstance();
+        mContext = this;
+        mApplication = DongApplication.getInstance();
         mHandler = new Handler(this);
         mImageLoader = ImageLoader.getInstance();
 
+        initActionBar();
+    }
+
+    protected void initActionBar() {
         getActionBar().setDisplayHomeAsUpEnabled(true);
         String title = getIntent().getStringExtra(EXTRA_TITLE);
         if (!TextUtils.isEmpty(title)) {
@@ -117,7 +121,7 @@ public abstract class BaseActivity extends FragmentActivity implements Callback 
         if (mLoadingDialog != null && mLoadingDialog.isShowing()) {
             return;
         } else {
-            mLoadingDialog = new ProgressDialog(context);
+            mLoadingDialog = new ProgressDialog(mContext);
             mLoadingDialog.setMessage(msg);
             mLoadingDialog.setIndeterminate(true);
             mLoadingDialog.setCancelable(isCancelable);
@@ -140,7 +144,7 @@ public abstract class BaseActivity extends FragmentActivity implements Callback 
      * 启动Activity
      */
     public void launchActivity(Class<? extends Activity> cls) {
-        startActivity(new Intent(context, cls));
+        startActivity(new Intent(mContext, cls));
     }
 
 }

@@ -51,7 +51,7 @@ public class PackageManagerActivity extends BaseActivity {
         super.init();
         pm = getPackageManager();
         data = new ArrayList<AppInfo>();
-        adapter = new PackageInfoAdapter(context, data);
+        adapter = new PackageInfoAdapter(mContext, data);
     }
 
     @Override
