@@ -26,6 +26,7 @@ import cn.dong.demo.ui.ShareActivity;
 import cn.dong.demo.ui.TextSizeActivity;
 import cn.dong.demo.ui.ViewPagerActivity;
 import cn.dong.demo.ui.WebViewActivity;
+import cn.dong.demo.ui.calendar.CalendarActivity;
 import cn.dong.demo.ui.fragment.FragmentTestActivity;
 import cn.dong.demo.ui.image.DrawableStateActivity;
 import cn.dong.demo.ui.image.ImageActivity;
@@ -43,7 +44,8 @@ public class MainFragment extends BaseFragment {
     private static final String TAG = "MainFragment";
     private ListView listView;
 
-    private DemoInfo[] demos = {new DemoInfo("VParser", VParserActivity.class),
+    private DemoInfo[] demos = {new DemoInfo("Calendar", CalendarActivity.class),
+            new DemoInfo("VParser", VParserActivity.class),
             new DemoInfo("PackageManager", PackageManagerActivity.class),
             new DemoInfo("RecyclerView", RecyclerViewActivity.class),
             new DemoInfo("SwipeListView", SwipeListViewActivity.class),

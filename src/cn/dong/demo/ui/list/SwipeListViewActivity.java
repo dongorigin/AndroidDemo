@@ -89,7 +89,7 @@ public class SwipeListViewActivity extends BaseActivity {
 			}
 			((SwipeListView) parent).recycle(convertView, position);
 			TextView textView = ViewHolder.get(convertView, R.id.front);
-			textView.setText(data.get(position));
+			textView.setText(mData.get(position));
 			return convertView;
 		}
 

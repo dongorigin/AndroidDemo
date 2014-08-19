@@ -15,20 +15,20 @@ import android.widget.BaseAdapter;
  * @author dong 2014-7-25
  */
 public abstract class MyBaseAdapter<E> extends BaseAdapter {
-    protected Context context;
-    protected List<E> data;
+    protected Context mContext;
+    protected List<E> mData;
     protected LayoutInflater mInflater;
 
     public MyBaseAdapter(Context context, List<E> data) {
-        this.context = context;
-        this.data = data;
+        this.mContext = context;
+        this.mData = data;
         mInflater = LayoutInflater.from(context);
     }
 
     @Override
     public int getCount() {
-        if (data != null) {
-            return data.size();
+        if (mData != null) {
+            return mData.size();
         } else {
             return 0;
         }
@@ -36,8 +36,8 @@ public abstract class MyBaseAdapter<E> extends BaseAdapter {
 
     @Override
     public E getItem(int position) {
-        if (data != null && data.size() > 0) {
-            return data.get(position);
+        if (mData != null && mData.size() > 0) {
+            return mData.get(position);
         } else {
             return null;
         }
@@ -49,11 +49,11 @@ public abstract class MyBaseAdapter<E> extends BaseAdapter {
     }
 
     public List<E> getData() {
-        return data;
+        return mData;
     }
 
     public void setData(List<E> data) {
-        this.data = data;
+        this.mData = data;
     }
 
     @Override
