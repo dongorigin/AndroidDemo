@@ -41,7 +41,15 @@
         <activity android:name="cn.dong.demo.ui.ViewPagerActivity" />
         <activity android:name="cn.dong.demo.ui.TextSizeActivity" />
         <activity android:name="cn.dong.demo.ui.ContentProviderActivity" />
-        <activity android:name="cn.dong.demo.ui.ShareActivity" />
+        <activity android:name="cn.dong.demo.ui.ShareActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
         <activity android:name="cn.dong.demo.ui.GridViewPagerActivity" />
         <activity android:name="cn.dong.demo.ui.AnimeActivity" />
         <activity android:name="cn.dong.demo.ui.DrawerActivity" />

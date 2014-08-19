@@ -52,7 +52,7 @@ public class DongApplication extends Application {
                         .build();
         ImageLoaderConfiguration.Builder builder = new ImageLoaderConfiguration.Builder(this);
         builder.defaultDisplayImageOptions(options);
-        builder.threadPriority(Thread.NORM_PRIORITY - 2);
+        builder.threadPriority(Thread.NORM_PRIORITY - 1);
         builder.denyCacheImageMultipleSizesInMemory();
         builder.discCacheFileNameGenerator(new Md5FileNameGenerator());
         builder.tasksProcessingOrder(QueueProcessingType.LIFO);
