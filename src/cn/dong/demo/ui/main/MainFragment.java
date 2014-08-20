@@ -20,6 +20,7 @@ import cn.dong.demo.ui.ContentProviderActivity;
 import cn.dong.demo.ui.DialogActivity;
 import cn.dong.demo.ui.DrawerActivity;
 import cn.dong.demo.ui.GridViewPagerActivity;
+import cn.dong.demo.ui.IntentsActivity;
 import cn.dong.demo.ui.PackageManagerActivity;
 import cn.dong.demo.ui.PopupWindowActivity;
 import cn.dong.demo.ui.ShareActivity;
@@ -43,7 +44,9 @@ public class MainFragment extends BaseFragment {
     private static final String TAG = "MainFragment";
     private ListView listView;
 
-    private DemoInfo[] demos = {new DemoInfo("VParser", VParserActivity.class),
+    private DemoInfo[] demos = {
+            new DemoInfo("Common Intents", IntentsActivity.class),
+            new DemoInfo("VParser", VParserActivity.class),
             new DemoInfo("PackageManager", PackageManagerActivity.class),
             new DemoInfo("RecyclerView", RecyclerViewActivity.class),
             new DemoInfo("SwipeListView", SwipeListViewActivity.class),

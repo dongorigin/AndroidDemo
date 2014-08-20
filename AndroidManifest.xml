@@ -35,6 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="cn.dong.demo.ui.IntentsActivity" />
         <activity android:name="cn.dong.demo.ui.PackageManagerActivity" />
         <activity android:name="cn.dong.demo.ui.DialogActivity" />
         <activity android:name="cn.dong.demo.ui.AutoCompleteActivity" />
