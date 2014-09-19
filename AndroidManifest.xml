@@ -49,7 +49,10 @@
         <activity android:name="cn.dong.demo.ui.PopupWindowActivity" />
         <activity android:name="cn.dong.demo.ui.touch.TouchEventActivity" />
         <activity android:name="cn.dong.demo.ui.WebViewActivity" />
+
+        <!-- Fragment -->
         <activity android:name="cn.dong.demo.ui.fragment.FragmentTestActivity" />
+        <activity android:name="cn.dong.demo.ui.fragment.FragmentTabHostActivity" />
 
         <!-- Image -->
         <activity android:name="cn.dong.demo.ui.image.DrawableStateActivity" />

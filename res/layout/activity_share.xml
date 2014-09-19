@@ -19,4 +19,11 @@
         android:layout_alignParentBottom="true"
         android:text="手动过滤" />
 
+    <Button
+        android:id="@+id/bn_share_weixin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="微信朋友圈" />
+
 </RelativeLayout>
