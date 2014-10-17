@@ -20,6 +20,7 @@ import cn.dong.demo.ui.ContentProviderActivity;
 import cn.dong.demo.ui.DialogActivity;
 import cn.dong.demo.ui.DrawerActivity;
 import cn.dong.demo.ui.GridViewPagerActivity;
+import cn.dong.demo.ui.IntentsActivity;
 import cn.dong.demo.ui.PackageManagerActivity;
 import cn.dong.demo.ui.PopupWindowActivity;
 import cn.dong.demo.ui.ShareActivity;
@@ -27,6 +28,7 @@ import cn.dong.demo.ui.TextSizeActivity;
 import cn.dong.demo.ui.ViewPagerActivity;
 import cn.dong.demo.ui.WebViewActivity;
 import cn.dong.demo.ui.calendar.CalendarActivity;
+import cn.dong.demo.ui.fragment.FragmentTabHostActivity;
 import cn.dong.demo.ui.fragment.FragmentTestActivity;
 import cn.dong.demo.ui.image.DrawableStateActivity;
 import cn.dong.demo.ui.image.ImageActivity;
@@ -45,7 +47,9 @@ public class MainFragment extends BaseFragment {
     private static final String TAG = "MainFragment";
     private ListView listView;
 
-    private DemoInfo[] demos = {new DemoInfo("Location", GeocoderActivity.class),
+    private DemoInfo[] demos = {new DemoInfo("FragmentTabHost", FragmentTabHostActivity.class),
+            new DemoInfo("Common Intents", IntentsActivity.class),
+            new DemoInfo("Location", GeocoderActivity.class),
             new DemoInfo("Calendar", CalendarActivity.class),
             new DemoInfo("VParser", VParserActivity.class),
             new DemoInfo("PackageManager", PackageManagerActivity.class),

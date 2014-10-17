@@ -3,6 +3,7 @@ package cn.dong.demo.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -17,12 +18,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import cn.dong.demo.R;
 import cn.dong.demo.base.BaseActivity;
 import cn.dong.demo.base.MyBaseAdapter;
+import cn.dong.demo.util.T;
 import cn.dong.demo.util.ViewHolder;
 
 /**
@@ -74,6 +77,16 @@ public class PackageManagerActivity extends BaseActivity {
                 if (launchIntent != null) {
                     startActivity(launchIntent);
                 }
+            }
+        });
+        listView.setOnItemLongClickListener(new OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                String packageName = adapter.getItem(position).appPackage;
+                ClipboardManager cmb = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                cmb.setText(packageName);
+                T.shortT(mContext, "包名已复制到剪贴板");
+                return true;
             }
         });
     }

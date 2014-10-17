@@ -3,9 +3,12 @@ package cn.dong.demo.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.view.View;
@@ -18,6 +21,7 @@ import cn.dong.demo.base.BaseActivity;
 public class ShareActivity extends BaseActivity {
     private Button nativeButton;
     private Button customButton;
+    private Button bn_share_weixin;
 
     @Override
     protected int initPageLayoutID() {
@@ -28,6 +32,7 @@ public class ShareActivity extends BaseActivity {
     protected void initPageView() {
         nativeButton = (Button) findViewById(R.id.bn_share_native);
         customButton = (Button) findViewById(R.id.bn_share_custom);
+        bn_share_weixin = (Button) findViewById(R.id.bn_share_weixin);
     }
 
     @Override
@@ -45,11 +50,17 @@ public class ShareActivity extends BaseActivity {
                 CustomShare();
             }
         });
+        bn_share_weixin.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                shareToTimeLine();
+            }
+        });
     }
 
     @Override
     protected void process(Bundle savedInstanceState) {
-
     }
 
     private void nativeShare() {
@@ -61,6 +72,19 @@ public class ShareActivity extends BaseActivity {
         intent.putExtra(Intent.EXTRA_TITLE, "我是标题");
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(Intent.createChooser(intent, "请选择"));
+    }
+
+    private void shareToTimeLine() {
+        Intent intent = new Intent();
+        ComponentName comp =
+                new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareToTimeLineUI");
+        intent.setComponent(comp);
+        intent.setAction("android.intent.action.SEND");
+        intent.setType("text/plain");
+        // intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_TEXT, "我是文字");
+        intent.putExtra(Intent.EXTRA_STREAM, Uri.parse("http://www.baidu.com"));
+        startActivity(intent);
     }
 
     private void CustomShare() {

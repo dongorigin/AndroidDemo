@@ -37,6 +37,7 @@
         </activity>
         <activity android:name="cn.dong.demo.ui.location.GeocoderActivity" />
         <activity android:name="cn.dong.demo.ui.calendar.CalendarActivity" />
+        <activity android:name="cn.dong.demo.ui.IntentsActivity" />
         <activity android:name="cn.dong.demo.ui.PackageManagerActivity" />
         <activity android:name="cn.dong.demo.ui.DialogActivity" />
         <activity android:name="cn.dong.demo.ui.AutoCompleteActivity" />
