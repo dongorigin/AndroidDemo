@@ -47,10 +47,10 @@ public class MainFragment extends BaseFragment {
     private static final String TAG = "MainFragment";
     private ListView listView;
 
-    private DemoInfo[] demos = {new DemoInfo("FragmentTabHost", FragmentTabHostActivity.class),
+    private DemoInfo[] demos = {new DemoInfo("Calendar", CalendarActivity.class),
+            new DemoInfo("FragmentTabHost", FragmentTabHostActivity.class),
             new DemoInfo("Common Intents", IntentsActivity.class),
             new DemoInfo("Location", GeocoderActivity.class),
-            new DemoInfo("Calendar", CalendarActivity.class),
             new DemoInfo("VParser", VParserActivity.class),
             new DemoInfo("PackageManager", PackageManagerActivity.class),
             new DemoInfo("RecyclerView", RecyclerViewActivity.class),

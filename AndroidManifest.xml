@@ -35,6 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="cn.dong.demo.ui.fragment.FragmentTabHostActivity" />
         <activity android:name="cn.dong.demo.ui.location.GeocoderActivity" />
         <activity android:name="cn.dong.demo.ui.calendar.CalendarActivity" />
         <activity android:name="cn.dong.demo.ui.IntentsActivity" />

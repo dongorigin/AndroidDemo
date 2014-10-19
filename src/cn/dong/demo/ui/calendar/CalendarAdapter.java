@@ -11,9 +11,25 @@ import cn.dong.demo.base.MyBaseAdapter;
 import cn.dong.demo.model.CalendarInfo;
 
 public class CalendarAdapter extends MyBaseAdapter<CalendarInfo> {
+    private int space;
 
-    public CalendarAdapter(Context context, List<CalendarInfo> data) {
+    public CalendarAdapter(Context context, List<CalendarInfo> data, int space) {
         super(context, data);
+        this.space = space;
+    }
+
+    @Override
+    public int getCount() {
+        if (mData != null) {
+            return mData.size() + space;
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    public CalendarInfo getItem(int position) {
+        return super.getItem(position - space);
     }
 
     @Override
@@ -23,17 +39,19 @@ public class CalendarAdapter extends MyBaseAdapter<CalendarInfo> {
 
     @Override
     public boolean isEnabled(int position) {
-        return getItem(position).getDate() > 0;
+        return position >= space;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        CalendarInfo item = getItem(position);
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.calendar_item, parent, false);
         }
-        if (item.getDate() > 0) {
+        if (isEnabled(position)) {
+            CalendarInfo item = getItem(position);
             ((TextView) convertView).setText(String.valueOf(item.getDate()));
+        } else {
+            ((TextView) convertView).setText("");
         }
         return convertView;
     }

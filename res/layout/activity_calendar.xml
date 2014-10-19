@@ -1,65 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:layout_height="match_parent" >
 
-    <LinearLayout
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:layout_height="match_parent" />
 
-        <TextView
-            style="@style/TextView"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="日" />
-
-        <TextView
-            style="@style/TextView"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="一" />
-
-        <TextView
-            style="@style/TextView"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="二" />
-
-        <TextView
-            style="@style/TextView"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="三" />
-
-        <TextView
-            style="@style/TextView"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="四" />
-
-        <TextView
-            style="@style/TextView"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="五" />
-
-        <TextView
-            style="@style/TextView"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:text="六" />
-    </LinearLayout>
-
-    <GridView
-        android:id="@+id/calendar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:horizontalSpacing="4dp"
-        android:numColumns="7"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="4dp" >
-    </GridView>
-
-</LinearLayout>
+</RelativeLayout>
