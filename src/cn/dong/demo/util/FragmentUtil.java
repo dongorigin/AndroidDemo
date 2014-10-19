@@ -85,9 +85,4 @@ public class FragmentUtil {
         }
     }
 
-    private void tagTest(FragmentManager fm, Class<? extends Fragment> fragmentClass, Bundle args,
-            int containerId, String tag) {
-        FragmentTransaction transaction = fm.beginTransaction();
-        fm.findFragmentByTag(tag);
-    }
 }

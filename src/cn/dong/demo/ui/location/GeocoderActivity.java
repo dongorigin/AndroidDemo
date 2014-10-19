@@ -11,6 +11,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,11 +20,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import cn.dong.demo.R;
 import cn.dong.demo.base.BaseActivity;
 import cn.dong.demo.model.GeoResponse;
 import cn.dong.demo.model.GeoResult;
 import cn.dong.demo.model.GeoResult.Location;
+import cn.dong.demo.util.T;
 
 import com.google.gson.Gson;
 

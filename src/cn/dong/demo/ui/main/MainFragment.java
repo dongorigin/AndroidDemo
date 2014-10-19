@@ -19,7 +19,6 @@ import cn.dong.demo.ui.AutoCompleteActivity;
 import cn.dong.demo.ui.ContentProviderActivity;
 import cn.dong.demo.ui.DialogActivity;
 import cn.dong.demo.ui.DrawerActivity;
-import cn.dong.demo.ui.GridViewPagerActivity;
 import cn.dong.demo.ui.IntentsActivity;
 import cn.dong.demo.ui.PackageManagerActivity;
 import cn.dong.demo.ui.PopupWindowActivity;
@@ -33,10 +32,8 @@ import cn.dong.demo.ui.fragment.FragmentTestActivity;
 import cn.dong.demo.ui.image.DrawableStateActivity;
 import cn.dong.demo.ui.image.ImageActivity;
 import cn.dong.demo.ui.image.ImageLoaderActivity;
-import cn.dong.demo.ui.image.ImageLoaderLargeActivity;
 import cn.dong.demo.ui.list.ListViewActivity;
 import cn.dong.demo.ui.list.RecyclerViewActivity;
-import cn.dong.demo.ui.list.SwipeListViewActivity;
 import cn.dong.demo.ui.list.WaterfallActivity;
 import cn.dong.demo.ui.list.XListViewActivity;
 import cn.dong.demo.ui.location.GeocoderActivity;
@@ -54,7 +51,6 @@ public class MainFragment extends BaseFragment {
             new DemoInfo("VParser", VParserActivity.class),
             new DemoInfo("PackageManager", PackageManagerActivity.class),
             new DemoInfo("RecyclerView", RecyclerViewActivity.class),
-            new DemoInfo("SwipeListView", SwipeListViewActivity.class),
             new DemoInfo("TouchEvent", TouchEventActivity.class),
             new DemoInfo("PopupWindow", PopupWindowActivity.class),
             new DemoInfo("DrawableState", DrawableStateActivity.class),
@@ -68,10 +64,8 @@ public class MainFragment extends BaseFragment {
             new DemoInfo("TextSize", TextSizeActivity.class),
             new DemoInfo("ContentProvider", ContentProviderActivity.class),
             new DemoInfo("Waterfall", WaterfallActivity.class),
-            new DemoInfo("ImageLoaderLarge", ImageLoaderLargeActivity.class),
             new DemoInfo("Share", ShareActivity.class),
             new DemoInfo("WebView", WebViewActivity.class),
-            new DemoInfo("GridViewPager", GridViewPagerActivity.class),
             new DemoInfo("Anime", AnimeActivity.class), new DemoInfo("Image", ImageActivity.class),
             new DemoInfo("Drawer", DrawerActivity.class)};
 

@@ -6,7 +6,7 @@
 
     <uses-sdk
         android:minSdkVersion="14"
-        android:targetSdkVersion="20" />
+        android:targetSdkVersion="21" />
 
     <!-- 访问网络 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -54,7 +54,6 @@
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
-        <activity android:name="cn.dong.demo.ui.GridViewPagerActivity" />
         <activity android:name="cn.dong.demo.ui.AnimeActivity" />
         <activity android:name="cn.dong.demo.ui.DrawerActivity" />
         <activity android:name="cn.dong.demo.ui.PopupWindowActivity" />
@@ -64,7 +63,6 @@
 
         <!-- Image -->
         <activity android:name="cn.dong.demo.ui.image.DrawableStateActivity" />
-        <activity android:name="cn.dong.demo.ui.image.ImageLoaderLargeActivity" />
         <activity android:name="cn.dong.demo.ui.image.ImageLoaderActivity" />
         <activity android:name="cn.dong.demo.ui.image.ImageActivity" />
 
@@ -72,7 +70,6 @@
         <activity android:name="cn.dong.demo.ui.list.XListViewActivity" />
         <activity android:name="cn.dong.demo.ui.list.WaterfallActivity" />
         <activity android:name="cn.dong.demo.ui.list.ListViewActivity" />
-        <activity android:name="cn.dong.demo.ui.list.SwipeListViewActivity" />
         <activity android:name="cn.dong.demo.ui.list.RecyclerViewActivity" />
 
         <!-- Video -->

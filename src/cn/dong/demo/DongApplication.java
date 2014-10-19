@@ -48,7 +48,7 @@ public class DongApplication extends Application {
     private void initImageLoader() {
         DisplayImageOptions options =
                 new DisplayImageOptions.Builder().showImageOnLoading(R.drawable.empty_photo)
-                        .imageScaleType(ImageScaleType.NONE).cacheInMemory(true).cacheOnDisc(true)
+                        .imageScaleType(ImageScaleType.NONE).cacheInMemory(false).cacheOnDisc(true)
                         .build();
         ImageLoaderConfiguration.Builder builder = new ImageLoaderConfiguration.Builder(this);
         builder.defaultDisplayImageOptions(options);

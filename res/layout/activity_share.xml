@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -9,21 +8,18 @@
         android:id="@+id/bn_share_native"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/bn_share"
         android:text="原生分享" />
 
     <Button
         android:id="@+id/bn_share_custom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:text="手动过滤" />
 
     <Button
         android:id="@+id/bn_share_weixin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:text="微信朋友圈" />
 
-</RelativeLayout>
+</LinearLayout>
