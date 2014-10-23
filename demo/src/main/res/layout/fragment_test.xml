@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#00bbcc"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/childContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="4dp" >
+
+        <TextView
+            android:id="@+id/fragmentNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="show"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/replaceButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="replace"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</LinearLayout>

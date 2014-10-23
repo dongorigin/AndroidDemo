@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:custom="http://schemas.android.com/apk/res/cn.dong.demo">
+
+    <item android:drawable="@drawable/logo_qq" android:state_selected="true"></item>
+    <item android:drawable="@drawable/logo_more" custom:state_custom="true"></item>
+    <item android:drawable="@drawable/logo_email"></item>
+
+</selector>
