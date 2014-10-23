@@ -1,26 +1,13 @@
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:0.12.+'
-    }
-}
 apply plugin: 'com.android.application'
-
-dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
-    compile 'com.android.support:support-v4:21.0.0'
-}
 
 android {
     compileSdkVersion 19
-    buildToolsVersion '21.0.1'
+    buildToolsVersion '21.0.2'
 
     defaultConfig {
         applicationId "cn.dong.demo"
         minSdkVersion 14
-        targetSdkVersion 21
+        targetSdkVersion 19
         versionCode 1
         versionName "1.0"
     }
@@ -31,4 +18,9 @@ android {
         }
     }
 
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: '*.jar')
+    compile 'com.android.support:support-v4:21.0.0'
 }
