@@ -1,7 +1,5 @@
 package cn.dong.demo.base;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -10,16 +8,20 @@ import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.MenuItem;
+
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import cn.dong.demo.DongApplication;
 
 /**
  * Activity 基类
- * 
+ *
  * @author dong 2014-7-19
  */
-public abstract class BaseActivity extends FragmentActivity implements Callback {
+public abstract class BaseActivity extends ActionBarActivity implements Callback {
     public static final String EXTRA_TITLE = "actionbar_title";
 
     protected boolean isDestroy;
@@ -27,7 +29,9 @@ public abstract class BaseActivity extends FragmentActivity implements Callback 
     protected DongApplication mApplication;
     protected Handler mHandler;
     protected ImageLoader mImageLoader;
-    /** 统一的加载对话框 */
+    /**
+     * 统一的加载对话框
+     */
     protected ProgressDialog mLoadingDialog;
 
     @Override
@@ -50,10 +54,10 @@ public abstract class BaseActivity extends FragmentActivity implements Callback 
     }
 
     protected void initActionBar() {
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         String title = getIntent().getStringExtra(EXTRA_TITLE);
         if (!TextUtils.isEmpty(title)) {
-            getActionBar().setTitle(title);
+            getSupportActionBar().setTitle(title);
         }
     }
 
@@ -113,8 +117,8 @@ public abstract class BaseActivity extends FragmentActivity implements Callback 
 
     /**
      * 显示加载对话框
-     * 
-     * @param msg 消息
+     *
+     * @param msg          消息
      * @param isCancelable 是否可被用户关闭
      */
     public void showLoadingDialog(String msg, boolean isCancelable) {

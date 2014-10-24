@@ -71,13 +71,13 @@ public class MainActivity extends BaseActivity {
 
 		@Override
 		public void onDrawerOpened(View drawerView) {
-			getActionBar().setTitle("导航");
+			getSupportActionBar().setTitle("导航");
 			invalidateOptionsMenu();
 		}
 
 		@Override
 		public void onDrawerClosed(View drawerView) {
-			getActionBar().setTitle("主页");
+			getSupportActionBar().setTitle("主页");
 			invalidateOptionsMenu();
 		}
 	}

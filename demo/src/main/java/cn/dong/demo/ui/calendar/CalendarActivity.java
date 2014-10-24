@@ -77,7 +77,7 @@ public class CalendarActivity extends BaseActivity {
                 curMonth = mCalendar.get(Calendar.MONTH);
                 curPosition = position;
 
-                getActionBar().setTitle(String.format("%s年%s月", curYear, curMonth + 1));
+                getSupportActionBar().setTitle(String.format("%s年%s月", curYear, curMonth + 1));
             }
 
             @Override

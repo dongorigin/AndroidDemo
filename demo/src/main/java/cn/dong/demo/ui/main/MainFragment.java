@@ -11,6 +11,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import cn.dong.demo.R;
 import cn.dong.demo.base.BaseActivity;
 import cn.dong.demo.base.BaseFragment;
@@ -35,11 +36,9 @@ import cn.dong.demo.ui.image.ImageActivity;
 import cn.dong.demo.ui.image.ImageLoaderActivity;
 import cn.dong.demo.ui.list.ListViewActivity;
 import cn.dong.demo.ui.list.RecyclerViewActivity;
-import cn.dong.demo.ui.list.WaterfallActivity;
 import cn.dong.demo.ui.list.XListViewActivity;
 import cn.dong.demo.ui.location.GeocoderActivity;
 import cn.dong.demo.ui.touch.TouchEventActivity;
-import cn.dong.demo.ui.video.VParserActivity;
 
 public class MainFragment extends BaseFragment {
     private static final String TAG = "MainFragment";
@@ -50,7 +49,6 @@ public class MainFragment extends BaseFragment {
             new DemoInfo("FragmentTabHost", FragmentTabHostActivity.class),
             new DemoInfo("Common Intents", IntentsActivity.class),
             new DemoInfo("Location", GeocoderActivity.class),
-            new DemoInfo("VParser", VParserActivity.class),
             new DemoInfo("PackageManager", PackageManagerActivity.class),
             new DemoInfo("RecyclerView", RecyclerViewActivity.class),
             new DemoInfo("TouchEvent", TouchEventActivity.class),
@@ -65,7 +63,6 @@ public class MainFragment extends BaseFragment {
             new DemoInfo("ImageLoader", ImageLoaderActivity.class),
             new DemoInfo("TextSize", TextSizeActivity.class),
             new DemoInfo("ContentProvider", ContentProviderActivity.class),
-            new DemoInfo("Waterfall", WaterfallActivity.class),
             new DemoInfo("Share", ShareActivity.class),
             new DemoInfo("WebView", WebViewActivity.class),
             new DemoInfo("Anime", AnimeActivity.class), new DemoInfo("Image", ImageActivity.class),
