@@ -11,11 +11,11 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 
-public class DongApplication extends Application {
+public class MyApp extends Application {
 
-    private static DongApplication instantce;
+    private static MyApp instantce;
 
-    public static DongApplication getInstance() {
+    public static MyApp getInstance() {
         return instantce;
     }
 

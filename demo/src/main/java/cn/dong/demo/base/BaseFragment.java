@@ -10,7 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import cn.dong.demo.DongApplication;
+import cn.dong.demo.MyApp;
 
 /**
  * Fragment 基类
@@ -20,7 +20,7 @@ import cn.dong.demo.DongApplication;
 public abstract class BaseFragment extends Fragment implements Callback {
 
     protected BaseActivity mContext;
-    protected DongApplication mApplication;
+    protected MyApp mApplication;
     protected Handler mHandler;
 
     @Override
@@ -31,7 +31,7 @@ public abstract class BaseFragment extends Fragment implements Callback {
 
     protected void init() {
         mContext = (BaseActivity) getActivity();
-        mApplication = DongApplication.getInstance();
+        mApplication = MyApp.getInstance();
         mHandler = new Handler(this);
     }
 

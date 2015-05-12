@@ -15,11 +15,12 @@ import android.widget.TextView;
 import cn.dong.demo.R;
 import cn.dong.demo.base.BaseActivity;
 import cn.dong.demo.base.BaseFragment;
-import cn.dong.demo.ui.AnimeActivity;
+import cn.dong.demo.ui.AnimActivity;
 import cn.dong.demo.ui.AutoCompleteActivity;
 import cn.dong.demo.ui.ContentProviderActivity;
 import cn.dong.demo.ui.DialogActivity;
 import cn.dong.demo.ui.DrawerActivity;
+import cn.dong.demo.ui.FlowLayoutActivity;
 import cn.dong.demo.ui.IntentsActivity;
 import cn.dong.demo.ui.PackageManagerActivity;
 import cn.dong.demo.ui.PopupWindowActivity;
@@ -28,6 +29,7 @@ import cn.dong.demo.ui.SwipeRefreshLayoutActivity;
 import cn.dong.demo.ui.TextSizeActivity;
 import cn.dong.demo.ui.ViewPagerActivity;
 import cn.dong.demo.ui.WebViewActivity;
+import cn.dong.demo.ui.anim.AnimationActivity;
 import cn.dong.demo.ui.calendar.CalendarActivity;
 import cn.dong.demo.ui.fragment.FragmentTabHostActivity;
 import cn.dong.demo.ui.fragment.FragmentTestActivity;
@@ -38,6 +40,7 @@ import cn.dong.demo.ui.list.ListViewActivity;
 import cn.dong.demo.ui.list.RecyclerViewActivity;
 import cn.dong.demo.ui.list.XListViewActivity;
 import cn.dong.demo.ui.location.GeocoderActivity;
+import cn.dong.demo.ui.measure.MeasureActivity;
 import cn.dong.demo.ui.touch.TouchEventActivity;
 
 public class MainFragment extends BaseFragment {
@@ -45,12 +48,15 @@ public class MainFragment extends BaseFragment {
     private ListView listView;
 
     private DemoInfo[] demos = {new DemoInfo("Calendar", CalendarActivity.class),
+            new DemoInfo("FlowLayout", FlowLayoutActivity.class),
+            new DemoInfo("Measure", MeasureActivity.class),
+            new DemoInfo("Animation", AnimationActivity.class),
             new DemoInfo("SwipeRefreshLayout", SwipeRefreshLayoutActivity.class),
             new DemoInfo("FragmentTabHost", FragmentTabHostActivity.class),
+            new DemoInfo("RecyclerView", RecyclerViewActivity.class),
+            new DemoInfo("PackageManager", PackageManagerActivity.class),
             new DemoInfo("Common Intents", IntentsActivity.class),
             new DemoInfo("Location", GeocoderActivity.class),
-            new DemoInfo("PackageManager", PackageManagerActivity.class),
-            new DemoInfo("RecyclerView", RecyclerViewActivity.class),
             new DemoInfo("TouchEvent", TouchEventActivity.class),
             new DemoInfo("PopupWindow", PopupWindowActivity.class),
             new DemoInfo("DrawableState", DrawableStateActivity.class),
@@ -65,8 +71,9 @@ public class MainFragment extends BaseFragment {
             new DemoInfo("ContentProvider", ContentProviderActivity.class),
             new DemoInfo("Share", ShareActivity.class),
             new DemoInfo("WebView", WebViewActivity.class),
-            new DemoInfo("Anime", AnimeActivity.class), new DemoInfo("Image", ImageActivity.class),
-            new DemoInfo("Drawer", DrawerActivity.class)};
+            new DemoInfo("Anim", AnimActivity.class), new DemoInfo("Image", ImageActivity.class),
+            new DemoInfo("Drawer", DrawerActivity.class),
+    };
 
     static class DemoInfo {
         private String title;
@@ -109,6 +116,8 @@ public class MainFragment extends BaseFragment {
     @Override
     protected void process(Bundle savedInstanceState) {
         listView.setAdapter(new MainListAdapter());
+
+        mContext.enableActionBarAutoHide(listView);
     }
 
     class MainListAdapter extends BaseAdapter {

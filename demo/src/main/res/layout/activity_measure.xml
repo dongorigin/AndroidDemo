@@ -4,10 +4,9 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/list_vertical"
-        style="@style/ListView"
-        android:scrollbars="vertical"/>
+    <cn.dong.demo.ui.measure.MyTextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

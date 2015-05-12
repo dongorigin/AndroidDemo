@@ -11,15 +11,13 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
-import android.view.Menu;
-import android.view.View;
 
 import cn.dong.demo.R;
 import cn.dong.demo.base.BaseActivity;
 
 /**
  * 日历
- * 
+ *
  * @author dong 2014-8-19
  */
 public class CalendarActivity extends BaseActivity {
@@ -33,21 +31,6 @@ public class CalendarActivity extends BaseActivity {
     private int curPosition;
     private int curYear;
     private int curMonth;
-
-    @Override
-    protected boolean onPrepareOptionsPanel(View view, Menu menu) {
-        return super.onPrepareOptionsPanel(view, menu);
-    }
-
-    @Override
-    public boolean onCreatePanelMenu(int featureId, Menu menu) {
-        return super.onCreatePanelMenu(featureId, menu);
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     protected void init() {
@@ -77,7 +60,7 @@ public class CalendarActivity extends BaseActivity {
                 curMonth = mCalendar.get(Calendar.MONTH);
                 curPosition = position;
 
-                getSupportActionBar().setTitle(String.format("%s年%s月", curYear, curMonth + 1));
+                getActionBarToolbar().setTitle(String.format("%s年%s月", curYear, curMonth + 1));
             }
 
             @Override
@@ -91,7 +74,7 @@ public class CalendarActivity extends BaseActivity {
     @Override
     protected void process(Bundle savedInstanceState) {
         curPosition = SIZE / 2;
-        mViewPager.setOffscreenPageLimit(2);
+        mViewPager.setOffscreenPageLimit(1);
         mViewPager.setAdapter(mAdapter);
         // 必须在setAdapter之后调用才有效，因为Adapter为空时无意义
         mViewPager.setCurrentItem(curPosition);
