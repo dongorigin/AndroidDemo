@@ -11,7 +11,7 @@ import android.os.Handler;
 import android.os.Handler.Callback;
 import android.os.Message;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -21,18 +21,18 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+
 import butterknife.ButterKnife;
 import cn.dong.demo.MyApp;
 import cn.dong.demo.R;
-
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * Activity 基类
  *
  * @author dong 2014-7-19
  */
-public abstract class BaseActivity extends ActionBarActivity implements Callback {
+public abstract class BaseActivity extends AppCompatActivity implements Callback {
     public static final String TAG = BaseActivity.class.getSimpleName();
 
     public static final String EXTRA_TITLE = "actionbar_title";
@@ -113,8 +113,8 @@ public abstract class BaseActivity extends ActionBarActivity implements Callback
         });
 
         String title = getIntent().getStringExtra(EXTRA_TITLE);
-        if (mActionBarToolbar != null && !TextUtils.isEmpty(title)) {
-            mActionBarToolbar.setTitle(title);
+        if (mActionBarToolbar != null && !TextUtils.isEmpty(title) && getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
         }
 
     }

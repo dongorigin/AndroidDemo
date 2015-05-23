@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="cn.dong.demo">
-
+    package="cn.dong.demo" >
 
     <!-- 访问网络 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -20,30 +19,31 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
-            android:name="cn.dong.demo.ui.main.MainActivity"
-            android:theme="@style/AppTheme.Main">
+            android:name=".ui.main.MainActivity"
+            android:theme="@style/AppTheme.Main" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ui.FlowLayoutActivity" />
         <activity android:name=".ui.measure.MeasureActivity" />
         <activity android:name=".ui.anim.AnimationActivity" />
-        <activity android:name="cn.dong.demo.ui.SwipeRefreshLayoutActivity" />
-        <activity android:name="cn.dong.demo.ui.fragment.FragmentTabHostActivity" />
-        <activity android:name="cn.dong.demo.ui.location.GeocoderActivity" />
-        <activity android:name="cn.dong.demo.ui.calendar.CalendarActivity" />
-        <activity android:name="cn.dong.demo.ui.IntentsActivity" />
-        <activity android:name="cn.dong.demo.ui.PackageManagerActivity" />
-        <activity android:name="cn.dong.demo.ui.DialogActivity" />
-        <activity android:name="cn.dong.demo.ui.AutoCompleteActivity" />
-        <activity android:name="cn.dong.demo.ui.ViewPagerActivity" />
-        <activity android:name="cn.dong.demo.ui.TextSizeActivity" />
-        <activity android:name="cn.dong.demo.ui.ContentProviderActivity" />
-        <activity android:name="cn.dong.demo.ui.ShareActivity">
+        <activity android:name=".ui.SwipeRefreshLayoutActivity" />
+        <activity android:name=".ui.fragment.FragmentTabHostActivity" />
+        <activity android:name=".ui.location.GeocoderActivity" />
+        <activity android:name=".ui.calendar.CalendarActivity" />
+        <activity android:name=".ui.IntentsActivity" />
+        <activity android:name=".ui.PackageManagerActivity" />
+        <activity android:name=".ui.DialogActivity" />
+        <activity android:name=".ui.AutoCompleteActivity" />
+        <activity android:name=".ui.ViewPagerActivity" />
+        <activity android:name=".ui.TextSizeActivity" />
+        <activity android:name=".ui.ContentProviderActivity" />
+        <activity android:name=".ui.ShareActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
 
@@ -53,26 +53,27 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.AnimActivity" />
-        <activity android:name="cn.dong.demo.ui.DrawerActivity" />
-        <activity android:name="cn.dong.demo.ui.PopupWindowActivity" />
-        <activity android:name="cn.dong.demo.ui.touch.TouchEventActivity" />
-        <activity android:name="cn.dong.demo.ui.WebViewActivity" />
-        <activity android:name="cn.dong.demo.ui.fragment.FragmentTestActivity" />
+        <activity android:name=".ui.DrawerActivity" />
+        <activity android:name=".ui.PopupWindowActivity" />
+        <activity android:name=".ui.touch.TouchEventActivity" />
+        <activity android:name=".ui.WebViewActivity" />
+        <activity android:name=".ui.fragment.FragmentTestActivity" />
 
         <!-- Image -->
-        <activity android:name="cn.dong.demo.ui.image.DrawableStateActivity" />
-        <activity android:name="cn.dong.demo.ui.image.ImageLoaderActivity" />
-        <activity android:name="cn.dong.demo.ui.image.ImageActivity" />
+        <activity android:name=".ui.image.DrawableStateActivity" />
+        <activity android:name=".ui.image.ImageLoaderActivity" />
+        <activity android:name=".ui.image.ImageActivity" />
 
         <!-- List -->
-        <activity android:name="cn.dong.demo.ui.list.XListViewActivity" />
-        <activity android:name="cn.dong.demo.ui.list.ListViewActivity" />
-        <activity android:name="cn.dong.demo.ui.list.RecyclerViewActivity" />
+        <activity android:name=".ui.list.XListViewActivity" />
+        <activity android:name=".ui.list.ListViewActivity" />
+        <activity android:name=".ui.list.RecyclerViewActivity" />
 
         <provider
-            android:name="cn.dong.demo.provider.MyProvider"
+            android:name=".provider.MyProvider"
             android:authorities="cn.dong.demo.provider"
             android:exported="false" />
+
     </application>
 
 </manifest>

@@ -1,10 +1,12 @@
-<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:iosched="http://schemas.android.com/apk/res-auto"
+<android.support.v7.widget.Toolbar
     android:id="@+id/toolbar_actionbar"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="?actionBarSize"
-    android:background="@color/theme_primary"
-    iosched:contentInsetStart="@dimen/keyline_2"
-    iosched:popupTheme="@style/ActionBarPopupThemeOverlay"
-    iosched:theme="@style/ActionBarThemeOverlay"
-    iosched:titleTextAppearance="@style/ActionBar.TitleText" />
+    android:layout_height="?attr/actionBarSize"
+    android:background="?attr/colorPrimary"
+    android:minHeight="?attr/actionBarSize"
+    app:contentInsetStart="@dimen/keyline_2"
+    app:popupTheme="@style/ActionBarPopupThemeOverlay"
+    app:theme="@style/ActionBarThemeOverlay"
+    app:titleTextAppearance="@style/ActionBar.TitleText"/>

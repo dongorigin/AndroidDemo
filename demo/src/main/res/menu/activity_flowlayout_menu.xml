@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/abc_ic_search_api_mtrl_alpha"
+        android:title="@string/abc_search_hint"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:icon="@drawable/abc_ic_menu_share_mtrl_alpha"
+        app:showAsAction="ifRoom"/>
+</menu>

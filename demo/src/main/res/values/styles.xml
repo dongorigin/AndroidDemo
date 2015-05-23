@@ -4,6 +4,8 @@
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowBackground">@color/grey</item>
         <item name="android:homeAsUpIndicator">@drawable/ic_up</item>
+        <item name="windowActionModeOverlay">true</item>
+        <item name="actionModeBackground">@color/theme_primary_light</item>
 
         <!-- colorPrimary is used for the default action bar background -->
         <item name="colorPrimary">@color/theme_primary</item>
@@ -30,13 +32,13 @@
     </style>
 
     <!-- Action Bar -->
-    <style name="ActionBarThemeOverlay" parent="">
+    <style name="ActionBarThemeOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:textColorPrimary">@color/white</item>
         <item name="colorControlNormal">@color/white</item>
         <item name="colorControlHighlight">#3fff</item>
     </style>
 
-    <style name="ActionBarPopupThemeOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <style name="ActionBarPopupThemeOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
     <style name="ActionBar.TitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">#fff</item>

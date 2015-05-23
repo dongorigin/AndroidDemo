@@ -6,6 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="more">更多</string>
 
     <!-- Xlist -->
     <string name="xlistview_header_hint_normal">下拉刷新</string>
