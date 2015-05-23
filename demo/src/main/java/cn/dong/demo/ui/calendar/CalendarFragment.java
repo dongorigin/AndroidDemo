@@ -10,7 +10,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import cn.dong.demo.R;
-import cn.dong.demo.base.BaseFragment;
+import cn.dong.demo.ui.common.BaseFragment;
 import cn.dong.demo.model.CalendarInfo;
 
 /**

@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import cn.dong.demo.R;
-import cn.dong.demo.base.BaseActivity;
+import cn.dong.demo.ui.common.BaseActivity;
 
 /**
  * 将应用内资源图片存储至储存卡

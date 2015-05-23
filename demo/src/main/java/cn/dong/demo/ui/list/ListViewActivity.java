@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import cn.dong.demo.R;
-import cn.dong.demo.base.BaseActivity;
+import cn.dong.demo.ui.common.BaseActivity;
 
 public class ListViewActivity extends BaseActivity {
 	private Button btn_refresh;

@@ -10,7 +10,7 @@ import android.webkit.WebSettings.PluginState;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import cn.dong.demo.R;
-import cn.dong.demo.base.BaseActivity;
+import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.util.StrUtil;
 
 public class WebViewActivity extends BaseActivity {

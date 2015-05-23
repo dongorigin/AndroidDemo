@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import cn.dong.demo.R;
-import cn.dong.demo.base.BaseActivity;
+import cn.dong.demo.ui.common.BaseActivity;
 
 /**
  * 触摸事件分发测试

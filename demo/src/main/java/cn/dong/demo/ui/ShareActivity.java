@@ -15,7 +15,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.Toast;
 import cn.dong.demo.R;
-import cn.dong.demo.base.BaseActivity;
+import cn.dong.demo.ui.common.BaseActivity;
 
 public class ShareActivity extends BaseActivity {
     private Button nativeButton;

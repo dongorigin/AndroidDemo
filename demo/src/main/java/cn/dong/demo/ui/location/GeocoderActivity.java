@@ -21,11 +21,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import cn.dong.demo.R;
-import cn.dong.demo.base.BaseActivity;
+import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.model.GeoResponse;
 import cn.dong.demo.model.GeoResult;
 import cn.dong.demo.model.GeoResult.Location;
-import cn.dong.demo.util.T;
 
 import com.google.gson.Gson;
 

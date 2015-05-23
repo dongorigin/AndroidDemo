@@ -20,7 +20,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import cn.dong.demo.R;
-import cn.dong.demo.base.BaseActivity;
+import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.util.L;
 
 public class AnimActivity extends BaseActivity {

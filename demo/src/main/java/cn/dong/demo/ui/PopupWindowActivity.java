@@ -14,7 +14,7 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import cn.dong.demo.R;
-import cn.dong.demo.base.BaseActivity;
+import cn.dong.demo.ui.common.BaseActivity;
 
 public class PopupWindowActivity extends BaseActivity {
 

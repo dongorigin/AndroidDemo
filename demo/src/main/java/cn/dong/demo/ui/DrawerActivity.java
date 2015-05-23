@@ -5,7 +5,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 
 import cn.dong.demo.R;
-import cn.dong.demo.base.BaseActivity;
+import cn.dong.demo.ui.common.BaseActivity;
 
 public class DrawerActivity extends BaseActivity {
 	private DrawerLayout mDrawerLayout;

@@ -1,4 +1,4 @@
-package cn.dong.demo.base;
+package cn.dong.demo.ui.common;
 
 import android.app.Activity;
 import android.content.Intent;

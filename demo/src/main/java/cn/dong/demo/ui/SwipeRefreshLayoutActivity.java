@@ -5,7 +5,7 @@ import android.os.Message;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import cn.dong.demo.R;
-import cn.dong.demo.base.BaseActivity;
+import cn.dong.demo.ui.common.BaseActivity;
 
 public class SwipeRefreshLayoutActivity extends BaseActivity {
     private SwipeRefreshLayout swipeLayout;

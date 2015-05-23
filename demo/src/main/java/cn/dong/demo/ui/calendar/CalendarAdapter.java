@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import cn.dong.demo.R;
-import cn.dong.demo.base.MyBaseAdapter;
+import cn.dong.demo.ui.common.MyBaseAdapter;
 import cn.dong.demo.model.CalendarInfo;
 
 public class CalendarAdapter extends MyBaseAdapter<CalendarInfo> {

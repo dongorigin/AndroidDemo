@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import cn.dong.demo.Constants;
 import cn.dong.demo.R;
-import cn.dong.demo.base.BaseActivity;
+import cn.dong.demo.ui.common.BaseActivity;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;

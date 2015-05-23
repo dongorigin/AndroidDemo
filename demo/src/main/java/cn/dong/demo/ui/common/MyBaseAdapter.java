@@ -1,4 +1,4 @@
-package cn.dong.demo.base;
+package cn.dong.demo.ui.common;
 
 import java.util.List;
 

@@ -15,7 +15,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 import cn.dong.demo.R;
-import cn.dong.demo.base.BaseActivity;
+import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.view.XListView;
 import cn.dong.demo.view.XListView.IXListViewListener;
 

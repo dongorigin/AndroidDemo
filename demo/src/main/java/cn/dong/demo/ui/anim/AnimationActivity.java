@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import cn.dong.demo.R;
-import cn.dong.demo.base.BaseActivity;
+import cn.dong.demo.ui.common.BaseActivity;
 
 /**
  * author DONG 2014/10/29.
