@@ -8,6 +8,11 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="more">更多</string>
 
+    <!-- DRecyclerView -->
+    <string name="footer_text_loadmore">LOAD MORE</string>
+    <string name="footer_text_end">THE END</string>
+    <string name="ok">确定</string>
+
     <!-- Xlist -->
     <string name="xlistview_header_hint_normal">下拉刷新</string>
     <string name="xlistview_header_hint_ready">松开刷新数据</string>
@@ -15,6 +20,8 @@
     <string name="xlistview_header_last_time">上次更新：</string>
     <string name="xlistview_footer_hint_normal">查看更多</string>
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
+
+
 
     <!-- Menu -->
     <string name="menu_item_clear_memory_cache">Clear memory cache</string>

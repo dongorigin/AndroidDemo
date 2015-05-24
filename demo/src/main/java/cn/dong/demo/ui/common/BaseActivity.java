@@ -87,17 +87,20 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
     /**
      * 初始化页面控件
      */
-    protected abstract void initPageView();
+    protected void initPageView() {
+    }
 
     /**
      * 页面控件点击事件处理
      */
-    protected abstract void initPageViewListener();
+    protected void initPageViewListener() {
+    }
 
     /**
      * 逻辑处理
      */
-    protected abstract void process(Bundle savedInstanceState);
+    protected void process(Bundle savedInstanceState) {
+    }
 
     protected void initActionBar() {
         if (getActionBarToolbar() == null) {
@@ -193,7 +196,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
         if (mStatusBarColorAnimator != null) {
             mStatusBarColorAnimator.cancel();
         }
-        // TODO
 
         if (shown) {
             mActionBarToolbar.animate().translationY(0).alpha(1)
@@ -211,7 +213,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
         isDestroy = true;
         dismissLoadingDialog();
         super.onDestroy();
-        // System.gc();
     }
 
     @Override

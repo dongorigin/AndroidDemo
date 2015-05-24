@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-    android:id="@+id/drawer_layout"
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:orientation="vertical">
 
-    <!-- Main layout -->
-    <FrameLayout
+    <include layout="@layout/toolbar_actionbar"/>
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:fitsSystemWindows="true">
 
+        <!-- Main layout -->
         <FrameLayout
-            android:id="@+id/content_frame"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <include layout="@layout/toolbar_actionbar"/>
-    </FrameLayout>
+            <FrameLayout
+                android:id="@+id/content_frame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
-    <!-- Nav drawer -->
-    <TextView
-        android:id="@+id/drawer"
-        android:layout_width="240dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/white"/>
+        </FrameLayout>
 
-</android.support.v4.widget.DrawerLayout>
+        <!-- Nav drawer -->
+        <fragment
+            android:id="@+id/drawer"
+            android:name="cn.dong.demo.ui.main.MainDrawerFragment"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            tools:layout="@layout/fragment_main_drawer"/>
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>

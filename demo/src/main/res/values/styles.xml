@@ -14,7 +14,7 @@
 
         <!-- colorAccent is used as the default value for colorControlActivated
          which is used to tint widgets -->
-        <item name="colorAccent">@color/white</item>
+        <item name="colorAccent">@color/accent</item>
 
         <!-- Activity切换动画 -->
         <item name="android:windowAnimationStyle">@style/AppAnimation</item>
@@ -22,6 +22,12 @@
 
     <style name="AppTheme.Main">
         <item name="android:windowIsTranslucent">false</item>
+    </style>
+
+    <style name="AppTheme.Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:homeAsUpIndicator">@drawable/abc_ic_ab_back_mtrl_am_alpha</item>
     </style>
 
     <style name="AppAnimation" parent="@android:style/Animation.Activity">
