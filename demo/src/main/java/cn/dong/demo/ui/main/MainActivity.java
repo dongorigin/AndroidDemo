@@ -22,6 +22,7 @@ import cn.dong.demo.ui.creation.calendar.CalendarActivity;
 import cn.dong.demo.ui.datastorage.BitmapSaveLocalActivity;
 import cn.dong.demo.ui.datastorage.ContentProviderActivity;
 import cn.dong.demo.ui.librarys.ImageLoaderActivity;
+import cn.dong.demo.ui.librarys.XListViewActivity;
 import cn.dong.demo.ui.locationandsensors.GeocoderActivity;
 import cn.dong.demo.ui.other.ImageSelectorActivity;
 import cn.dong.demo.ui.other.Md5Activity;
@@ -32,8 +33,10 @@ import cn.dong.demo.ui.textandinput.AutoCompleteActivity;
 import cn.dong.demo.ui.textandinput.TextSizeActivity;
 import cn.dong.demo.ui.textandinput.TextViewActivity;
 import cn.dong.demo.ui.userinterface.DialogActivity;
+import cn.dong.demo.ui.userinterface.DrawableStateActivity;
 import cn.dong.demo.ui.userinterface.FragmentTabHostActivity;
 import cn.dong.demo.ui.userinterface.PopupWindowActivity;
+import cn.dong.demo.ui.userinterface.RecyclerViewActivity;
 import cn.dong.demo.ui.userinterface.SwipeRefreshLayoutActivity;
 import cn.dong.demo.ui.userinterface.ViewPagerActivity;
 import cn.dong.demo.ui.userinterface.touch.TouchEventActivity;
@@ -53,7 +56,8 @@ public class MainActivity extends BaseActivity implements MainDrawerFragment.OnD
     );
 
     private List<Item> libraryList = Arrays.asList(
-            new Item("ImageLoader", ImageLoaderActivity.class)
+            new Item("ImageLoader", ImageLoaderActivity.class),
+            new Item("XListView", XListViewActivity.class)
     );
 
     private List<Item> componentList = Arrays.asList(
@@ -63,11 +67,13 @@ public class MainActivity extends BaseActivity implements MainDrawerFragment.OnD
 
     private List<Item> uiList = Arrays.asList(
             new Item("TouchEvent", TouchEventActivity.class),
+            new Item("RecyclerView", RecyclerViewActivity.class),
             new Item("ViewPager", ViewPagerActivity.class),
             new Item("SwipeRefreshLayout", SwipeRefreshLayoutActivity.class),
             new Item("FragmentTabHost", FragmentTabHostActivity.class),
             new Item("Dialog", DialogActivity.class),
-            new Item("PopupWindow", PopupWindowActivity.class)
+            new Item("PopupWindow", PopupWindowActivity.class),
+            new Item("DrawableState", DrawableStateActivity.class)
     );
 
     private List<Item> textList = Arrays.asList(
