@@ -167,7 +167,7 @@ public class Constants {
                     // "file:///sdcard/Universal Image Loader @#&=+-_.,!()~'%20.png", // Image from
                     // SD card with encoded symbols
                     "assets://Living Things @#&=+-_.,!()~'%20.jpg", // Image from assets
-                    "drawable://" + R.drawable.ic_launcher, // Image from drawables
+                    "drawable://" + R.mipmap.ic_launcher, // Image from drawables
                     "http://upload.wikimedia.org/wikipedia/ru/b/b6/Как_кот_с_мышами_воевал.png", // Link
                                                                                                  // with
                                                                                                  // UTF-8

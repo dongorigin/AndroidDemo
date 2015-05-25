@@ -68,7 +68,7 @@ public class TextViewActivity extends BaseActivity {
         ssb.append("测试测试测试测试测\n");
         ssb.setSpan(new UnderlineSpan(), 41, 50, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
         ssb.append("测试\n");
-        Drawable drawable = getResources().getDrawable(R.drawable.ic_launcher);
+        Drawable drawable = getResources().getDrawable(R.mipmap.ic_launcher);
         drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
         ssb.setSpan(new ImageSpan(drawable), 51, 52, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 
