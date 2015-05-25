@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <attr name="state_custom" format="boolean" />
+    <attr name="state_custom" format="boolean"/>
 
     <declare-styleable name="LargeTouchAreaText">
         <attr name="padding" format="dimension"/>
@@ -10,5 +10,10 @@
     <declare-styleable name="DRecyclerView">
         <attr name="spanCount" format="integer"/>
         <attr name="android:overScrollMode"/>
+    </declare-styleable>
+
+    <declare-styleable name="CustomView">
+        <attr name="shapeColor" format="color"/>
+        <attr name="showShapeName" format="boolean"/>
     </declare-styleable>
 </resources>
