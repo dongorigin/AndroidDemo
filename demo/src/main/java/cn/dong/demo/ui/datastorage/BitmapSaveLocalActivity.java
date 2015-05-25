@@ -57,7 +57,7 @@ public class BitmapSaveLocalActivity extends BaseActivity {
 		Log.d(TAG, getExternalFilesDir("").toString());
 		Log.d(TAG, getExternalFilesDir(Environment.DIRECTORY_PICTURES).toString());
 
-		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+		Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
 		File extStorageDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 		File file = new File(extStorageDirectory, IMAGE_NAME);
 		try {
