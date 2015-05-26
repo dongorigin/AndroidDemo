@@ -51,6 +51,19 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <!-- Dialog -->
+    <style name="DialogNoBackground" parent="android:Theme.Holo.Dialog.NoActionBar">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowMinWidthMajor">100%</item>
+        <item name="android:windowMinWidthMinor">100%</item>
+        <item name="android:windowAnimationStyle">@style/MenuBottomAnimation</item>
+    </style>
+
+    <style name="MenuBottomAnimation">
+        <item name="android:windowEnterAnimation">@anim/settingswindow_in_anim</item>
+        <item name="android:windowExitAnimation">@anim/settingswindow_out_anim</item>
+    </style>
+
     <!-- 通用 -->
     <style name="TextView">
         <item name="android:layout_width">wrap_content</item>
@@ -95,9 +108,5 @@
         <item name="android:windowBackground">@drawable/bg_window</item>
     </style>
 
-    <style name="main_menu_animstyle">
-        <item name="android:windowEnterAnimation">@anim/settingswindow_in_anim</item>
-        <item name="android:windowExitAnimation">@anim/settingswindow_out_anim</item>
-    </style>
 
 </resources>

@@ -3,6 +3,7 @@ package cn.dong.demo.ui.userinterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,7 +18,6 @@ public class DialogActivity extends FragmentActivity {
     private MyHandler handler;
     private TextView text;
     private Button button;
-    private MyDialogFragment dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +35,11 @@ public class DialogActivity extends FragmentActivity {
         text = (TextView) findViewById(R.id.text);
         button = (Button) findViewById(R.id.button);
 
-        dialog = new MyDialogFragment();
         button.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.show(getSupportFragmentManager(), "dialog");
+                DialogFragment fragment = new MyDialogFragment();
+                fragment.show(getSupportFragmentManager(), "dialog");
             }
         });
     }
