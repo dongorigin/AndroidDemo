@@ -69,7 +69,7 @@ public class WebViewActivity extends BaseActivity {
     @Override
     protected void process(Bundle savedInstanceState) {
         initWebView();
-        mWebView.loadUrl("https://www.google.com.hk/");
+        mWebView.loadUrl("file:///android_asset/index.html");
     }
 
     private void initWebView() {

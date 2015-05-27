@@ -21,6 +21,8 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+
+        <!-- Main -->
         <activity
             android:name=".ui.main.MainActivity"
             android:theme="@style/AppTheme.Main">
@@ -31,43 +33,61 @@
             </intent-filter>
         </activity>
 
-        <!-- New-->
-        <activity android:name=".ui.creation.FlexibleHeaderRecyclerViewActivity"/>
-        <activity android:name=".ui.userinterface.ViewPagerActivity"/>
-        <activity android:name=".ui.textandinput.TextViewActivity"/>
-        <activity android:name=".ui.userinterface.FragmentTabHostActivity"/>
-        <activity android:name=".ui.other.Md5Activity"/>
-        <activity android:name=".ui.creation.FadeoutHeaderRecyclerViewActivity"/>
-        <activity android:name=".ui.other.ScreenshotActivity"/>
-        <activity android:name=".ui.other.ImageSelectorActivity"/>
-        <activity android:name=".ui.animation.MarkAnimationActivity"/>
-
-        <!-- Old-->
-        <activity android:name=".ui.main.NewMainActivity"/>
-        <activity android:name=".ui.creation.FlowLayoutActivity"/>
-        <activity android:name=".ui.userinterface.SwipeRefreshLayoutActivity"/>
-        <activity android:name=".ui.locationandsensors.GeocoderActivity"/>
+        <!-- Creation -->
         <activity android:name=".ui.creation.calendar.CalendarActivity"/>
-        <activity android:name=".ui.components.IntentsActivity"/>
-        <activity android:name=".ui.other.PackageManagerActivity"/>
+        <activity android:name=".ui.creation.FlexibleHeaderRecyclerViewActivity"/>
+        <activity android:name=".ui.creation.FadeoutHeaderRecyclerViewActivity"/>
+        <activity android:name=".ui.creation.FlowLayoutActivity"/>
+
+        <!-- Library -->
+        <activity android:name=".ui.librarys.ImageLoaderActivity"/>
+        <activity android:name=".ui.librarys.XListViewActivity"/>
+
+        <!-- Component -->
+        <activity android:name=".ui.components.FragmentManageActivity"/>
+        <activity android:name=".ui.components.IntentsActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+
+                <data android:scheme="dong"/>
+            </intent-filter>
+        </activity>
+
+        <!-- UI -->
+        <activity android:name=".ui.userinterface.ViewPagerActivity"/>
+        <activity android:name=".ui.userinterface.FragmentTabHostActivity"/>
+        <activity android:name=".ui.userinterface.SwipeRefreshLayoutActivity"/>
         <activity android:name=".ui.userinterface.DialogActivity"/>
-        <activity android:name=".ui.textandinput.AutoCompleteActivity"/>
-        <activity android:name=".ui.textandinput.TextSizeActivity"/>
-        <activity android:name=".ui.datastorage.ContentProviderActivity"/>
-        <activity android:name=".ui.animation.AnimationActivity"/>
         <activity android:name=".ui.userinterface.PopupWindowActivity"/>
         <activity android:name=".ui.userinterface.touch.TouchEventActivity"/>
-        <activity android:name=".ui.other.WebViewActivity"/>
-        <activity android:name=".ui.components.FragmentManageActivity"/>
-
-        <!-- Image -->
+        <activity android:name=".ui.userinterface.RecyclerViewActivity"/>
         <activity android:name=".ui.userinterface.DrawableStateActivity"/>
-        <activity android:name=".ui.librarys.ImageLoaderActivity"/>
+
+        <!-- Text and Input -->
+        <activity android:name=".ui.textandinput.TextViewActivity"/>
+        <activity android:name=".ui.textandinput.AutoCompleteActivity"/>
+        <activity android:name=".ui.textandinput.TextSizeActivity"/>
+
+        <!-- Animation -->
+        <activity android:name=".ui.animation.MarkAnimationActivity"/>
+        <activity android:name=".ui.animation.AnimationActivity"/>
+
+        <!-- Sensor -->
+        <activity android:name=".ui.locationandsensors.GeocoderActivity"/>
+
+        <!-- Storage -->
+        <activity android:name=".ui.datastorage.ContentProviderActivity"/>
         <activity android:name=".ui.datastorage.BitmapSaveLocalActivity"/>
 
-        <!-- List -->
-        <activity android:name=".ui.librarys.XListViewActivity"/>
-        <activity android:name=".ui.userinterface.RecyclerViewActivity"/>
+        <!-- Other -->
+        <activity android:name=".ui.other.Md5Activity"/>
+        <activity android:name=".ui.other.ScreenshotActivity"/>
+        <activity android:name=".ui.other.ImageSelectorActivity"/>
+        <activity android:name=".ui.other.PackageManagerActivity"/>
+        <activity android:name=".ui.other.WebViewActivity"/>
 
         <provider
             android:name=".provider.MyProvider"

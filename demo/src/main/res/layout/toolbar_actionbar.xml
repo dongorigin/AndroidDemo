@@ -6,7 +6,7 @@
     android:layout_height="?attr/actionBarSize"
     android:background="?attr/colorPrimary"
     android:minHeight="?attr/actionBarSize"
+    android:theme="@style/ActionBarThemeOverlay"
     app:contentInsetStart="@dimen/keyline_2"
     app:popupTheme="@style/ActionBarPopupThemeOverlay"
-    app:theme="@style/ActionBarThemeOverlay"
     app:titleTextAppearance="@style/ActionBar.TitleText"/>

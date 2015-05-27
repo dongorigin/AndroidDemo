@@ -14,6 +14,7 @@ import java.util.List;
 import butterknife.OnClick;
 import cn.dong.demo.R;
 import cn.dong.demo.ui.common.BaseActivity;
+import cn.dong.demo.util.L;
 
 /**
  * 常用Intents示例
@@ -23,9 +24,19 @@ import cn.dong.demo.ui.common.BaseActivity;
 public class IntentsActivity extends BaseActivity {
 
     @Override
+    protected void init() {
+        super.init();
+
+        Uri uri = getIntent().getData();
+        L.d(TAG, "Url = "+ uri);
+    }
+
+
+    @Override
     protected int initPageLayoutID() {
         return R.layout.activity_intents;
     }
+
 
     @OnClick(R.id.btn_sms)
     void sms() {

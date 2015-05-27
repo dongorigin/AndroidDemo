@@ -4,6 +4,8 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
+    <include layout="@layout/toolbar_actionbar"/>
+
     <Button
         android:id="@+id/btn_sms"
         android:layout_width="match_parent"
