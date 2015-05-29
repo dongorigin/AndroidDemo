@@ -28,15 +28,13 @@ public class IntentsActivity extends BaseActivity {
         super.init();
 
         Uri uri = getIntent().getData();
-        L.d(TAG, "Url = "+ uri);
+        L.d(TAG, "Url = " + uri);
     }
-
 
     @Override
     protected int initPageLayoutID() {
         return R.layout.activity_intents;
     }
-
 
     @OnClick(R.id.btn_sms)
     void sms() {

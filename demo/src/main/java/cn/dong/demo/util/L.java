@@ -3,6 +3,7 @@ package cn.dong.demo.util;
 import android.content.Context;
 import android.util.Log;
 
+import cn.dong.demo.BuildConfig;
 import cn.dong.demo.MyApp;
 
 /**
@@ -14,6 +15,10 @@ public class L {
     private static final String TAG = "log";
     private static Context sContext = MyApp.getInstance();
 
+    public static String getCurrentMethodName() {
+        return Thread.currentThread().getStackTrace()[3].getMethodName();
+    }
+
     public static void v(String tag, int id) {
         log(Log.VERBOSE, tag, sContext.getResources().getString(id));
     }
@@ -22,8 +27,8 @@ public class L {
         log(Log.VERBOSE, tag, msg);
     }
 
-    public static void d(String msg) {
-        d(TAG, msg);
+    public static void v(String tag, String format, Object... args) {
+        log(Log.VERBOSE, tag, format, args);
     }
 
     public static void d(String tag, int id) {
@@ -71,6 +76,9 @@ public class L {
     }
 
     private static void log(int priority, String tag, String msg) {
-        Log.println(priority, tag, msg);
+        if (BuildConfig.DEBUG) {
+            // debug模式默认打印log，release包不打印log
+            Log.println(priority, tag, msg);
+        }
     }
 }
