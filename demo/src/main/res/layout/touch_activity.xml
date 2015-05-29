@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<cn.dong.demo.ui.userinterface.touch.TouchLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<cn.dong.demo.ui.ui.touch.TouchLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <cn.dong.demo.ui.userinterface.touch.TouchButton
+    <cn.dong.demo.ui.ui.touch.TouchButton
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Button" />
 
-    <cn.dong.demo.ui.userinterface.touch.TouchView
+    <cn.dong.demo.ui.ui.touch.TouchView
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_below="@id/button"
         android:background="@color/grey" />
 
-</cn.dong.demo.ui.userinterface.touch.TouchLayout>
+</cn.dong.demo.ui.ui.touch.TouchLayout>

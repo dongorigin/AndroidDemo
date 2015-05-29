@@ -40,12 +40,12 @@
         <activity android:name=".ui.creation.FlowLayoutActivity"/>
 
         <!-- Library -->
-        <activity android:name=".ui.librarys.ImageLoaderActivity"/>
-        <activity android:name=".ui.librarys.XListViewActivity"/>
+        <activity android:name=".ui.library.ImageLoaderActivity"/>
+        <activity android:name=".ui.library.XListViewActivity"/>
 
         <!-- Component -->
-        <activity android:name=".ui.components.FragmentManageActivity"/>
-        <activity android:name=".ui.components.IntentsActivity">
+        <activity android:name=".ui.component.FragmentManageActivity"/>
+        <activity android:name=".ui.component.IntentsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
 
@@ -57,30 +57,30 @@
         </activity>
 
         <!-- UI -->
-        <activity android:name=".ui.userinterface.ViewPagerActivity"/>
-        <activity android:name=".ui.userinterface.FragmentTabHostActivity"/>
-        <activity android:name=".ui.userinterface.SwipeRefreshLayoutActivity"/>
-        <activity android:name=".ui.userinterface.DialogActivity"/>
-        <activity android:name=".ui.userinterface.PopupWindowActivity"/>
-        <activity android:name=".ui.userinterface.touch.TouchEventActivity"/>
-        <activity android:name=".ui.userinterface.RecyclerViewActivity"/>
-        <activity android:name=".ui.userinterface.DrawableStateActivity"/>
+        <activity android:name=".ui.ui.ViewPagerActivity"/>
+        <activity android:name=".ui.ui.FragmentTabHostActivity"/>
+        <activity android:name=".ui.ui.SwipeRefreshLayoutActivity"/>
+        <activity android:name=".ui.ui.DialogActivity"/>
+        <activity android:name=".ui.ui.PopupWindowActivity"/>
+        <activity android:name=".ui.ui.touch.TouchEventActivity"/>
+        <activity android:name=".ui.ui.RecyclerViewActivity"/>
+        <activity android:name=".ui.ui.DrawableStateActivity"/>
 
         <!-- Text and Input -->
-        <activity android:name=".ui.textandinput.TextViewActivity"/>
-        <activity android:name=".ui.textandinput.AutoCompleteActivity"/>
-        <activity android:name=".ui.textandinput.TextSizeActivity"/>
+        <activity android:name=".ui.text.TextViewActivity"/>
+        <activity android:name=".ui.text.AutoCompleteActivity"/>
+        <activity android:name=".ui.text.TextSizeActivity"/>
 
         <!-- Animation -->
         <activity android:name=".ui.animation.MarkAnimationActivity"/>
         <activity android:name=".ui.animation.AnimationActivity"/>
 
         <!-- Sensor -->
-        <activity android:name=".ui.locationandsensors.GeocoderActivity"/>
+        <activity android:name=".ui.sensors.GeocoderActivity"/>
 
         <!-- Storage -->
-        <activity android:name=".ui.datastorage.ContentProviderActivity"/>
-        <activity android:name=".ui.datastorage.BitmapSaveLocalActivity"/>
+        <activity android:name=".ui.storage.ContentProviderActivity"/>
+        <activity android:name=".ui.storage.BitmapSaveLocalActivity"/>
 
         <!-- Other -->
         <activity android:name=".ui.other.Md5Activity"/>
