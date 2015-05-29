@@ -19,17 +19,18 @@ import cn.dong.demo.ui.creation.FadeoutHeaderRecyclerViewActivity;
 import cn.dong.demo.ui.creation.FlexibleHeaderRecyclerViewActivity;
 import cn.dong.demo.ui.creation.FlowLayoutActivity;
 import cn.dong.demo.ui.creation.calendar.CalendarActivity;
-import cn.dong.demo.ui.storage.BitmapSaveLocalActivity;
-import cn.dong.demo.ui.storage.ContentProviderActivity;
 import cn.dong.demo.ui.library.ImageLoaderActivity;
 import cn.dong.demo.ui.library.XListViewActivity;
-import cn.dong.demo.ui.sensors.GeocoderActivity;
 import cn.dong.demo.ui.other.ImageSelectorActivity;
 import cn.dong.demo.ui.other.Md5Activity;
 import cn.dong.demo.ui.other.PackageManagerActivity;
 import cn.dong.demo.ui.other.ScreenshotActivity;
 import cn.dong.demo.ui.other.WebViewActivity;
+import cn.dong.demo.ui.sensors.GeocoderActivity;
+import cn.dong.demo.ui.storage.BitmapSaveLocalActivity;
+import cn.dong.demo.ui.storage.ContentProviderActivity;
 import cn.dong.demo.ui.text.AutoCompleteActivity;
+import cn.dong.demo.ui.text.EditTextActivity;
 import cn.dong.demo.ui.text.TextSizeActivity;
 import cn.dong.demo.ui.text.TextViewActivity;
 import cn.dong.demo.ui.ui.DialogActivity;
@@ -78,8 +79,9 @@ public class MainActivity extends BaseActivity implements MainDrawerFragment.OnD
 
     private List<Item> textList = Arrays.asList(
             new Item("TextSize", TextSizeActivity.class),
-            new Item("Span", TextViewActivity.class),
-            new Item("AutoComplete", AutoCompleteActivity.class)
+            new Item("EditText", EditTextActivity.class),
+            new Item("AutoComplete", AutoCompleteActivity.class),
+            new Item("Span", TextViewActivity.class)
     );
 
     private List<Item> animationList = Arrays.asList(
@@ -152,7 +154,7 @@ public class MainActivity extends BaseActivity implements MainDrawerFragment.OnD
     @Override
     protected void initPageView() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.theme_primary_dark));
+        mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.primaryDark));
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
     }
 

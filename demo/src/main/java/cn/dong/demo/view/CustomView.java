@@ -51,7 +51,7 @@ public class CustomView extends View {
 
         try {
             mShowShapeName = a.getBoolean(R.styleable.CustomView_showShapeName, true);
-            mShapeColor = a.getColor(R.styleable.CustomView_shapeColor, getResources().getColor(R.color.theme_primary));
+            mShapeColor = a.getColor(R.styleable.CustomView_shapeColor, getResources().getColor(R.color.primary));
         } finally {
             a.recycle();
         }

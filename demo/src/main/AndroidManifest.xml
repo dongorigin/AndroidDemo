@@ -68,6 +68,7 @@
 
         <!-- Text and Input -->
         <activity android:name=".ui.text.TextViewActivity"/>
+        <activity android:name=".ui.text.EditTextActivity"/>
         <activity android:name=".ui.text.AutoCompleteActivity"/>
         <activity android:name=".ui.text.TextSizeActivity"/>
 

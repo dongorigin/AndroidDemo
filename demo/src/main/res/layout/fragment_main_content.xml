@@ -6,6 +6,8 @@
 
     <ListView
         android:id="@android:id/list"
-        style="@style/ListView.Card"/>
+        style="@style/ListView"
+        android:divider="@null"
+        android:listSelector="@null"/>
 
 </LinearLayout>
