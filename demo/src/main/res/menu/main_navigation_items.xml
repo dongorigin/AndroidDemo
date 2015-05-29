@@ -1,0 +1,53 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_original"
+        android:icon="@drawable/ic_star_white_24dp"
+        android:title="@string/navigation_original"/>
+
+    <item
+        android:id="@+id/navigation_library"
+        android:icon="@drawable/ic_public_white_24dp"
+        android:title="@string/navigation_library"/>
+
+    <item
+        android:id="@+id/navigation_component"
+        android:icon="@drawable/ic_extension_white_24dp"
+        android:title="@string/navigation_component"/>
+
+    <item
+        android:id="@+id/navigation_ui"
+        android:icon="@drawable/ic_phone_android_white_24dp"
+        android:title="@string/navigation_ui"/>
+
+    <item
+        android:id="@+id/navigation_text"
+        android:icon="@drawable/ic_text_format_white_24dp"
+        android:title="@string/navigation_text"/>
+
+    <item
+        android:id="@+id/navigation_animation"
+        android:icon="@drawable/ic_flare_white_24dp"
+        android:title="@string/navigation_animation"/>
+
+    <item
+        android:id="@+id/navigation_sensor"
+        android:icon="@drawable/ic_explore_white_24dp"
+        android:title="@string/navigation_sensor"/>
+
+    <item
+        android:id="@+id/navigation_storage"
+        android:icon="@drawable/ic_storage_white_24dp"
+        android:title="@string/navigation_storage"/>
+
+    <item
+        android:id="@+id/navigation_other"
+        android:icon="@drawable/ic_more_horiz_white_24dp"
+        android:title="@string/navigation_other"/>
+
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/ic_settings_white_24dp"
+        android:title="@string/action_settings"/>
+
+</menu>

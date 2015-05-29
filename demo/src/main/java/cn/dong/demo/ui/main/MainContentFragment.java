@@ -2,28 +2,27 @@ package cn.dong.demo.ui.main;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
 import cn.dong.demo.R;
 import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.ui.common.BaseFragment;
 
 public class MainContentFragment extends BaseFragment {
-    private ListView listView;
+    @InjectView(R.id.recycler)
+    RecyclerView mRecyclerView;
 
     private MainActivity mMainActivity;
     private List<MainActivity.Item> items;
-    private BaseAdapter mAdapter;
+    private RecyclerView.Adapter mAdapter;
 
     public void updateContentList(List<MainActivity.Item> items) {
         this.items = items;
@@ -34,7 +33,8 @@ public class MainContentFragment extends BaseFragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         mMainActivity = (MainActivity) activity;
-        items = mMainActivity.getItems();
+        items = mMainActivity.getCurrentItems();
+        mAdapter = new MainListAdapter();
     }
 
     @Override
@@ -44,56 +44,48 @@ public class MainContentFragment extends BaseFragment {
 
     @Override
     protected void initPageView(View rootView) {
-        listView = (ListView) rootView.findViewById(android.R.id.list);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
-    @Override
-    protected void initPageViewListener() {
-        listView.setOnItemClickListener(new OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(mContext, items.get(position).cls);
-                intent.putExtra(BaseActivity.EXTRA_TITLE, items.get(position).title);
-                startActivity(intent);
-            }
-        });
-    }
+    class MainListAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
-    @Override
-    protected void process(Bundle savedInstanceState) {
-        mAdapter = new MainListAdapter();
-        listView.setAdapter(mAdapter);
-    }
-
-    class MainListAdapter extends BaseAdapter {
-
-        @Override
-        public int getCount() {
-            return items != null ? items.size() : 0;
-        }
-
-        @Override
         public MainActivity.Item getItem(int position) {
             return items.get(position);
         }
 
         @Override
-        public long getItemId(int position) {
-            return position;
+        public int getItemCount() {
+            return items != null ? items.size() : 0;
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if (convertView == null) {
-                convertView =
-                        LayoutInflater.from(mContext).inflate(R.layout.main_item, parent, false);
-            }
-            MainActivity.Item item = getItem(position);
-            TextView title = (TextView) convertView.findViewById(R.id.title);
-            title.setText(item.title);
-            return convertView;
+        public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_main_content_item, parent, false);
+            return new ItemViewHolder(itemView);
         }
 
+        @Override
+        public void onBindViewHolder(ItemViewHolder holder, int position) {
+            final MainActivity.Item item = getItem(position);
+            holder.titleView.setText(item.title);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, item.cls);
+                    intent.putExtra(BaseActivity.EXTRA_TITLE, item.title);
+                    startActivity(intent);
+                }
+            });
+        }
+    }
+
+    static class ItemViewHolder extends RecyclerView.ViewHolder {
+        TextView titleView;
+
+        public ItemViewHolder(View itemView) {
+            super(itemView);
+            titleView = ButterKnife.findById(itemView, R.id.title);
+        }
     }
 
 }

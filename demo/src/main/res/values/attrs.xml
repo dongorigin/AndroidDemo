@@ -8,7 +8,7 @@
     </declare-styleable>
 
     <declare-styleable name="DRecyclerView">
-        <attr name="spanCount" format="integer"/>
+        <attr name="dSpanCount" format="integer"/>
         <attr name="android:overScrollMode"/>
     </declare-styleable>
 

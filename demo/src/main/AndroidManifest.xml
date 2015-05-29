@@ -34,16 +34,17 @@
         </activity>
 
         <!-- Creation -->
-        <activity android:name=".ui.creation.calendar.CalendarActivity"/>
-        <activity android:name=".ui.creation.FlexibleHeaderRecyclerViewActivity"/>
-        <activity android:name=".ui.creation.FadeoutHeaderRecyclerViewActivity"/>
-        <activity android:name=".ui.creation.FlowLayoutActivity"/>
+        <activity android:name=".ui.original.calendar.CalendarActivity"/>
+        <activity android:name=".ui.original.FlexibleHeaderRecyclerViewActivity"/>
+        <activity android:name=".ui.original.FadeoutHeaderRecyclerViewActivity"/>
+        <activity android:name=".ui.original.FlowLayoutActivity"/>
 
         <!-- Library -->
         <activity android:name=".ui.library.ImageLoaderActivity"/>
         <activity android:name=".ui.library.XListViewActivity"/>
 
         <!-- Component -->
+        <activity android:name=".ui.component.ServiceActivity"/>
         <activity android:name=".ui.component.FragmentManageActivity"/>
         <activity android:name=".ui.component.IntentsActivity">
             <intent-filter>
@@ -52,7 +53,9 @@
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <category android:name="android.intent.category.DEFAULT"/>
 
-                <data android:scheme="dong"/>
+                <data
+                    android:host="cn.dong"
+                    android:scheme="http"/>
             </intent-filter>
         </activity>
 
@@ -77,7 +80,7 @@
         <activity android:name=".ui.animation.AnimationActivity"/>
 
         <!-- Sensor -->
-        <activity android:name=".ui.sensors.GeocoderActivity"/>
+        <activity android:name=".ui.sensor.GeocoderActivity"/>
 
         <!-- Storage -->
         <activity android:name=".ui.storage.ContentProviderActivity"/>
@@ -90,11 +93,14 @@
         <activity android:name=".ui.other.PackageManagerActivity"/>
         <activity android:name=".ui.other.WebViewActivity"/>
 
+        <service
+            android:name=".service.MyService"
+            android:enabled="true"/>
+
         <provider
             android:name=".provider.MyProvider"
             android:authorities="cn.dong.demo.provider"
             android:exported="false"/>
-
     </application>
 
 </manifest>

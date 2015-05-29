@@ -10,7 +10,7 @@ import android.widget.TabHost;
 import butterknife.InjectView;
 import cn.dong.demo.R;
 import cn.dong.demo.config.Extra;
-import cn.dong.demo.ui.creation.FlowLayoutActivity;
+import cn.dong.demo.ui.original.FlowLayoutActivity;
 import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.util.L;
 

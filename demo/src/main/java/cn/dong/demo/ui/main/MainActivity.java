@@ -2,23 +2,27 @@ package cn.dong.demo.ui.main;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.Gravity;
+import android.view.MenuItem;
 
 import java.util.Arrays;
 import java.util.List;
 
+import butterknife.InjectView;
 import cn.dong.demo.R;
 import cn.dong.demo.ui.animation.AnimationActivity;
 import cn.dong.demo.ui.animation.MarkAnimationActivity;
 import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.ui.component.FragmentManageActivity;
 import cn.dong.demo.ui.component.IntentsActivity;
-import cn.dong.demo.ui.creation.FadeoutHeaderRecyclerViewActivity;
-import cn.dong.demo.ui.creation.FlexibleHeaderRecyclerViewActivity;
-import cn.dong.demo.ui.creation.FlowLayoutActivity;
-import cn.dong.demo.ui.creation.calendar.CalendarActivity;
+import cn.dong.demo.ui.component.ServiceActivity;
+import cn.dong.demo.ui.original.FadeoutHeaderRecyclerViewActivity;
+import cn.dong.demo.ui.original.FlexibleHeaderRecyclerViewActivity;
+import cn.dong.demo.ui.original.FlowLayoutActivity;
+import cn.dong.demo.ui.original.calendar.CalendarActivity;
 import cn.dong.demo.ui.library.ImageLoaderActivity;
 import cn.dong.demo.ui.library.XListViewActivity;
 import cn.dong.demo.ui.other.ImageSelectorActivity;
@@ -26,7 +30,7 @@ import cn.dong.demo.ui.other.Md5Activity;
 import cn.dong.demo.ui.other.PackageManagerActivity;
 import cn.dong.demo.ui.other.ScreenshotActivity;
 import cn.dong.demo.ui.other.WebViewActivity;
-import cn.dong.demo.ui.sensors.GeocoderActivity;
+import cn.dong.demo.ui.sensor.GeocoderActivity;
 import cn.dong.demo.ui.storage.BitmapSaveLocalActivity;
 import cn.dong.demo.ui.storage.ContentProviderActivity;
 import cn.dong.demo.ui.text.AutoCompleteActivity;
@@ -41,15 +45,18 @@ import cn.dong.demo.ui.ui.RecyclerViewActivity;
 import cn.dong.demo.ui.ui.SwipeRefreshLayoutActivity;
 import cn.dong.demo.ui.ui.ViewPagerActivity;
 import cn.dong.demo.ui.ui.touch.TouchEventActivity;
-import cn.dong.demo.util.L;
 
-public class MainActivity extends BaseActivity implements MainDrawerFragment.OnDrawerItemSelectedListener {
-    private DrawerLayout mDrawerLayout;
+public class MainActivity extends BaseActivity {
+    @InjectView(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
+    @InjectView(R.id.navigation)
+    NavigationView mNavigationView;
+
     private ActionBarDrawerToggle mDrawerToggle;
 
-    private DrawerItem selectedDrawerItem;
+    private List<Item> currentItems;
 
-    private List<Item> creationList = Arrays.asList(
+    private List<Item> originalItems = Arrays.asList(
             new Item("Calendar", CalendarActivity.class),
             new Item("FlexibleHeader", FlexibleHeaderRecyclerViewActivity.class),
             new Item("FadeoutHeader", FadeoutHeaderRecyclerViewActivity.class),
@@ -62,6 +69,7 @@ public class MainActivity extends BaseActivity implements MainDrawerFragment.OnD
     );
 
     private List<Item> componentList = Arrays.asList(
+            new Item("Service", ServiceActivity.class),
             new Item("FragmentManage", FragmentManageActivity.class),
             new Item("Intents", IntentsActivity.class)
     );
@@ -89,7 +97,7 @@ public class MainActivity extends BaseActivity implements MainDrawerFragment.OnD
             new Item("MarkAnim", MarkAnimationActivity.class)
     );
 
-    private List<Item> locationList = Arrays.asList(
+    private List<Item> sensorItems = Arrays.asList(
             new Item("Geocoder", GeocoderActivity.class)
     );
 
@@ -105,29 +113,6 @@ public class MainActivity extends BaseActivity implements MainDrawerFragment.OnD
             new Item("Md5", Md5Activity.class)
     );
 
-    private List<DrawerItem> drawerItems = Arrays.asList(
-            new DrawerItem("Creation", creationList),
-            new DrawerItem("Library", libraryList),
-            new DrawerItem("Components", componentList),
-            new DrawerItem("User Interface", uiList),
-            new DrawerItem("Text and Input", textList),
-            new DrawerItem("Animation", animationList),
-            new DrawerItem("Location and Sensors", locationList),
-            new DrawerItem("Data Storage", storageList),
-            new DrawerItem("Other", otherList)
-    );
-
-    static class DrawerItem {
-        boolean isSelected;
-        String title;
-        List<Item> items;
-
-        DrawerItem(String title, List<Item> items) {
-            this.title = title;
-            this.items = items;
-        }
-    }
-
     static class Item {
         String title;
         Class<? extends Activity> cls;
@@ -138,12 +123,8 @@ public class MainActivity extends BaseActivity implements MainDrawerFragment.OnD
         }
     }
 
-    List<DrawerItem> getDrawerItems() {
-        return drawerItems;
-    }
-
-    List<Item> getItems() {
-        return selectedDrawerItem.items;
+    List<Item> getCurrentItems() {
+        return currentItems;
     }
 
     @Override
@@ -153,9 +134,8 @@ public class MainActivity extends BaseActivity implements MainDrawerFragment.OnD
 
     @Override
     protected void initPageView() {
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.primaryDark));
-        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, Gravity.START);
+        mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
     }
 
     @Override
@@ -163,37 +143,61 @@ public class MainActivity extends BaseActivity implements MainDrawerFragment.OnD
         mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout, getActionBarToolbar(), R.string.drawer_open, R.string.drawer_close);
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
+
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                setTitle(menuItem.getTitle());
+                switch (menuItem.getItemId()) {
+                    case R.id.navigation_original:
+                        currentItems = originalItems;
+                        break;
+                    case R.id.navigation_library:
+                        currentItems = libraryList;
+                        break;
+                    case R.id.navigation_component:
+                        currentItems = componentList;
+                        break;
+                    case R.id.navigation_ui:
+                        currentItems = uiList;
+                        break;
+                    case R.id.navigation_text:
+                        currentItems = textList;
+                        break;
+                    case R.id.navigation_sensor:
+                        currentItems = sensorItems;
+                        break;
+                    case R.id.navigation_storage:
+                        currentItems = storageList;
+                        break;
+                    case R.id.navigation_animation:
+                        currentItems = animationList;
+                        break;
+                    case R.id.navigation_other:
+                        currentItems = otherList;
+                        break;
+                    case R.id.navigation_settings:
+                        // todo
+                        return true;
+                    default:
+                        return false;
+                }
+                MainContentFragment contentFragment = (MainContentFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
+                if (contentFragment != null) {
+                    contentFragment.updateContentList(currentItems);
+                }
+
+                mDrawerLayout.closeDrawers();
+                return true;
+            }
+        });
+
     }
 
     @Override
     protected void process(Bundle savedInstanceState) {
-        selectedDrawerItem = drawerItems.get(0);
+        currentItems = originalItems;
         getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, new MainContentFragment()).commit();
     }
 
-    @Override
-    public void onDrawerItemSelected(int position) {
-        L.d(TAG, "onDrawerItemSelected " + position);
-        DrawerItem drawerItem = drawerItems.get(position);
-        if (selectedDrawerItem != drawerItem) {
-            selectedDrawerItem = drawerItem;
-
-            setTitle(selectedDrawerItem.title);
-
-            for (DrawerItem item : drawerItems) {
-                item.isSelected = (item == selectedDrawerItem);
-            }
-
-            // update
-            MainDrawerFragment drawerFragment = (MainDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.drawer);
-            if (drawerFragment != null) {
-                drawerFragment.updateList();
-            }
-            MainContentFragment contentFragment = (MainContentFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
-            if (contentFragment != null) {
-                contentFragment.updateContentList(selectedDrawerItem.items);
-            }
-        }
-        mDrawerLayout.closeDrawers();
-    }
 }

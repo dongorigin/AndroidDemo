@@ -13,7 +13,7 @@ import android.view.View;
 import butterknife.InjectView;
 import cn.dong.demo.R;
 import cn.dong.demo.config.Extra;
-import cn.dong.demo.ui.creation.FlowLayoutActivity;
+import cn.dong.demo.ui.original.FlowLayoutActivity;
 import cn.dong.demo.ui.common.BaseActivity;
 
 /**

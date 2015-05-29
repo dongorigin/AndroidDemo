@@ -104,7 +104,7 @@ public class DRecyclerView extends FrameLayout {
     private void parseAttrs(AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.DRecyclerView);
 
-        int spanCount = a.getInt(R.styleable.DRecyclerView_spanCount, 1);
+        int spanCount = a.getInt(R.styleable.DRecyclerView_dSpanCount, 1);
         setSpanCount(spanCount);
 
         int overScrollMode = a.getInt(R.styleable.DRecyclerView_android_overScrollMode, OVER_SCROLL_NEVER);
