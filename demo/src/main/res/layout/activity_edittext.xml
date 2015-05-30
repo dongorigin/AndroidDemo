@@ -11,10 +11,22 @@
         android:id="@+id/edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/activity_margin"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginRight="@dimen/activity_margin"
+        android:layout_marginTop="@dimen/activity_margin"
         android:imeOptions="actionDone"
-        android:textColor="@color/text_black"
-        android:inputType="text"/>
+        android:inputType="textMultiLine"
+        android:textColor="@color/text_black"/>
+
+    <cn.dong.demo.view.MultiDoneEditText
+        android:id="@+id/multiEdit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginRight="@dimen/activity_margin"
+        android:layout_marginTop="@dimen/activity_margin"
+        android:imeOptions="actionDone"
+        android:inputType="textMultiLine"/>
 
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/edit_switch"
@@ -23,6 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_margin"
         android:layout_marginRight="@dimen/activity_margin"
+        android:layout_marginTop="@dimen/activity_margin"
         android:checked="true"
         android:text="编辑模式"
         app:switchPadding="10dp"/>

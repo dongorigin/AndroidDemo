@@ -14,6 +14,8 @@ import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.util.L;
 
 /**
+ * 文字输入测试
+ *
  * @author dong on 15/5/29.
  */
 public class EditTextActivity extends BaseActivity {
