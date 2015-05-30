@@ -136,8 +136,9 @@ public class MainActivity extends BaseActivity {
         mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-                setTitle(menuItem.getTitle());
                 if (sNavigationMap.containsKey(menuItem.getItemId())) {
+                    menuItem.setChecked(true);
+                    setTitle(menuItem.getTitle());
                     currentNavigationId = menuItem.getItemId();
                     MainContentFragment contentFragment = (MainContentFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
                     if (contentFragment != null) {
