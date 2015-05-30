@@ -8,32 +8,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.List;
-
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import cn.dong.demo.R;
 import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.ui.common.BaseFragment;
 
+/**
+ * 主页 Content
+ */
 public class MainContentFragment extends BaseFragment {
     @InjectView(R.id.recycler)
     RecyclerView mRecyclerView;
 
-    private MainActivity mMainActivity;
-    private List<MainActivity.Item> items;
+    private Class[] items;
     private RecyclerView.Adapter mAdapter;
 
-    public void updateContentList(List<MainActivity.Item> items) {
+    public void updateContentList(Class[] items) {
         this.items = items;
-        mAdapter.notifyDataSetChanged();
+        if (mAdapter != null) {
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        mMainActivity = (MainActivity) activity;
-        items = mMainActivity.getCurrentItems();
         mAdapter = new MainListAdapter();
     }
 
@@ -49,13 +49,13 @@ public class MainContentFragment extends BaseFragment {
 
     class MainListAdapter extends RecyclerView.Adapter<ItemViewHolder> {
 
-        public MainActivity.Item getItem(int position) {
-            return items.get(position);
+        public Class getItem(int position) {
+            return items[position];
         }
 
         @Override
         public int getItemCount() {
-            return items != null ? items.size() : 0;
+            return items != null ? items.length : 0;
         }
 
         @Override
@@ -66,13 +66,14 @@ public class MainContentFragment extends BaseFragment {
 
         @Override
         public void onBindViewHolder(ItemViewHolder holder, int position) {
-            final MainActivity.Item item = getItem(position);
-            holder.titleView.setText(item.title);
+            final Class cls = getItem(position);
+            final String title = cls.getSimpleName().replace("Activity", "");
+            holder.titleView.setText(title);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(mContext, item.cls);
-                    intent.putExtra(BaseActivity.EXTRA_TITLE, item.title);
+                    Intent intent = new Intent(mContext, cls);
+                    intent.putExtra(BaseActivity.EXTRA_TITLE, title);
                     startActivity(intent);
                 }
             });

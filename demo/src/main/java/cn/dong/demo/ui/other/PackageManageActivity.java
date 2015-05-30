@@ -33,7 +33,7 @@ import cn.dong.demo.util.ViewHolder;
  * 
  * @author dong 2014-7-20
  */
-public class PackageManagerActivity extends BaseActivity {
+public class PackageManageActivity extends BaseActivity {
     private ListView listView;
 
     private PackageManager pm;

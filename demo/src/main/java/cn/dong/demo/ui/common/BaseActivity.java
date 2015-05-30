@@ -107,7 +107,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
             return;
         }
 
-        mActionBarToolbar.setNavigationIcon(R.drawable.ic_up);
+        mActionBarToolbar.setNavigationIcon(R.drawable.abc_ic_ab_back_mtrl_am_alpha);
         mActionBarToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

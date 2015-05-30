@@ -1,7 +1,5 @@
 package cn.dong.demo.ui.ui;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
@@ -20,7 +18,9 @@ import org.apache.http.Header;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.InjectView;
 import cn.dong.demo.R;
+import cn.dong.demo.ui.common.BaseActivity;
 
 /**
  * 新增控件RecyclerView试用，被设计来替代ListView<br/>
@@ -29,29 +29,28 @@ import cn.dong.demo.R;
  *
  * @author dong 2014-7-13
  */
-public class RecyclerViewActivity extends AppCompatActivity {
-    private RecyclerView mRecyclerView;
+public class RecyclerViewActivity extends BaseActivity {
+    @InjectView(R.id.recycler)
+    RecyclerView mRecyclerView;
+
     private RecyclerViewAdapter mAdapter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    protected int initPageLayoutID() {
+        return R.layout.activity_recyclerview;
+    }
 
-        // 布局
-        setContentView(R.layout.recyclerview_activity);
-        mRecyclerView = (RecyclerView) findViewById(R.id.list_vertical);
-
-        // 创建线性布局管理器
+    @Override
+    protected void initPageView() {
+        // 创建布局管理器
 //        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
-//        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         // 设置布局管理器
         mRecyclerView.setLayoutManager(layoutManager);
         // 设置适配器
         mAdapter = new RecyclerViewAdapter();
         mRecyclerView.setAdapter(mAdapter);
-
+        // 请求网络数据
         fetchData();
     }
 

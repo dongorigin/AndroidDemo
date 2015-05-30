@@ -1,9 +1,6 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowIsTranslucent">false</item>
-        <item name="android:windowBackground">@color/grey</item>
-        <item name="android:homeAsUpIndicator">@drawable/ic_up</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="actionModeBackground">@color/primaryLight</item>
 
@@ -18,16 +15,6 @@
 
         <!-- Activity切换动画 -->
         <item name="android:windowAnimationStyle">@style/AppAnimation</item>
-    </style>
-
-    <style name="AppTheme.Main">
-        <item name="android:windowIsTranslucent">false</item>
-    </style>
-
-    <style name="AppTheme.Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:textColorPrimary">@color/white</item>
-        <item name="android:background">?attr/colorPrimary</item>
-        <item name="android:homeAsUpIndicator">@drawable/abc_ic_ab_back_mtrl_am_alpha</item>
     </style>
 
     <style name="AppAnimation" parent="@android:style/Animation.Activity">

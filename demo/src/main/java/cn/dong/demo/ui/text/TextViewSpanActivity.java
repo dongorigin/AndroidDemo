@@ -31,7 +31,7 @@ import cn.dong.demo.ui.common.BaseActivity;
 /**
  * @author dong on 15/4/8.
  */
-public class TextViewActivity extends BaseActivity {
+public class TextViewSpanActivity extends BaseActivity {
     @InjectView(R.id.text)
     TextView mTextView;
 

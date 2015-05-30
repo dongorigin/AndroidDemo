@@ -24,8 +24,7 @@
 
         <!-- Main -->
         <activity
-            android:name=".ui.main.MainActivity"
-            android:theme="@style/AppTheme.Main">
+            android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -70,7 +69,7 @@
         <activity android:name=".ui.ui.DrawableStateActivity"/>
 
         <!-- Text and Input -->
-        <activity android:name=".ui.text.TextViewActivity"/>
+        <activity android:name=".ui.text.TextViewSpanActivity"/>
         <activity android:name=".ui.text.EditTextActivity"/>
         <activity android:name=".ui.text.AutoCompleteActivity"/>
         <activity android:name=".ui.text.TextSizeActivity"/>
@@ -90,7 +89,7 @@
         <activity android:name=".ui.other.Md5Activity"/>
         <activity android:name=".ui.other.ScreenshotActivity"/>
         <activity android:name=".ui.other.ImageSelectorActivity"/>
-        <activity android:name=".ui.other.PackageManagerActivity"/>
+        <activity android:name=".ui.other.PackageManageActivity"/>
         <activity android:name=".ui.other.WebViewActivity"/>
 
         <service

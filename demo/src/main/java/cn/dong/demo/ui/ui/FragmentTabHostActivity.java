@@ -23,7 +23,7 @@ public class FragmentTabHostActivity extends BaseActivity {
 
     @Override
     protected int initPageLayoutID() {
-        return R.layout.activity_customview;
+        return R.layout.activity_tabhost;
     }
 
     @Override
