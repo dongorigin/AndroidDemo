@@ -140,7 +140,7 @@ public class MainActivity extends BaseActivity {
                     menuItem.setChecked(true);
                     setTitle(menuItem.getTitle());
                     currentNavigationId = menuItem.getItemId();
-                    MainContentFragment contentFragment = (MainContentFragment) getSupportFragmentManager().findFragmentById(R.id.content_frame);
+                    MainContentFragment contentFragment = (MainContentFragment) getSupportFragmentManager().findFragmentById(R.id.content_layout);
                     if (contentFragment != null) {
                         contentFragment.updateContentList(sNavigationMap.get(currentNavigationId));
                     }
@@ -161,7 +161,7 @@ public class MainActivity extends BaseActivity {
         currentNavigationId = R.id.navigation_original;
         MainContentFragment fragment = new MainContentFragment();
         fragment.updateContentList(sNavigationMap.get(currentNavigationId));
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_layout, fragment).commit();
     }
 
 }

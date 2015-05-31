@@ -13,19 +13,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Main layout -->
+        <!-- Content -->
         <FrameLayout
-            android:id="@+id/content_frame"
+            android:id="@+id/content_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-        <!-- Navigation -->
+        <!-- Drawer -->
         <android.support.design.widget.NavigationView
             android:id="@+id/navigation"
             style="@style/Widget.Design.NavigationView"
             android:layout_width="240dp"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            app:menu="@menu/main_navigation_items"/>
+            app:menu="@menu/activity_main_drawer"/>
     </android.support.v4.widget.DrawerLayout>
 </LinearLayout>
