@@ -7,26 +7,38 @@
 
     <include layout="@layout/toolbar_actionbar"/>
 
-    <EditText
-        android:id="@+id/edit"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_margin"
         android:layout_marginRight="@dimen/activity_margin"
-        android:layout_marginTop="@dimen/activity_margin"
-        android:imeOptions="actionDone"
-        android:inputType="textMultiLine"
-        android:textColor="@color/text_black"/>
+        android:layout_marginTop="@dimen/activity_margin">
 
-    <cn.dong.demo.view.MultiDoneEditText
-        android:id="@+id/multiEdit"
+        <EditText
+            android:id="@+id/edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="标准单行输入"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:textColor="@color/text_black"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_margin"
         android:layout_marginRight="@dimen/activity_margin"
-        android:layout_marginTop="@dimen/activity_margin"
-        android:imeOptions="actionDone"
-        android:inputType="textMultiLine"/>
+        android:layout_marginTop="@dimen/activity_margin">
+
+        <cn.dong.demo.view.MultiDoneEditText
+            android:id="@+id/multiEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="多行输入同时支持ActionDone"
+            android:imeOptions="actionDone"
+            android:inputType="textMultiLine"/>
+    </android.support.design.widget.TextInputLayout>
 
     <android.support.v7.widget.SwitchCompat
         android:id="@+id/edit_switch"

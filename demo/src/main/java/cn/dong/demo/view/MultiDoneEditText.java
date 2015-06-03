@@ -1,17 +1,17 @@
 package cn.dong.demo.view;
 
 import android.content.Context;
+import android.support.v7.widget.AppCompatEditText;
 import android.util.AttributeSet;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
-import android.widget.EditText;
 
 /**
  * 多行输入同时可以支持ActionDone的EditText
  *
  * @author DONG 2015/5/30.
  */
-public class MultiDoneEditText extends EditText {
+public class MultiDoneEditText extends AppCompatEditText {
     public MultiDoneEditText(Context context) {
         super(context);
     }
