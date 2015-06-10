@@ -20,6 +20,8 @@ import java.util.List;
 
 import butterknife.InjectView;
 import cn.dong.demo.R;
+import cn.dong.demo.model.DuitangBlog;
+import cn.dong.demo.model.DuitangResponseInfo;
 import cn.dong.demo.ui.common.BaseActivity;
 
 /**
@@ -74,33 +76,19 @@ public class RecyclerViewActivity extends BaseActivity {
 
     }
 
-    static class ResponseInfo {
-        DataInfo data;
-    }
-
-    static class DataInfo {
-        List<Blog> blogs;
-    }
-
-    static class Blog {
-        int id;
-        String isrc;
-        String msg;
-    }
-
     private void parseData(String json) {
-        ResponseInfo info = new Gson().fromJson(json, ResponseInfo.class);
-        mAdapter.addData(info.data.blogs);
+        DuitangResponseInfo info = new Gson().fromJson(json, DuitangResponseInfo.class);
+        mAdapter.addData(info.data.duitangBlogs);
     }
 
     private static class RecyclerViewAdapter extends RecyclerView.Adapter<ItemViewHolder> {
-        private List<Blog> mData = new ArrayList<>();
+        private List<DuitangBlog> mData = new ArrayList<>();
 
         public RecyclerViewAdapter() {
 
         }
 
-        public void addData(List<Blog> data) {
+        public void addData(List<DuitangBlog> data) {
             mData.addAll(data);
             notifyItemRangeInserted(mData.size() - data.size(), mData.size());
         }
@@ -119,9 +107,9 @@ public class RecyclerViewActivity extends BaseActivity {
 
         @Override
         public void onBindViewHolder(ItemViewHolder holder, int position) {
-            Blog blog = mData.get(position);
-            holder.textView.setText(blog.msg);
-            Picasso.with(holder.itemView.getContext()).load(blog.isrc).into(holder.imageView);
+            DuitangBlog duitangBlog = mData.get(position);
+            holder.textView.setText(duitangBlog.msg);
+            Picasso.with(holder.itemView.getContext()).load(duitangBlog.isrc).into(holder.imageView);
         }
 
     }

@@ -21,8 +21,6 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import butterknife.ButterKnife;
 import cn.dong.demo.MyApp;
 import cn.dong.demo.R;
@@ -47,7 +45,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
     protected FragmentActivity mContext;
     protected MyApp mApplication;
     protected Handler mHandler;
-    protected ImageLoader mImageLoader;
 
     // 统一的加载对话框
     protected ProgressDialog mLoadingDialog;
@@ -76,7 +73,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
         mContext = this;
         mApplication = MyApp.getInstance();
         mHandler = new Handler(this);
-        mImageLoader = ImageLoader.getInstance();
     }
 
     /**

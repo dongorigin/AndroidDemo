@@ -1,8 +1,7 @@
 package cn.dong.demo.ui.library;
 
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -12,20 +11,24 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.TextHttpResponseHandler;
+import com.squareup.picasso.Picasso;
 
-import cn.dong.demo.config.Constants;
+import org.apache.http.Header;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.dong.demo.R;
+import cn.dong.demo.model.DuitangBlog;
+import cn.dong.demo.model.DuitangResponseInfo;
 import cn.dong.demo.ui.common.BaseActivity;
 
 public class ImageLoaderActivity extends BaseActivity {
-
-    private ImageLoader imageLoader = ImageLoader.getInstance();
-    private DisplayImageOptions options;
     private ListView listView;
-    private String[] imageUrls;
+    private ImageAdapter mAdapter;
 
     @Override
     protected int initPageLayoutID() {
@@ -49,26 +52,52 @@ public class ImageLoaderActivity extends BaseActivity {
 
     @Override
     protected void process(Bundle savedInstanceState) {
-        options = new DisplayImageOptions.Builder().resetViewBeforeLoading(true)
-                // .showImageOnLoading(R.drawable.ic_stub)
-                .cacheInMemory(true).cacheOnDisk(true).considerExifParams(true)
-                .displayer(new FadeInBitmapDisplayer(300)).build();
-
-        imageUrls = Constants.IMAGES;
-
-        listView.setAdapter(new ImageAdapter());
+        mAdapter = new ImageAdapter();
+        listView.setAdapter(mAdapter);
+        fetchData();
     }
 
-    class ImageAdapter extends BaseAdapter {
+    /**
+     * 网络
+     */
+    private void fetchData() {
+        String url = "http://www.duitang.com/album/1733789/masn/p/0/24/";
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(url, new TextHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
 
-        @Override
-        public int getCount() {
-            return imageUrls.length;
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                parseData(responseString);
+            }
+        });
+    }
+
+    private void parseData(String json) {
+        DuitangResponseInfo info = new Gson().fromJson(json, DuitangResponseInfo.class);
+        mAdapter.addData(info.data.duitangBlogs);
+    }
+
+    private static class ImageAdapter extends BaseAdapter {
+        private List<DuitangBlog> mData = new ArrayList<>();
+
+        public void addData(List<DuitangBlog> data) {
+            mData.clear();
+            mData.addAll(data);
+            notifyDataSetChanged();
         }
 
         @Override
-        public Object getItem(int position) {
-            return imageUrls[position];
+        public int getCount() {
+            return mData.size();
+        }
+
+        @Override
+        public DuitangBlog getItem(int position) {
+            return mData.get(position);
         }
 
         @Override
@@ -79,35 +108,15 @@ public class ImageLoaderActivity extends BaseActivity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView =
-                        getLayoutInflater().inflate(R.layout.activity_imageloader_item, parent,
-                                false);
+                convertView = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_imageloader_item, parent, false);
             }
             TextView text = (TextView) convertView.findViewById(R.id.text);
             text.setText("item " + position);
             ImageView image = (ImageView) convertView.findViewById(R.id.image);
-            imageLoader.displayImage(imageUrls[position], image, options);
+
+            DuitangBlog blog = getItem(position);
+            Picasso.with(image.getContext()).load(blog.isrc).into(image);
             return convertView;
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.image, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.item_clear_memory_cache:
-                imageLoader.clearMemoryCache();
-                return true;
-            case R.id.item_clear_disc_cache:
-                imageLoader.clearDiskCache();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
         }
     }
 

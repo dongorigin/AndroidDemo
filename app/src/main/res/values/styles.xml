@@ -1,20 +1,13 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:windowAnimationStyle">@style/AppAnimation</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="actionModeBackground">@color/primaryLight</item>
 
-        <!-- colorPrimary is used for the default action bar background -->
-        <item name="colorPrimary">@color/primary</item>
-        <!-- colorPrimaryDark is used for the status bar -->
-        <item name="colorPrimaryDark">@color/primaryDark</item>
-
-        <!-- colorAccent is used as the default value for colorControlActivated
-         which is used to tint widgets -->
-        <item name="colorAccent">@color/accent</item>
-
-        <!-- Activity切换动画 -->
-        <item name="android:windowAnimationStyle">@style/AppAnimation</item>
     </style>
 
     <style name="AppAnimation" parent="@android:style/Animation.Activity">
@@ -73,10 +66,6 @@
         <item name="android:divider">@null</item>
         <item name="android:dividerHeight">10dp</item>
         <item name="android:padding">10dp</item>
-    </style>
-
-    <style name="DialogHolo" parent="@android:style/Theme.Dialog">
-        <item name="android:windowBackground">@drawable/dialog_full_holo_light</item>
     </style>
 
     <style name="BorderlessButton">
