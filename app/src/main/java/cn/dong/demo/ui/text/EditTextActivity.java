@@ -2,6 +2,7 @@ package cn.dong.demo.ui.text;
 
 import android.support.v7.widget.SwitchCompat;
 import android.text.Editable;
+import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.widget.CompoundButton;
@@ -12,6 +13,9 @@ import butterknife.InjectView;
 import cn.dong.demo.R;
 import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.util.L;
+import cn.dong.demo.util.inputfilter.EmojiInputFilter;
+import cn.dong.demo.util.inputfilter.EmsLenghtFilter;
+import cn.dong.demo.util.inputfilter.LinebreakInputFilter;
 
 /**
  * 文字输入测试
@@ -23,6 +27,8 @@ public class EditTextActivity extends BaseActivity {
     EditText mEditView;
     @InjectView(R.id.edit_switch)
     SwitchCompat editSwitch;
+    @InjectView(R.id.filter_edit)
+    EditText mFilterEdit;
 
     @Override
     protected int initPageLayoutID() {
@@ -55,6 +61,8 @@ public class EditTextActivity extends BaseActivity {
 
             }
         });
+
+        mFilterEdit.setFilters(new InputFilter[]{new EmsLenghtFilter(20), new EmojiInputFilter(), new LinebreakInputFilter()});
 
         editSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
