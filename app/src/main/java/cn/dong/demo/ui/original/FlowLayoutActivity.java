@@ -44,7 +44,7 @@ public class FlowLayoutActivity extends BaseActivity {
             @Override
             public boolean onCreateActionMode(ActionMode mode, Menu menu) {
                 MenuInflater inflater = mode.getMenuInflater();
-                inflater.inflate(R.menu.package_manager_menu, menu);
+                inflater.inflate(R.menu.activity_packagemanager, menu);
                 return true;
             }
 

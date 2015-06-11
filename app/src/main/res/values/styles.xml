@@ -55,19 +55,6 @@
         <item name="android:textSize">@dimen/text_normal</item>
     </style>
 
-    <style name="ListView">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:clipToPadding">false</item>
-        <item name="android:scrollbarStyle">outsideOverlay</item>
-    </style>
-
-    <style name="ListView.Card">
-        <item name="android:divider">@null</item>
-        <item name="android:dividerHeight">10dp</item>
-        <item name="android:padding">10dp</item>
-    </style>
-
     <style name="BorderlessButton">
         <item name="android:background">@drawable/item_background_holo_light</item>
         <item name="android:singleLine">true</item>

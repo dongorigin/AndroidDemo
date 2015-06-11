@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/main_list_selector"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/app_icon"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="8dp"
+            android:scaleType="centerCrop"
+            tools:src="@mipmap/ic_launcher"/>
+
+        <TextView
+            android:id="@+id/app_name"
+            style="@style/TextView"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/app_icon"
+            android:padding="2dp"
+            android:textSize="16sp"
+            tools:text="@string/app_name"/>
+
+        <TextView
+            android:id="@+id/app_package"
+            style="@style/TextView"
+            android:layout_alignLeft="@id/app_name"
+            android:layout_alignParentBottom="true"
+            android:padding="2dp"
+            android:textSize="@dimen/text_small"
+            tools:text="cn.dong.demo"/>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
