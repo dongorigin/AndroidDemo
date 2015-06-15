@@ -16,6 +16,8 @@ import cn.dong.demo.ui.animation.MarkAnimationActivity;
 import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.ui.component.FragmentManageActivity;
 import cn.dong.demo.ui.component.IntentsActivity;
+import cn.dong.demo.ui.component.SendDataOneActivity;
+import cn.dong.demo.ui.component.SendDataTwoActivity;
 import cn.dong.demo.ui.component.ServiceActivity;
 import cn.dong.demo.ui.library.ImageLoaderActivity;
 import cn.dong.demo.ui.library.XListViewActivity;
@@ -62,6 +64,8 @@ public class MainActivity extends BaseActivity {
         Class[] componentActivities = {
                 ServiceActivity.class,
                 FragmentManageActivity.class,
+                SendDataOneActivity.class,
+                SendDataTwoActivity.class,
                 IntentsActivity.class
         };
         Class[] uiActivities = {
