@@ -70,6 +70,10 @@ public class CustomView extends View {
         invalidate();
     }
 
+    public boolean isShowShapeName() {
+        return mShowShapeName;
+    }
+
     public void setShowShapeName(boolean show) {
         mShowShapeName = show;
         invalidate(); // 通知重绘
@@ -140,6 +144,8 @@ public class CustomView extends View {
         Parcelable superState = super.onSaveInstanceState();
         SavedState ss = new SavedState(superState);
         ss.customState = mCustomState;
+        ss.mShapeColor = mShapeColor;
+        ss.mShowShapeName = mShowShapeName;
         return ss;
     }
 
@@ -154,10 +160,14 @@ public class CustomView extends View {
         super.onRestoreInstanceState(ss.getSuperState());
 
         mCustomState = ss.customState;
+        setShapeColor(ss.mShapeColor);
+        setShowShapeName(ss.mShowShapeName);
     }
 
     static class SavedState extends BaseSavedState {
         int customState;
+        int mShapeColor;
+        boolean mShowShapeName;
 
         public SavedState(Parcelable superState) {
             super(superState);
@@ -166,12 +176,16 @@ public class CustomView extends View {
         public SavedState(Parcel source) {
             super(source);
             customState = source.readInt();
+            mShapeColor = source.readInt();
+            mShowShapeName = source.readInt() == 1;
         }
 
         @Override
         public void writeToParcel(Parcel dest, int flags) {
             super.writeToParcel(dest, flags);
             dest.writeInt(customState);
+            dest.writeInt(mShapeColor);
+            dest.writeInt(mShowShapeName ? 1 : 0);
         }
 
         public static final Creator<SavedState> CREATOR = new Creator<SavedState>() {
@@ -185,7 +199,6 @@ public class CustomView extends View {
                 return new SavedState[size];
             }
         };
-
     }
 
 }

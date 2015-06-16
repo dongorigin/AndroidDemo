@@ -1,6 +1,5 @@
 package cn.dong.demo.ui.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.view.Menu;
@@ -10,9 +9,10 @@ import android.widget.TabHost;
 import butterknife.InjectView;
 import cn.dong.demo.R;
 import cn.dong.demo.config.Extra;
-import cn.dong.demo.ui.original.FlowLayoutActivity;
+import cn.dong.demo.model.event.TestEvent;
 import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.util.L;
+import de.greenrobot.event.EventBus;
 
 /**
  * @author dong on 15/4/17.
@@ -31,9 +31,9 @@ public class FragmentTabHostActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         mTabHost.setup(mContext, getSupportFragmentManager(), R.id.realtabcontent);
-        mTabHost.addTab(getTabSpec("tab1"), CustomViewFragment.class, null);
+        mTabHost.addTab(getTabSpec("tab1"), ColorFragment.class, getArgs(0));
         mTabHost.addTab(getTabSpec("tab2"), ColorFragment.class, getArgs(1));
-        mTabHost.addTab(getTabSpec("tab3"), ColorFragment.class, getArgs(2));
+        mTabHost.addTab(getTabSpec("tab3"), CustomViewFragment.class, null);
     }
 
     private TabHost.TabSpec getTabSpec(String tab) {
@@ -56,7 +56,7 @@ public class FragmentTabHostActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                startActivity(new Intent(this, FlowLayoutActivity.class));
+                EventBus.getDefault().post(new TestEvent("test"));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -74,6 +74,5 @@ public class FragmentTabHostActivity extends BaseActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         L.d(TAG, "onRestoreInstanceState");
         super.onRestoreInstanceState(savedInstanceState);
-
     }
 }

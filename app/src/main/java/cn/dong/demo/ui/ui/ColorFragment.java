@@ -60,6 +60,7 @@ public class ColorFragment extends Fragment {
 
     @Override
     public void onAttach(Activity activity) {
+        mPosition = getArguments().getInt(Extra.POSITION);
         L.d(TAG, "%d %s", mPosition, getCurrentMethodName());
         super.onAttach(activity);
     }
