@@ -75,6 +75,7 @@
         <activity android:name=".ui.text.EditTextActivity"/>
         <activity android:name=".ui.text.AutoCompleteActivity"/>
         <activity android:name=".ui.text.TextSizeActivity"/>
+        <activity android:name=".ui.text.TextAdvanceActivity"/>
 
         <!-- Animation -->
         <activity android:name=".ui.animation.MarkAnimationActivity"/>

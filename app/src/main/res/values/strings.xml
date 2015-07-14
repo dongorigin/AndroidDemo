@@ -20,6 +20,9 @@
     <string name="drawer_close">Close navigation drawer</string>
     <string name="more">更多</string>
 
+    <!-- Test -->
+    <string name="test_card_content">雪从本质上说是怀旧的……它覆盖住了现实，一片片地，将当下慢慢擦除，于是给过去腾出了空间。</string>
+
     <!-- DRecyclerView -->
     <string name="footer_text_loadmore">LOAD MORE</string>
     <string name="footer_text_end">THE END</string>

@@ -35,6 +35,7 @@ import cn.dong.demo.ui.storage.BitmapSaveLocalActivity;
 import cn.dong.demo.ui.storage.ContentProviderActivity;
 import cn.dong.demo.ui.text.AutoCompleteActivity;
 import cn.dong.demo.ui.text.EditTextActivity;
+import cn.dong.demo.ui.text.TextAdvanceActivity;
 import cn.dong.demo.ui.text.TextSizeActivity;
 import cn.dong.demo.ui.text.TextViewSpanActivity;
 import cn.dong.demo.ui.ui.DialogActivity;
@@ -82,7 +83,8 @@ public class MainActivity extends BaseActivity {
                 TextSizeActivity.class,
                 EditTextActivity.class,
                 AutoCompleteActivity.class,
-                TextViewSpanActivity.class
+                TextViewSpanActivity.class,
+                TextAdvanceActivity.class
         };
         Class[] animationActivities = {
                 AnimationActivity.class,

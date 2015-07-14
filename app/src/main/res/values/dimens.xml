@@ -28,4 +28,9 @@
 
     <dimen name="flexible_max_height">200dp</dimen>
     <dimen name="flexible_min_height">48dp</dimen>
+
+    <!-- Card -->
+    <dimen name="card_margin_horizontal">12dp</dimen>
+    <dimen name="card_padding_vertical">18dp</dimen>
+    <dimen name="card_padding_horizontal">25dp</dimen>
 </resources>

@@ -15,12 +15,13 @@
     <color name="head_tips">#FF000000</color>
     <color name="grey">#e8e8e8</color>
     <color name="blue">#8BC3E9</color>
-    <color name="backgroundColor">#E8E8E0</color>
+    <color name="background">#F4F4F4</color>
     <color name="background_black_alpha_20">#33000000</color>
     <color name="background_black_alpha_40">#66000000</color>
     <color name="background_black_alpha_70">#B2000000</color>
 
     <!-- 字体颜色 -->
-    <color name="text_black">#cc000000</color>
+    <color name="text_black">#353535</color>
+    <color name="text_gray">#9B9B9B</color>
 
 </resources>
