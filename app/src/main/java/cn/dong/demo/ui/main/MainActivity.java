@@ -27,6 +27,7 @@ import cn.dong.demo.ui.original.FlowLayoutActivity;
 import cn.dong.demo.ui.original.calendar.CalendarActivity;
 import cn.dong.demo.ui.other.ImageSelectorActivity;
 import cn.dong.demo.ui.other.Md5Activity;
+import cn.dong.demo.ui.other.OttoActivity;
 import cn.dong.demo.ui.other.PackageManageActivity;
 import cn.dong.demo.ui.other.ScreenshotActivity;
 import cn.dong.demo.ui.other.WebViewActivity;
@@ -102,7 +103,8 @@ public class MainActivity extends BaseActivity {
                 PackageManageActivity.class,
                 ScreenshotActivity.class,
                 ImageSelectorActivity.class,
-                Md5Activity.class
+                Md5Activity.class,
+                OttoActivity.class
         };
         sNavigationMap = new HashMap<>();
         sNavigationMap.put(R.id.navigation_original, originalActivities);
