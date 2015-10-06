@@ -37,6 +37,7 @@
         <activity android:name=".ui.original.FlexibleHeaderRecyclerViewActivity"/>
         <activity android:name=".ui.original.FadeoutHeaderRecyclerViewActivity"/>
         <activity android:name=".ui.original.FlowLayoutActivity"/>
+        <activity android:name=".ui.original.audio.AudioRecorderActivity"/>
 
         <!-- Library -->
         <activity android:name=".ui.library.ImageLoaderActivity"/>

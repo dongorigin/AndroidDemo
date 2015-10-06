@@ -36,6 +36,11 @@
     <string name="xlistview_footer_hint_normal">查看更多</string>
     <string name="xlistview_footer_hint_ready">松开载入更多</string>
 
+    <!-- Record -->
+    <string name="recorder_normal">按住 说话</string>
+    <string name="recorder_recording">松开 结束</string>
+    <string name="recorder_want_cancel">松开手指，取消发送</string>
+
     <!-- Menu -->
     <string name="menu_item_clear_memory_cache">Clear memory cache</string>
     <string name="menu_item_clear_disc_cache">Clear disc cache</string>
