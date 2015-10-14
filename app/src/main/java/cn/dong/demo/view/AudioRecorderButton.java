@@ -6,7 +6,7 @@ import android.view.MotionEvent;
 import android.widget.TextView;
 
 import cn.dong.demo.R;
-import cn.dong.demo.util.PixelUtil;
+import cn.dong.demo.util.PixelUtils;
 
 /**
  * 语音录制按钮
@@ -18,7 +18,7 @@ public class AudioRecorderButton extends TextView {
     private static final int STATE_RECORDING = 2;
     private static final int STATE_WANT_CANCEL = 3;
 
-    private static final int DISTANCE_Y_CANCEL = PixelUtil.dp2px(50);
+    private static final int DISTANCE_Y_CANCEL = PixelUtils.dp2px(50);
 
     private int mState;
     private boolean isRecording = false;

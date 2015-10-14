@@ -8,7 +8,7 @@ import butterknife.InjectView;
 import cn.dong.demo.R;
 import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.util.CommonUtils;
-import cn.dong.demo.util.PixelUtil;
+import cn.dong.demo.util.PixelUtils;
 
 /**
  * @author dong on 15/7/14.
@@ -38,8 +38,8 @@ public class TextAdvanceActivity extends BaseActivity {
                 int size = Integer.parseInt(mSizeEdit.getText() != null ? mSizeEdit.getText().toString() : "20");
                 float mult = Float.parseFloat(mLineEdit.getText() != null ? mLineEdit.getText().toString() : "1.3");
                 int padding = Integer.parseInt(mPaddingEdit.getText() != null ? mPaddingEdit.getText().toString() : "25");
-                int dp25 = PixelUtil.dp2px(25, mContext);
-                padding = PixelUtil.dp2px(padding, mContext);
+                int dp25 = PixelUtils.dp2px(25);
+                padding = PixelUtils.dp2px(padding);
 
                 mOneTextView.setTextSize(size);
                 mOneTextView.setLineSpacing(mOneTextView.getLineSpacingExtra(), mult);
