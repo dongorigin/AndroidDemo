@@ -16,8 +16,6 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.TextHttpResponseHandler;
 import com.squareup.picasso.Picasso;
 
-import org.apache.http.Header;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +23,7 @@ import cn.dong.demo.R;
 import cn.dong.demo.model.DuitangBlog;
 import cn.dong.demo.model.DuitangResponseInfo;
 import cn.dong.demo.ui.common.BaseActivity;
+import cz.msebera.android.httpclient.Header;
 
 public class ImageLoaderActivity extends BaseActivity {
     private ListView listView;

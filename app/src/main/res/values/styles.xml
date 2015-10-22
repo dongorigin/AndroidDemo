@@ -71,4 +71,11 @@
         <item name="android:windowBackground">@drawable/bg_window</item>
     </style>
 
+    <style name="AudioDialog" parent="android:Theme.Dialog">
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
 </resources>

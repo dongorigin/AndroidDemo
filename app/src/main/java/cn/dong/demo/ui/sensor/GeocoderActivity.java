@@ -1,17 +1,5 @@
 package cn.dong.demo.ui.sensor;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,17 +8,20 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.TextHttpResponseHandler;
+
 import cn.dong.demo.R;
-import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.model.GeoResponse;
 import cn.dong.demo.model.GeoResult;
 import cn.dong.demo.model.GeoResult.Location;
-
-import com.google.gson.Gson;
+import cn.dong.demo.ui.common.BaseActivity;
+import cz.msebera.android.httpclient.Header;
 
 /**
  * 地址解析
- * 
+ *
  * @author dong 2014-8-23
  */
 public class GeocoderActivity extends BaseActivity {
@@ -58,59 +49,42 @@ public class GeocoderActivity extends BaseActivity {
         parseButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                new GeocodingTask().execute("beijing");
+                startGeo("beijing");
+            }
+        });
+    }
+
+    private void startGeo(String city) {
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.get(GEO_API + city, new TextHttpResponseHandler() {
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, String responseString) {
+                GeoResponse geoResponse = new Gson().fromJson(responseString, GeoResponse.class);
+                if (geoResponse != null && geoResponse.getStatus().equals("OK") && geoResponse.getResults().size() > 0) {
+                    GeoResult geoResult = geoResponse.getResults().get(0);
+                    if (geoResult != null) {
+                        Location location = geoResult.getGeometry().getLocation();
+                        // 你要的东西在这里
+                        double lat = location.getLat();
+                        double lng = location.getLng();
+                        Log.i("geo", "lat=" + lat + ", lng=" + lng);
+                    }
+                } else {
+                    // 解析失败
+                    Log.i("geo", "error");
+                }
             }
         });
     }
 
     @Override
     protected void process(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
 
     }
 
-    private class GeocodingTask extends AsyncTask<String, Void, GeoResponse> {
-
-        @Override
-        protected GeoResponse doInBackground(String... params) {
-            HttpClient httpClient = new DefaultHttpClient();
-            GeoResponse geoResponse = null;
-            try {
-                HttpResponse response = httpClient.execute(new HttpGet(GEO_API + params[0]));
-                HttpEntity entity = response.getEntity();
-                BufferedReader bufferedReader =
-                        new BufferedReader(new InputStreamReader(entity.getContent()));
-                StringBuilder sb = new StringBuilder();
-                String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                    sb.append(line);
-                }
-                String responseStr = sb.toString();
-                Gson gson = new Gson();
-                geoResponse = gson.fromJson(responseStr, GeoResponse.class);
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return geoResponse;
-        }
-
-        @Override
-        protected void onPostExecute(GeoResponse result) {
-            if (result != null && result.getStatus().equals("OK") && result.getResults().size() > 0) {
-                GeoResult geoResult = result.getResults().get(0);
-                if (geoResult != null) {
-                    Location location = geoResult.getGeometry().getLocation();
-                    // 你要的东西在这里
-                    double lat = location.getLat();
-                    double lng = location.getLng();
-                    Log.i("geo", "lat=" + lat + ", lng=" + lng);
-                }
-            } else {
-                // 解析失败
-                Log.i("geo", "error");
-            }
-        }
-    }
 }

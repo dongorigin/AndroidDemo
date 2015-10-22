@@ -40,6 +40,8 @@
     <string name="recorder_normal">按住 说话</string>
     <string name="recorder_recording">松开 结束</string>
     <string name="recorder_want_cancel">松开手指，取消发送</string>
+    <string name="recorder_dialog_recording">手指上滑，取消发送</string>
+    <string name="recorder_dialog_too_short">录音时间太短</string>
 
     <!-- Menu -->
     <string name="menu_item_clear_memory_cache">Clear memory cache</string>

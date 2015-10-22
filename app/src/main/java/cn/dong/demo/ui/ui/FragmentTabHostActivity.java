@@ -9,10 +9,8 @@ import android.widget.TabHost;
 import butterknife.InjectView;
 import cn.dong.demo.R;
 import cn.dong.demo.config.Extra;
-import cn.dong.demo.model.event.TestEvent;
 import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.util.L;
-import de.greenrobot.event.EventBus;
 
 /**
  * @author dong on 15/4/17.
@@ -56,7 +54,6 @@ public class FragmentTabHostActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                EventBus.getDefault().post(new TestEvent("test"));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
