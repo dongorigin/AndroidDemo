@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import cn.dong.demo.R;
-import cn.dong.demo.util.AudioManager;
+import cn.dong.demo.util.AudioRecorderManager;
 import cn.dong.demo.util.PixelUtils;
 
 /**
@@ -22,17 +22,17 @@ import cn.dong.demo.util.PixelUtils;
  *
  * @author dong on 15/10/5.
  */
-public class AudioRecorderButton extends TextView implements AudioManager.AudioStateListener {
+public class AudioRecorderButton extends TextView implements AudioRecorderManager.StateCallback {
     private static final int STATE_NORMAL = 1;
     private static final int STATE_RECORDING = 2;
     private static final int STATE_WANT_CANCEL = 3;
 
-    private static final float MIN_TIME = 1f;
+    private static final float MIN_DURATION = 1f; // 最短录制时间
+    private static final float MAX_DURATION = 60f; // 最大录制时间
     private static final int DISTANCE_Y_CANCEL = PixelUtils.dp2px(50);
 
     private int mState;
-    private float mRecordTime;
-    private AudioManager mAudioManager;
+    private AudioRecorderManager mAudioRecorderManager;
     private RecorderDialogFragment mRecorderDialogFragment;
     private Thread mRecordThread;
     private RecordCallback mCallback;
@@ -40,19 +40,22 @@ public class AudioRecorderButton extends TextView implements AudioManager.AudioS
     private Runnable mRecordUpdateRunnable = new Runnable() {
         @Override
         public void run() {
-            while (mAudioManager.isRecording()) {
+            while (mAudioRecorderManager.isRecording()) {
                 try {
                     Thread.sleep(100);
-                    mRecordTime += 0.1f;
                     Activity activity = (Activity) getContext();
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mRecorderDialogFragment.updateVoiceLevel(mAudioManager.getVoiceLevel(7));
+                            mRecorderDialogFragment.updateVoiceLevel(mAudioRecorderManager.getVoiceLevel(7));
+                            if (mAudioRecorderManager.getRecordDuration() > MAX_DURATION - 10) {
+                                // 提示时间倒计时
+
+                            }
                         }
                     });
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+
                 }
             }
         }
@@ -65,8 +68,8 @@ public class AudioRecorderButton extends TextView implements AudioManager.AudioS
     public AudioRecorderButton(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-        mAudioManager = AudioManager.getInstance();
-        mAudioManager.setAudioStateListener(this);
+        mAudioRecorderManager = AudioRecorderManager.getInstance();
+        mAudioRecorderManager.setStateCallback(this);
         mRecorderDialogFragment = new RecorderDialogFragment();
 
         setTextColor(getResources().getColor(R.color.text_gray));
@@ -74,7 +77,8 @@ public class AudioRecorderButton extends TextView implements AudioManager.AudioS
     }
 
     @Override
-    public void onRecording() {
+    public void onRecordingStart() {
+        startVoiceUpdateThread();
         FragmentActivity activity = (FragmentActivity) getContext();
         mRecorderDialogFragment.show(activity.getSupportFragmentManager());
     }
@@ -84,11 +88,10 @@ public class AudioRecorderButton extends TextView implements AudioManager.AudioS
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 changeState(STATE_RECORDING);
-                mAudioManager.startRecord();
-                startVoiceUpdateThread();
+                mAudioRecorderManager.startRecord();
                 return true;
             case MotionEvent.ACTION_MOVE:
-                if (mAudioManager.isRecording()) {
+                if (mAudioRecorderManager.isRecording()) {
                     if (wantToCancel(event.getX(), event.getY())) {
                         changeState(STATE_WANT_CANCEL);
                         mRecorderDialogFragment.wantToCancel();
@@ -102,19 +105,19 @@ public class AudioRecorderButton extends TextView implements AudioManager.AudioS
                 mRecordThread.interrupt();
                 switch (mState) {
                     case STATE_RECORDING:
-                        if (mRecordTime < MIN_TIME) {
-                            mAudioManager.cancel();
+                        if (!mAudioRecorderManager.isRecording() || mAudioRecorderManager.getRecordDuration() < MIN_DURATION) {
+                            mAudioRecorderManager.cancel();
                             mRecorderDialogFragment.tooShort();
                         } else {
-                            mAudioManager.release();
+                            mAudioRecorderManager.release();
                             mRecorderDialogFragment.dismiss();
                             if (mCallback != null) {
-                                mCallback.onRecordEnd(mAudioManager.getCurrentFile().getAbsolutePath());
+                                mCallback.onRecordEnd(mAudioRecorderManager.getCurrentFile().getAbsolutePath(), mAudioRecorderManager.getRecordDuration());
                             }
                         }
                         break;
                     case STATE_WANT_CANCEL:
-                        mAudioManager.cancel();
+                        mAudioRecorderManager.cancel();
                         mRecorderDialogFragment.dismiss();
                         break;
                 }
@@ -133,8 +136,13 @@ public class AudioRecorderButton extends TextView implements AudioManager.AudioS
      * 重置
      */
     private void reset() {
-        mRecordTime = 0;
         changeState(STATE_NORMAL);
+    }
+
+    public void pause() {
+        reset();
+        mRecorderDialogFragment.dismiss();
+        mAudioRecorderManager.cancel(); // todo 当前录制内容是否保留并发送
     }
 
     /**
@@ -174,7 +182,7 @@ public class AudioRecorderButton extends TextView implements AudioManager.AudioS
     }
 
     public interface RecordCallback {
-        void onRecordEnd(String audioPath);
+        void onRecordEnd(String audioPath, int duration);
     }
 
     public void setCallback(RecordCallback callback) {
@@ -191,6 +199,8 @@ public class AudioRecorderButton extends TextView implements AudioManager.AudioS
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
             Dialog dialog = new Dialog(getActivity(), R.style.AudioDialog);
+            dialog.setCancelable(false);
+            dialog.setCanceledOnTouchOutside(false);
             dialog.setContentView(dialog.getLayoutInflater().inflate(R.layout.dialog_recorder, null));
             mIconView = (ImageView) dialog.findViewById(R.id.icon);
             mVoiceView = (ImageView) dialog.findViewById(R.id.voice);
@@ -231,6 +241,7 @@ public class AudioRecorderButton extends TextView implements AudioManager.AudioS
                 mVoiceView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
+                        // todo 可能将之后新的Dialog关闭
                         dismiss();
                     }
                 }, 1000);

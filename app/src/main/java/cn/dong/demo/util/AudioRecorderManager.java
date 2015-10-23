@@ -15,23 +15,25 @@ import cn.dong.demo.MyApp;
  *
  * @author dong on 15/10/21.
  */
-public class AudioManager {
+public class AudioRecorderManager {
     // 缓存目录名称
     private static final String CACHE_DIR_NAME = "audio";
 
-    private static AudioManager instance;
+    private static AudioRecorderManager instance;
 
-    private AudioStateListener mAudioStateListener;
     private MediaRecorder mMediaRecorder;
+    private StateCallback mStateCallback;
 
     private boolean isRecording;
+    private long mRecordStartTime; // 录音开始时间
+    private int mRecordDuration; // 录音持续时间，单位为秒
     private File mCurrentFile;
 
-    public static AudioManager getInstance() {
+    public static AudioRecorderManager getInstance() {
         if (instance == null) {
-            synchronized (AudioManager.class) {
+            synchronized (AudioRecorderManager.class) {
                 if (instance == null) {
-                    instance = new AudioManager();
+                    instance = new AudioRecorderManager();
                 }
                 return instance;
             }
@@ -39,16 +41,16 @@ public class AudioManager {
         return instance;
     }
 
-    private AudioManager() {
+    private AudioRecorderManager() {
 
     }
 
-    public interface AudioStateListener {
-        void onRecording();
+    public interface StateCallback {
+        void onRecordingStart();
     }
 
-    public void setAudioStateListener(AudioStateListener audioStateListener) {
-        mAudioStateListener = audioStateListener;
+    public void setStateCallback(StateCallback stateCallback) {
+        mStateCallback = stateCallback;
     }
 
     public File getCurrentFile() {
@@ -66,6 +68,14 @@ public class AudioManager {
 
     public boolean isRecording() {
         return isRecording;
+    }
+
+    public int getRecordDuration() {
+        if (isRecording) {
+            return (int) (Math.abs(System.nanoTime() - mRecordStartTime) / (1000 * 1000 * 1000));
+        } else {
+            return mRecordDuration;
+        }
     }
 
     public void startRecord() {
@@ -90,14 +100,14 @@ public class AudioManager {
             mMediaRecorder = new MediaRecorder();
             mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
             mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
-            mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
             mMediaRecorder.setOutputFile(mCurrentFile.getAbsolutePath());
+            mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
             mMediaRecorder.prepare();
             mMediaRecorder.start();
-
+            mRecordStartTime = System.nanoTime();
             isRecording = true;
-            if (mAudioStateListener != null) {
-                mAudioStateListener.onRecording();
+            if (mStateCallback != null) {
+                mStateCallback.onRecordingStart();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -105,21 +115,37 @@ public class AudioManager {
     }
 
     public void release() {
+        if (mMediaRecorder == null) {
+            return;
+        }
+
         if (isRecording) {
             isRecording = false;
             mMediaRecorder.setOnErrorListener(null);
-            mMediaRecorder.stop();
-            mMediaRecorder.release();
-            mMediaRecorder = null;
+            try {
+                mMediaRecorder.stop();
+            } catch (IllegalStateException e) {
+                e.printStackTrace();
+                deleteCurrentFile();
+            } finally {
+                mRecordDuration = (int) (Math.abs(System.nanoTime() - mRecordStartTime) / (1000 * 1000 * 1000));
+                mMediaRecorder.release();
+                mMediaRecorder = null;
+            }
         } else {
             mMediaRecorder.reset();
             mMediaRecorder.release();
+            mMediaRecorder = null;
         }
     }
 
     public void cancel() {
         release();
         // 删除已录制的文件
+        deleteCurrentFile();
+    }
+
+    private void deleteCurrentFile() {
         if (mCurrentFile != null) {
             mCurrentFile.delete();
         }
