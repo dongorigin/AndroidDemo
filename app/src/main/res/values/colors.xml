@@ -23,5 +23,6 @@
     <!-- 字体颜色 -->
     <color name="text_black">#353535</color>
     <color name="text_gray">#9B9B9B</color>
+    <color name="text_red">#FF5340</color>
 
 </resources>

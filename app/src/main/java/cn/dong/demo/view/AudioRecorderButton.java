@@ -47,7 +47,7 @@ public class AudioRecorderButton extends TextView implements AudioRecorderManage
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            mRecorderDialogFragment.updateVoiceLevel(mAudioRecorderManager.getVoiceLevel(7));
+                            mRecorderDialogFragment.updateVoiceLevel(mAudioRecorderManager.getVoiceLevel(8));
                             if (mAudioRecorderManager.getRecordDuration() > MAX_DURATION - 10) {
                                 // 提示时间倒计时
 
@@ -192,7 +192,6 @@ public class AudioRecorderButton extends TextView implements AudioRecorderManage
     public static class RecorderDialogFragment extends DialogFragment {
         public static final String TAG = "RecorderDialog";
         private ImageView mIconView;
-        private ImageView mVoiceView;
         private TextView mTextView;
 
         @NonNull
@@ -203,7 +202,6 @@ public class AudioRecorderButton extends TextView implements AudioRecorderManage
             dialog.setCanceledOnTouchOutside(false);
             dialog.setContentView(dialog.getLayoutInflater().inflate(R.layout.dialog_recorder, null));
             mIconView = (ImageView) dialog.findViewById(R.id.icon);
-            mVoiceView = (ImageView) dialog.findViewById(R.id.voice);
             mTextView = (TextView) dialog.findViewById(R.id.text);
             return dialog;
         }
@@ -218,45 +216,43 @@ public class AudioRecorderButton extends TextView implements AudioRecorderManage
 
         public void recording() {
             if (isShowing()) {
-                mVoiceView.setVisibility(VISIBLE);
-                mIconView.setImageResource(R.drawable.recorder);
                 mTextView.setText(R.string.recorder_dialog_recording);
+                mTextView.setTextColor(getResources().getColor(R.color.white));
             }
         }
 
         public void wantToCancel() {
             if (isShowing()) {
-                mVoiceView.setVisibility(GONE);
-                mIconView.setImageResource(R.drawable.cancel);
                 mTextView.setText(R.string.recorder_want_cancel);
+                mTextView.setTextColor(getResources().getColor(R.color.text_red));
             }
         }
 
         public void tooShort() {
             if (isShowing()) {
-                mVoiceView.setVisibility(GONE);
-                mIconView.setImageResource(R.drawable.voice_to_short);
+                mIconView.setImageResource(R.drawable.ic_record_warn);
                 mTextView.setText(R.string.recorder_dialog_too_short);
+                mTextView.setTextColor(getResources().getColor(R.color.white));
 
-                mVoiceView.postDelayed(new Runnable() {
+                mIconView.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         // todo 可能将之后新的Dialog关闭
                         dismiss();
                     }
-                }, 1000);
+                }, 500);
             }
         }
 
         public void updateVoiceLevel(int level) {
-            if (!isShowing() || level < 1 || level > 7) {
+            if (!isShowing() || level < 1 || level > 8) {
                 return;
             }
             if (getActivity() == null) {
                 return;
             }
-            int resId = getActivity().getResources().getIdentifier("v" + level, "drawable", getActivity().getPackageName());
-            mVoiceView.setImageResource(resId);
+            int resId = getActivity().getResources().getIdentifier("ic_mic_voice_00" + level, "drawable", getActivity().getPackageName());
+            mIconView.setImageResource(resId);
         }
     }
 }
