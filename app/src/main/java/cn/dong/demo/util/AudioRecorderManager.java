@@ -94,14 +94,14 @@ public class AudioRecorderManager {
         try {
             // create file name
             String timestamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-            String filename = "AUDIO_" + timestamp + ".amr";
+            String filename = "AUDIO_" + timestamp + ".aac";
             mCurrentFile = new File(cacheDir, filename);
             // recorder
             mMediaRecorder = new MediaRecorder();
             mMediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-            mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
+            mMediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
             mMediaRecorder.setOutputFile(mCurrentFile.getAbsolutePath());
-            mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+            mMediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
             mMediaRecorder.prepare();
             mMediaRecorder.start();
             mRecordStartTime = System.nanoTime();
