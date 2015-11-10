@@ -67,4 +67,10 @@
         android:checked="true"
         android:text="编辑模式"
         app:switchPadding="10dp"/>
+
+    <Button
+        android:id="@+id/button_del"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="删除"/>
 </LinearLayout>

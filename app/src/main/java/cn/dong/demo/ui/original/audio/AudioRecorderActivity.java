@@ -124,6 +124,7 @@ public class AudioRecorderActivity extends BaseActivity {
                     MediaPlayerManager.playAudio(audio.audioPath, new MediaPlayer.OnCompletionListener() {
                         @Override
                         public void onCompletion(MediaPlayer mp) {
+                            Timber.d("MediaPlayer onCompletion");
                             holder.contentAnimView.setBackgroundResource(R.drawable.adj);
                             MediaPlayerManager.release();
                         }

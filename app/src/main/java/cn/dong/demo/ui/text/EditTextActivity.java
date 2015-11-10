@@ -5,6 +5,8 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,6 +18,7 @@ import cn.dong.demo.util.L;
 import cn.dong.demo.util.inputfilter.EmojiInputFilter;
 import cn.dong.demo.util.inputfilter.EmsLenghtFilter;
 import cn.dong.demo.util.inputfilter.LinebreakInputFilter;
+import timber.log.Timber;
 
 /**
  * 文字输入测试
@@ -29,6 +32,8 @@ public class EditTextActivity extends BaseActivity {
     SwitchCompat editSwitch;
     @InjectView(R.id.filter_edit)
     EditText mFilterEdit;
+    @InjectView(R.id.button_del)
+    Button mDelButton;
 
     @Override
     protected int initPageLayoutID() {
@@ -48,17 +53,17 @@ public class EditTextActivity extends BaseActivity {
         mEditView.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                Timber.d("beforeTextChanged %s %d %d %d", s, start, count, after);
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                Timber.d("onTextChanged %s %d %d %d", s, start, before, count);
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                Timber.d("afterTextChanged %s", s);
             }
         });
 
@@ -74,6 +79,16 @@ public class EditTextActivity extends BaseActivity {
                     // 禁止编辑
                     setEditable(false);
                 }
+            }
+        });
+
+        mDelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
+                int action = KeyEvent.ACTION_DOWN;
+                int code = KeyEvent.KEYCODE_DEL;
+                mEditView.onKeyDown(code, new KeyEvent(action, code));
             }
         });
     }

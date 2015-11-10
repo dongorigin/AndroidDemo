@@ -141,7 +141,7 @@ public class AudioRecorderButton extends TextView implements AudioRecorderManage
 
     public void pause() {
         reset();
-        mRecorderDialogFragment.dismiss();
+//        mRecorderDialogFragment.dismiss();
         mAudioRecorderManager.cancel(); // todo 当前录制内容是否保留并发送
     }
 
