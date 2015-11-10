@@ -1,15 +1,19 @@
-package cn.dong.demo.ui.other;
+package cn.dong.demo.ui.library;
 
 import android.os.Bundle;
 
 import com.squareup.otto.Subscribe;
+
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.OnClick;
 import cn.dong.demo.BusProvider;
 import cn.dong.demo.R;
 import cn.dong.demo.TestEvent;
 import cn.dong.demo.ui.common.BaseActivity;
-import cn.dong.demo.util.L;
+import timber.log.Timber;
 
 /**
  * @author dong on 15/9/10.
@@ -35,7 +39,7 @@ public class OttoActivity extends BaseActivity {
 
     @OnClick(R.id.post_main)
     void mainPost() {
-        BusProvider.getInstance().post(new TestEvent());
+        BusProvider.getInstance().post(new TestEvent("main"));
     }
 
     @OnClick(R.id.post_background)
@@ -43,14 +47,33 @@ public class OttoActivity extends BaseActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                BusProvider.getInstance().post(new TestEvent());
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    int count = 0;
+
+                    @Override
+                    public void run() {
+                        if (count > 5) {
+                            cancel();
+                        }
+                        BusProvider.getInstance().post(new TestEvent("bg" + count));
+                        count++;
+                    }
+                }, 0, 10);
             }
         }).start();
     }
 
     @Subscribe
     public void onReceive(TestEvent event) {
-        L.d(TAG, "onReceive ThreadId = %d", Thread.currentThread().getId());
+        Timber.d("onReceive event name = %s: start", event.name);
+        // 耗时任务，大约需要2000ms
+        Random random = new Random();
+        String sum = "";
+        for (int i = 0; i < 20000; i++) {
+            sum += random.nextInt();
+        }
+        Timber.d("onReceive event name = %s: end", event.name);
     }
 
 }

@@ -97,7 +97,7 @@
         <activity android:name=".ui.other.ImageSelectorActivity"/>
         <activity android:name=".ui.other.PackageManageActivity"/>
         <activity android:name=".ui.other.WebViewActivity"/>
-        <activity android:name=".ui.other.OttoActivity"/>
+        <activity android:name=".ui.library.OttoActivity"/>
 
         <service
             android:name=".service.MyService"

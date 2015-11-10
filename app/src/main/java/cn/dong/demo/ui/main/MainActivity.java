@@ -20,6 +20,7 @@ import cn.dong.demo.ui.component.SendDataOneActivity;
 import cn.dong.demo.ui.component.SendDataTwoActivity;
 import cn.dong.demo.ui.component.ServiceActivity;
 import cn.dong.demo.ui.library.ImageLoaderActivity;
+import cn.dong.demo.ui.library.OttoActivity;
 import cn.dong.demo.ui.library.XListViewActivity;
 import cn.dong.demo.ui.original.FadeoutHeaderRecyclerViewActivity;
 import cn.dong.demo.ui.original.FlexibleHeaderRecyclerViewActivity;
@@ -28,7 +29,6 @@ import cn.dong.demo.ui.original.audio.AudioRecorderActivity;
 import cn.dong.demo.ui.original.calendar.CalendarActivity;
 import cn.dong.demo.ui.other.ImageSelectorActivity;
 import cn.dong.demo.ui.other.Md5Activity;
-import cn.dong.demo.ui.other.OttoActivity;
 import cn.dong.demo.ui.other.PackageManageActivity;
 import cn.dong.demo.ui.other.ScreenshotActivity;
 import cn.dong.demo.ui.other.WebViewActivity;
@@ -63,7 +63,8 @@ public class MainActivity extends BaseActivity {
         };
         Class[] libraryActivities = {
                 ImageLoaderActivity.class,
-                XListViewActivity.class
+                XListViewActivity.class,
+                OttoActivity.class
         };
         Class[] componentActivities = {
                 ServiceActivity.class,
@@ -105,8 +106,7 @@ public class MainActivity extends BaseActivity {
                 PackageManageActivity.class,
                 ScreenshotActivity.class,
                 ImageSelectorActivity.class,
-                Md5Activity.class,
-                OttoActivity.class
+                Md5Activity.class
         };
         sNavigationMap = new HashMap<>();
         sNavigationMap.put(R.id.navigation_original, originalActivities);
