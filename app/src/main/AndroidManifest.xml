@@ -48,6 +48,7 @@
         <!-- Component -->
         <activity android:name=".ui.component.ServiceActivity"/>
         <activity android:name=".ui.component.FragmentManageActivity"/>
+        <activity android:name=".ui.component.NotificationActivity"/>
         <activity android:name=".ui.component.SendDataOneActivity"/>
         <activity android:name=".ui.component.SendDataTwoActivity"/>
         <activity android:name=".ui.component.IntentsActivity">
