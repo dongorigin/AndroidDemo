@@ -44,6 +44,8 @@
         <!-- Library -->
         <activity android:name=".ui.library.ImageLoaderActivity"/>
         <activity android:name=".ui.library.XListViewActivity"/>
+        <activity android:name=".ui.library.OttoActivity"/>
+        <activity android:name=".ui.library.RxJavaActivity"/>
 
         <!-- Component -->
         <activity android:name=".ui.component.ServiceActivity"/>
@@ -98,7 +100,6 @@
         <activity android:name=".ui.other.ImageSelectorActivity"/>
         <activity android:name=".ui.other.PackageManageActivity"/>
         <activity android:name=".ui.other.WebViewActivity"/>
-        <activity android:name=".ui.library.OttoActivity"/>
 
         <service
             android:name=".service.MyService"
