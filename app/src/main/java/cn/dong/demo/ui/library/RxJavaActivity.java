@@ -1,16 +1,17 @@
 package cn.dong.demo.ui.library;
 
-import android.graphics.drawable.Drawable;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import butterknife.InjectView;
 import cn.dong.demo.R;
 import cn.dong.demo.ui.common.BaseActivity;
 import rx.Observable;
-import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -31,29 +32,20 @@ public class RxJavaActivity extends BaseActivity {
     protected void process(Bundle savedInstanceState) {
         super.process(savedInstanceState);
 
-        Observable.create(new Observable.OnSubscribe<Drawable>() {
-            @Override
-            public void call(Subscriber<? super Drawable> subscriber) {
-                Drawable drawable = getResources().getDrawable(R.mipmap.ic_launcher);
-                subscriber.onNext(drawable);
-                subscriber.onCompleted();
-            }
-        })
+        Observable.just(R.mipmap.ic_launcher) // io线程，subscribeOn指定
                 .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .map(new Func1<Integer, Bitmap>() { // io线程，observeOn指定
+                    @Override
+                    public Bitmap call(Integer resId) {
+                        return BitmapFactory.decodeResource(getResources(), resId);
+                    }
+                })
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Subscriber<Drawable>() {
+                .subscribe(new Action1<Bitmap>() { // main线程，observeOn指定
                     @Override
-                    public void onCompleted() {
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                    }
-
-                    @Override
-                    public void onNext(Drawable drawable) {
-                        mImageView.setImageDrawable(drawable);
+                    public void call(Bitmap bitmap) {
+                        mImageView.setImageBitmap(bitmap);
                     }
                 });
     }
