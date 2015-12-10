@@ -1,6 +1,7 @@
 package cn.dong.demo.ui.component;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ResolveInfo;
@@ -14,6 +15,7 @@ import java.util.List;
 import butterknife.OnClick;
 import cn.dong.demo.R;
 import cn.dong.demo.ui.common.BaseActivity;
+import cn.dong.demo.ui.main.MainActivity;
 import cn.dong.demo.util.L;
 
 /**
@@ -34,6 +36,20 @@ public class IntentsActivity extends BaseActivity {
     @Override
     protected int initPageLayoutID() {
         return R.layout.activity_intents;
+    }
+
+    @OnClick(R.id.btn_start_self)
+    void startSelf() {
+        Intent intent = new Intent(getApplicationContext(), IntentsActivity.class);
+        startActivity(intent);
+    }
+
+    @OnClick(R.id.btn_clear_task)
+    void clearTask() {
+        Context context = getApplicationContext();
+        Intent intent = new Intent(context, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 
     @OnClick(R.id.btn_sms)

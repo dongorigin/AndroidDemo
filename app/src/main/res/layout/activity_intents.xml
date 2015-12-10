@@ -6,34 +6,68 @@
 
     <include layout="@layout/toolbar_actionbar"/>
 
-    <Button
-        android:id="@+id/btn_sms"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="短信"/>
+        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="分享"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/bn_share_native"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="原生分享"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Common"/>
 
-    <Button
-        android:id="@+id/bn_share_custom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="手动过滤"/>
+            <Button
+                android:id="@+id/btn_sms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="短信"/>
 
-    <Button
-        android:id="@+id/bn_share_weixin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="微信朋友圈"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="分享"/>
 
+            <Button
+                android:id="@+id/bn_share_native"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="原生分享"/>
+
+            <Button
+                android:id="@+id/bn_share_custom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="手动过滤"/>
+
+            <Button
+                android:id="@+id/bn_share_weixin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="微信朋友圈"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Flags"/>
+
+            <Button
+                android:id="@+id/btn_start_self"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="start_self"/>
+
+            <Button
+                android:id="@+id/btn_clear_task"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="FLAG_ACTIVITY_CLEAR_TASK"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
