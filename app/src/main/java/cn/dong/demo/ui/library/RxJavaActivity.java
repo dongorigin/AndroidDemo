@@ -3,9 +3,13 @@ package cn.dong.demo.ui.library;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.InjectView;
+import butterknife.OnClick;
 import cn.dong.demo.R;
 import cn.dong.demo.ui.common.BaseActivity;
 import rx.Observable;
@@ -13,6 +17,8 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
+import rx.subjects.PublishSubject;
+import timber.log.Timber;
 
 /**
  * RxJava测试
@@ -22,6 +28,10 @@ import rx.schedulers.Schedulers;
 public class RxJavaActivity extends BaseActivity {
     @InjectView(R.id.image)
     ImageView mImageView;
+    @InjectView(R.id.click)
+    Button mButton;
+
+    private PublishSubject<Void> actionPublishSubject;
 
     @Override
     protected int initPageLayoutID() {
@@ -48,5 +58,21 @@ public class RxJavaActivity extends BaseActivity {
                         mImageView.setImageBitmap(bitmap);
                     }
                 });
+
+        actionPublishSubject = PublishSubject.create();
+        actionPublishSubject
+                .throttleFirst(1, TimeUnit.SECONDS)
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        Timber.d("click");
+                    }
+                });
+
+    }
+
+    @OnClick(R.id.click)
+    void click() {
+        actionPublishSubject.onNext(null);
     }
 }
