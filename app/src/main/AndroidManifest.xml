@@ -45,6 +45,7 @@
         <activity android:name=".ui.library.XListViewActivity"/>
         <activity android:name=".ui.library.OttoActivity"/>
         <activity android:name=".ui.library.RxJavaActivity"/>
+        <activity android:name=".ui.library.RealmActivity"/>
 
         <!-- Component -->
         <activity android:name=".ui.component.ServiceActivity"/>

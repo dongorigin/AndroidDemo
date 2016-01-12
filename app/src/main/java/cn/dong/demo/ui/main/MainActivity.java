@@ -22,6 +22,7 @@ import cn.dong.demo.ui.component.SendDataTwoActivity;
 import cn.dong.demo.ui.component.ServiceActivity;
 import cn.dong.demo.ui.library.ImageLoaderActivity;
 import cn.dong.demo.ui.library.OttoActivity;
+import cn.dong.demo.ui.library.RealmActivity;
 import cn.dong.demo.ui.library.RxJavaActivity;
 import cn.dong.demo.ui.library.XListViewActivity;
 import cn.dong.demo.ui.original.FadeoutHeaderRecyclerViewActivity;
@@ -67,7 +68,8 @@ public class MainActivity extends BaseActivity {
                 ImageLoaderActivity.class,
                 XListViewActivity.class,
                 OttoActivity.class,
-                RxJavaActivity.class
+                RxJavaActivity.class,
+                RealmActivity.class
         };
         Class[] componentActivities = {
                 ServiceActivity.class,
