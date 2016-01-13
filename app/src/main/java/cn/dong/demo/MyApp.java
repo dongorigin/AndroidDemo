@@ -8,16 +8,16 @@ import timber.log.Timber;
 
 public class MyApp extends Application {
 
-    private static MyApp instantce;
+    private static MyApp instance;
 
     public static MyApp getInstance() {
-        return instantce;
+        return instance;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        instantce = this;
+        instance = this;
         initStrictMode();
         initLogger();
     }

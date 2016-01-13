@@ -17,6 +17,7 @@ import cn.dong.demo.R;
 import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.ui.main.MainActivity;
 import cn.dong.demo.util.L;
+import timber.log.Timber;
 
 /**
  * 常用Intents示例
@@ -25,12 +26,18 @@ import cn.dong.demo.util.L;
  */
 public class IntentsActivity extends BaseActivity {
 
+    public enum State {
+        SUCCESS, FAILURE
+    }
+
     @Override
     protected void init() {
         super.init();
 
         Uri uri = getIntent().getData();
         L.d(TAG, "Url = " + uri);
+        State state = (State) getIntent().getSerializableExtra("state");
+        Timber.d("state=%s", state);
     }
 
     @Override
@@ -41,6 +48,7 @@ public class IntentsActivity extends BaseActivity {
     @OnClick(R.id.btn_start_self)
     void startSelf() {
         Intent intent = new Intent(getApplicationContext(), IntentsActivity.class);
+        intent.putExtra("state", State.SUCCESS);
         startActivity(intent);
     }
 
