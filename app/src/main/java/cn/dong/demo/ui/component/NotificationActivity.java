@@ -12,6 +12,7 @@ import cn.dong.demo.MyApp;
 import cn.dong.demo.R;
 import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.ui.main.MainActivity;
+import cn.dong.demo.util.NotificationHelper;
 
 /**
  * 通知栏
@@ -19,8 +20,6 @@ import cn.dong.demo.ui.main.MainActivity;
  * @author dong on 15/11/10.
  */
 public class NotificationActivity extends BaseActivity {
-    private static final String NOTIFICATION_TAG = "noti";
-
     @InjectView(R.id.button_create)
     Button createButton;
 
@@ -51,6 +50,7 @@ public class NotificationActivity extends BaseActivity {
                 .setAutoCancel(true);
 
         mNotificationManager.notify("1", R.id.notification, mBuilder.build());
+        NotificationHelper.INSTANCE.vibrateAndSound();
     }
 
     @OnClick(R.id.button_modify)
