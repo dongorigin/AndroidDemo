@@ -1,12 +1,16 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primaryDark</item>
         <item name="colorAccent">@color/accent</item>
         <item name="android:windowAnimationStyle">@style/AppAnimation</item>
         <item name="windowActionModeOverlay">true</item>
         <item name="actionModeBackground">@color/primaryLight</item>
+
+    </style>
+
+    <style name="AppTheme" parent="BaseTheme">
 
     </style>
 
