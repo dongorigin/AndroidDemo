@@ -20,6 +20,7 @@ public class MyApp extends Application {
         instance = this;
         initStrictMode();
         initLogger();
+        RealmHelper.init();
     }
 
     /**
@@ -39,7 +40,6 @@ public class MyApp extends Application {
                     .build());
         }
     }
-
 
     private void initLogger() {
         if (BuildConfig.DEBUG) {
