@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -13,8 +12,9 @@ import android.widget.TextView;
 import java.lang.ref.WeakReference;
 
 import cn.dong.demo.R;
+import cn.dong.demo.ui.common.BaseActivity;
 
-public class DialogActivity extends FragmentActivity {
+public class DialogActivity extends BaseActivity {
     private MyHandler handler;
     private TextView text;
     private Button button;
@@ -22,9 +22,13 @@ public class DialogActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dialog);
         initData();
         initView();
+    }
+
+    @Override
+    protected int initPageLayoutID() {
+        return R.layout.activity_dialog;
     }
 
     private void initData() {

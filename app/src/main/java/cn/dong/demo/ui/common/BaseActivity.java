@@ -24,6 +24,7 @@ import android.widget.ListView;
 import butterknife.ButterKnife;
 import cn.dong.demo.MyApp;
 import cn.dong.demo.R;
+import timber.log.Timber;
 
 /**
  * Activity 基类
@@ -32,6 +33,7 @@ import cn.dong.demo.R;
  */
 public abstract class BaseActivity extends AppCompatActivity implements Callback {
     public static final String TAG = BaseActivity.class.getSimpleName();
+    private static final boolean LOG_LIFECYCLE = true;
 
     public static final String EXTRA_TITLE = "actionbar_title";
 
@@ -60,6 +62,7 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        log("onCreate");
         setContentView(initPageLayoutID());
         ButterKnife.inject(this);
         initActionBar();
@@ -67,6 +70,51 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
         initPageView();
         initPageViewListener();
         process(savedInstanceState);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        log("onRestart");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        log("onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        log("onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        log("onPause");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        log("onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        log("onDestroy");
+        isDestroy = true;
+        dismissLoadingDialog();
+    }
+
+    private void log(String message) {
+        if (LOG_LIFECYCLE) {
+            Timber.tag(this.getClass().getSimpleName());
+            Timber.d(message);
+        }
     }
 
     protected void init() {
@@ -202,13 +250,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Callback
                     .setDuration(HEADER_HIDE_ANIM_DURATION)
                     .setInterpolator(new DecelerateInterpolator());
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        isDestroy = true;
-        dismissLoadingDialog();
-        super.onDestroy();
     }
 
     @Override
