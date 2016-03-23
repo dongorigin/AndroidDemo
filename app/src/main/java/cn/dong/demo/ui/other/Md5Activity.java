@@ -1,10 +1,12 @@
 package cn.dong.demo.ui.other;
 
 import android.os.Bundle;
+import android.support.v7.widget.SwitchCompat;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextWatcher;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -29,6 +31,8 @@ public class Md5Activity extends BaseActivity {
     EditText outputView;
     @InjectView(R.id.input_display)
     TextView displayView;
+    @InjectView(R.id.enable_switch)
+    SwitchCompat enableSwitch;
 
     @Override
     protected int initPageLayoutID() {
@@ -69,6 +73,14 @@ public class Md5Activity extends BaseActivity {
             public void afterTextChanged(Editable s) {
                 L.d(TAG, "afterTextChanged %s", s);
                 displayView.setText(s);
+            }
+        });
+
+        enableSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                findViewById(R.id.container).setEnabled(isChecked);
+                displayView.setEnabled(isChecked);
             }
         });
     }

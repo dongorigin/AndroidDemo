@@ -70,6 +70,20 @@ public class IntentsActivity extends BaseActivity {
         }
     }
 
+    @OnClick(R.id.btn_email)
+    void email() {
+        String uriText =
+                "mailto:youremail@gmail.com" +
+                        "?subject=" + Uri.encode("some subject text here") +
+                        "&body=" + Uri.encode("some text here");
+
+        Uri uri = Uri.parse(uriText);
+
+        Intent sendIntent = new Intent(Intent.ACTION_SENDTO);
+        sendIntent.setData(uri);
+        startActivity(Intent.createChooser(sendIntent, "Send email"));
+    }
+
     /**
      * 分享 原生
      */

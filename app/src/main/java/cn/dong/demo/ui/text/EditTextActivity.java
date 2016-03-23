@@ -17,6 +17,7 @@ import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.util.L;
 import cn.dong.demo.util.inputfilter.EmojiInputFilter;
 import cn.dong.demo.util.inputfilter.EmsLenghtFilter;
+import cn.dong.demo.util.inputfilter.InputLengthFilter;
 import cn.dong.demo.util.inputfilter.LinebreakInputFilter;
 import timber.log.Timber;
 
@@ -42,6 +43,7 @@ public class EditTextActivity extends BaseActivity {
 
     @Override
     protected void initPageViewListener() {
+        mEditView.setFilters(new InputFilter[]{new InputLengthFilter(10)});
         mEditView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {

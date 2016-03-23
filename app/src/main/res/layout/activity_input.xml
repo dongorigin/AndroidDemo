@@ -24,18 +24,27 @@
         android:layout_marginRight="@dimen/activity_margin"
         android:inputType="text"/>
 
-    <TextView
-        android:id="@+id/input_display"
+    <FrameLayout
+        android:id="@+id/container"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/activity_margin"
-        android:layout_marginRight="@dimen/activity_margin"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:maxWidth="100dp"
-        android:singleLine="true"/>
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/input_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_margin"
+            android:layout_marginRight="@dimen/activity_margin"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:maxWidth="100dp"
+            android:singleLine="true"
+            android:textColor="@color/text_enable_test"/>
+
+    </FrameLayout>
 
     <android.support.v7.widget.SwitchCompat
+        android:id="@+id/enable_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_margin"
