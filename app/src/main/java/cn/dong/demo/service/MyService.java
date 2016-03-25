@@ -6,6 +6,7 @@ import android.os.Binder;
 import android.os.IBinder;
 
 import cn.dong.demo.util.L;
+import timber.log.Timber;
 
 public class MyService extends Service {
     private static final String TAG = MyService.class.getSimpleName();
@@ -33,7 +34,7 @@ public class MyService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        L.d(TAG, L.getCurrentMethodName());
-        return super.onStartCommand(intent, flags, startId);
+        Timber.d("onStartCommand flags=%d startId=%d", flags, startId);
+        return START_REDELIVER_INTENT;
     }
 }
