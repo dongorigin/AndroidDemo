@@ -67,6 +67,7 @@
                     android:scheme="http"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.component.PowerManagerActivity"/>
 
         <!-- UI -->
         <activity android:name=".ui.ui.ViewPagerActivity"/>

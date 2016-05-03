@@ -17,6 +17,7 @@ import cn.dong.demo.ui.common.BaseActivity;
 import cn.dong.demo.ui.component.FragmentManageActivity;
 import cn.dong.demo.ui.component.IntentsActivity;
 import cn.dong.demo.ui.component.NotificationActivity;
+import cn.dong.demo.ui.component.PowerManagerActivity;
 import cn.dong.demo.ui.component.SendDataOneActivity;
 import cn.dong.demo.ui.component.SendDataTwoActivity;
 import cn.dong.demo.ui.component.ServiceActivity;
@@ -77,7 +78,8 @@ public class MainActivity extends BaseActivity {
                 NotificationActivity.class,
                 SendDataOneActivity.class,
                 SendDataTwoActivity.class,
-                IntentsActivity.class
+                IntentsActivity.class,
+                PowerManagerActivity.class
         };
         Class[] uiActivities = {
                 TouchEventActivity.class,
