@@ -4,6 +4,8 @@ import android.app.Application;
 import android.os.StrictMode;
 import android.util.Log;
 
+import com.facebook.stetho.Stetho;
+
 import timber.log.Timber;
 
 public class MyApp extends Application {
@@ -21,6 +23,8 @@ public class MyApp extends Application {
         initStrictMode();
         initLogger();
         RealmHelper.init();
+        PicassoHelper.INSTANCE.init(this);
+        Stetho.initializeWithDefaults(this);
     }
 
     /**
@@ -31,12 +35,12 @@ public class MyApp extends Application {
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                     .detectAll()
                     .penaltyLog()
-                            // .penaltyDeath()
+                    // .penaltyDeath()
                     .build());
             StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
                     .detectAll()
                     .penaltyLog()
-                            // .penaltyDeath()
+                    // .penaltyDeath()
                     .build());
         }
     }
