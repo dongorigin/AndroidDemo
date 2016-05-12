@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.dong.demo.PicassoHelper;
+import cn.dong.demo.OkHttpHelper;
 import cn.dong.demo.R;
 import cn.dong.demo.model.DuitangBlog;
 import cn.dong.demo.model.DuitangResponseInfo;
@@ -71,7 +71,7 @@ public class ImageLoaderActivity extends BaseActivity {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
-        final Call call = PicassoHelper.INSTANCE.getOkHttpClient().newCall(request);
+        final Call call = OkHttpHelper.INSTANCE.getOkHttpClient().newCall(request);
         Observable
                 .create(new Observable.OnSubscribe<String>() {
                     @Override
