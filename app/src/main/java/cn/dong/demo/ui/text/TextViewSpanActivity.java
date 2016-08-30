@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.Selection;
+import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextPaint;
@@ -20,13 +22,19 @@ import android.text.style.LineHeightSpan;
 import android.text.style.StyleSpan;
 import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
+
 import butterknife.InjectView;
 import cn.dong.demo.R;
 import cn.dong.demo.ui.common.BaseActivity;
+import cn.dong.demo.util.T;
+import cn.dong.demo.util.TextViewClickMovement;
+import timber.log.Timber;
 
 /**
  * @author dong on 15/4/8.
@@ -34,7 +42,10 @@ import cn.dong.demo.ui.common.BaseActivity;
 public class TextViewSpanActivity extends BaseActivity {
     @InjectView(R.id.text)
     TextView mTextView;
-
+    @InjectView(R.id.text2)
+    TextView mText2View;
+    @InjectView(R.id.text3)
+    TextView mText3View;
 
     @Override
     protected int initPageLayoutID() {
@@ -44,10 +55,12 @@ public class TextViewSpanActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        span();
+        testSpan();
+        testClickableSpan();
+        testMovement();
     }
 
-    private void span() {
+    private void testSpan() {
         SpannableStringBuilder ssb = new SpannableStringBuilder();
         ssb.append("www.baidu.\n");
         ssb.setSpan(new URLSpan("http://www.baidu.com"), 0, 10, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
@@ -90,6 +103,52 @@ public class TextViewSpanActivity extends BaseActivity {
 
         mTextView.setText(ssb);
         mTextView.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    private void testClickableSpan() {
+        String target = "aaa www.baidu.com bbb www.google.com cccddd";
+        mText2View.setText(getURLSpan(target));
+        mText2View.setMovementMethod(LinkMovementMethod.getInstance());
+        mText2View.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                T.shortT(mContext, "long click");
+                Selection.removeSelection(((Spannable) mText2View.getText()));
+                return true;
+            }
+        });
+    }
+
+    private SpannableStringBuilder getURLSpan(String content) {
+        SpannableStringBuilder ssb = new SpannableStringBuilder(content);
+        Matcher matcher = Patterns.WEB_URL.matcher(content);
+        while (matcher.find()) {
+            Timber.d("start=%d end=%d group=%s", matcher.start(), matcher.end(), matcher.group());
+            final String url = matcher.group();
+            ssb.setSpan(new ClickableSpan() {
+                @Override
+                public void onClick(View widget) {
+                    T.shortT(mContext, url);
+                }
+            }, matcher.start(), matcher.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        return ssb;
+    }
+
+    private void testMovement() {
+        String target = "aaa www.baidu.com bbb www.google.com cccddd 123456 eee abc@gmail.com ffffff";
+        mText3View.setText(target);
+        mText3View.setMovementMethod(new TextViewClickMovement(new TextViewClickMovement.OnTextViewClickMovementListener() {
+            @Override
+            public void onLinkClicked(String linkText, TextViewClickMovement.LinkType linkType) {
+                Timber.d("onLinkClicked linkText=%s linkType=%s", linkText, linkType);
+            }
+
+            @Override
+            public void onLongClick(String text) {
+                Timber.d("onLongClick text=%s", text);
+            }
+        }, mContext));
     }
 
     private static class HeightSpan extends CharacterStyle implements LineHeightSpan {
