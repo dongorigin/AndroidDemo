@@ -39,6 +39,13 @@ public class ImageSelectorActivity extends BaseActivity {
         startActivityForResult(imageIntent, 0);
     }
 
+    @OnClick(R.id.button2)
+    void selectImage2() {
+        Intent imageIntent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+        imageIntent.setType("image/*");
+        startActivityForResult(imageIntent, 0);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
