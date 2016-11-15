@@ -20,7 +20,7 @@ public class MyApp extends Application {
         instance = this;
         initStrictMode();
         initLogger();
-        RealmHelper.init();
+        RealmHelper.init(this);
         PicassoHelper.init(this);
         StethoHelper.init(this);
     }

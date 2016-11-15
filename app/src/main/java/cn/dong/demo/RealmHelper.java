@@ -1,5 +1,7 @@
 package cn.dong.demo;
 
+import android.content.Context;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -8,9 +10,9 @@ import io.realm.RealmConfiguration;
  */
 public class RealmHelper {
 
-    public static void init() {
-        RealmConfiguration config = new RealmConfiguration.Builder(MyApp.getInstance())
-                .name(Realm.DEFAULT_REALM_NAME)
+    public static void init(Context context) {
+        Realm.init(context);
+        RealmConfiguration config = new RealmConfiguration.Builder()
                 .deleteRealmIfMigrationNeeded()
                 .build();
         Realm.setDefaultConfiguration(config);

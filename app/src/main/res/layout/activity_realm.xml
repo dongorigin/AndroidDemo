@@ -6,5 +6,4 @@
 
     <include layout="@layout/toolbar_actionbar"/>
 
-
 </LinearLayout>
