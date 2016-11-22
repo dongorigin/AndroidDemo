@@ -6,4 +6,27 @@
 
     <include layout="@layout/toolbar_actionbar"/>
 
+    <Button
+        android:id="@+id/modify_person"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="modify person"/>
+
+    <Button
+        android:id="@+id/modify_dog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="modify dog"/>
+
+    <Button
+        android:id="@+id/modify_cat1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="modify cat1"/>
+
+    <Button
+        android:id="@+id/modify_cat2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="modify cat2"/>
 </LinearLayout>
