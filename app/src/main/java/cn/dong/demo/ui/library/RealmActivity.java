@@ -5,13 +5,13 @@ import android.os.SystemClock;
 
 import butterknife.OnClick;
 import cn.dong.demo.R;
+import cn.dong.demo.RealmHelper;
 import cn.dong.demo.model.realm.Cat;
 import cn.dong.demo.model.realm.Dog;
 import cn.dong.demo.model.realm.Person;
 import cn.dong.demo.ui.common.BaseActivity;
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
-import io.realm.RealmModel;
 import io.realm.RealmResults;
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
@@ -34,7 +34,7 @@ public class RealmActivity extends BaseActivity {
     private RealmChangeListener<RealmResults<Dog>> dogsListener = new RealmChangeListener<RealmResults<Dog>>() {
         @Override
         public void onChange(RealmResults<Dog> element) {
-            Timber.d("main: dogs query, auto update");
+//            Timber.d("main: dogs query, auto update");
 //            finish();
         }
     };
@@ -69,24 +69,24 @@ public class RealmActivity extends BaseActivity {
                 Timber.d("main: dog update");
             }
         });
-        cat1.addChangeListener(new RealmChangeListener<RealmModel>() {
-            @Override
-            public void onChange(RealmModel element) {
-                Timber.d("main: cat1 update");
-            }
-        });
-        cat2.addChangeListener(new RealmChangeListener<RealmModel>() {
-            @Override
-            public void onChange(RealmModel element) {
-                Timber.d("main: cat2 update");
-            }
-        });
-        person.addChangeListener(new RealmChangeListener<RealmModel>() {
-            @Override
-            public void onChange(RealmModel element) {
-                Timber.d("main: person update");
-            }
-        });
+//        cat1.addChangeListener(new RealmChangeListener<RealmModel>() {
+//            @Override
+//            public void onChange(RealmModel element) {
+//                Timber.d("main: cat1 update");
+//            }
+//        });
+//        cat2.addChangeListener(new RealmChangeListener<RealmModel>() {
+//            @Override
+//            public void onChange(RealmModel element) {
+//                Timber.d("main: cat2 update");
+//            }
+//        });
+//        person.addChangeListener(new RealmChangeListener<RealmModel>() {
+//            @Override
+//            public void onChange(RealmModel element) {
+//                Timber.d("main: person update");
+//            }
+//        });
     }
 
     @Override
@@ -132,7 +132,7 @@ public class RealmActivity extends BaseActivity {
                         }
                     });
                     mainThreadQuery();
-                    SystemClock.sleep(10000 * 1000);
+                    SystemClock.sleep(300);
                 }
                 backgroundThreadRealm.close();
             }
@@ -149,6 +149,15 @@ public class RealmActivity extends BaseActivity {
                         Timber.d("main: origin, dog age=%d", dog.getAge());
                         Timber.d("main: sync query, dog age=%d", realm.where(Dog.class).equalTo("name", "dong").findFirst().getAge());
                         Dog asyncDog = realm.where(Dog.class).equalTo("name", "dong").findFirstAsync();
+                        RealmHelper.delayUpdate(realm, new Runnable() {
+                            @Override
+                            public void run() {
+                                if (!dog.isValid()) {
+                                    return;
+                                }
+                                Timber.d("main: origin-delay, dog age=%d", dog.getAge());
+                            }
+                        });
                         asyncDog.addChangeListener(new RealmChangeListener<Dog>() {
                             @Override
                             public void onChange(Dog dog) {
