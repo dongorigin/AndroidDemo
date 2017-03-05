@@ -25,10 +25,12 @@ android {
 
     signingConfigs {
         release {
-            storeFile file(STOREFILE)
-            storePassword STOREPASSWORD
-            keyAlias KEYALIAS
-            keyPassword KEYPASSWORD
+            if (project.hasProperty('STOREFILE')) {
+                storeFile file(STOREFILE)
+                storePassword STOREPASSWORD
+                keyAlias KEYALIAS
+                keyPassword KEYPASSWORD
+            }
         }
     }
 
