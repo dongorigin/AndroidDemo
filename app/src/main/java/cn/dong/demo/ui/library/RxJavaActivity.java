@@ -75,4 +75,5 @@ public class RxJavaActivity extends BaseActivity {
     void click() {
         actionPublishSubject.onNext(null);
     }
+
 }
